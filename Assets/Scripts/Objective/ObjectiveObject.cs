@@ -7,4 +7,5 @@ using static Job;
 public class ObjectiveObject : ScriptableObject
 {
     public List<JobType> TypesNeeded = new List<JobType>();
+    public string ObjectiveName;
 }

@@ -1,4 +1,4 @@
 public static class Job
 {
-    public enum JobType { welder, carpenter };
+    public enum JobType { none, welder, carpenter };
 }
