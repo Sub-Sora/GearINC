@@ -27,9 +27,17 @@ public class AreaEngine : Interactable
     /// <summary>
     /// Ce lancera lorsque le joueur interragira avec
     /// </summary>
-    public override void Interact()
+    public override void Interact(PlayerMain player)
     {
-        VerifyEngine();
+        if ( Engine != null )
+        {
+            VerifyEngine();
+        }
+        else if (player.Job.EnginePut != null)
+        {
+            EngineType = player.Job.Job;
+            Engine = Instantiate(player.Job.EnginePut, transform);
+        }
     }
 
     /// <summary>
@@ -39,7 +47,11 @@ public class AreaEngine : Interactable
     {
         if (_manager.Objective.Object.TypesNeeded[_engineId] == EngineType)
         {
-            Debug.Log("Verify!");
+            Debug.Log("Great");
+        }
+        else
+        {
+            Debug.Log("Bad");
         }
     }
 }
