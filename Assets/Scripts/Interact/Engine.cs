@@ -8,7 +8,7 @@ public class Engine : Interactable
     /// <summary>
     /// Ce lancera lorsque le joueur interragira avec
     /// </summary>
-    public override void Interact()
+    public override void Interact(PlayerMain player)
     {
         Debug.Log(Type);
     }

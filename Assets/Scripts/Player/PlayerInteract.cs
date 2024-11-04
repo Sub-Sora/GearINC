@@ -1,16 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerInteract : MonoBehaviour
 {
-
     [SerializeField]
     private Button _interButton;
 
     [SerializeField]
     private GameObject _interObj;
+
+    private PlayerMain _main;
+
+    private void Init(PlayerMain main)
+    {
+        _main = main;
+        main.Interact = this;
+    }
 
     private void Start()
     {
@@ -39,7 +44,7 @@ public class PlayerInteract : MonoBehaviour
         Debug.Log("button");
         if (_interObj != null)
         {
-            _interObj.GetComponent<Interactable>().Interact();
+            _interObj.SendMessage("Interact", _main);
         }
     }
 }
