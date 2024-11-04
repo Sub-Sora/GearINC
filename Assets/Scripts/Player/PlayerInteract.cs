@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField]
     private Button _interButton;
 
-    [SerializeField]
     private GameObject _interObj;
 
     private void Start()

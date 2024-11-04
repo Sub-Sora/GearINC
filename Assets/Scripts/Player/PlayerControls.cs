@@ -8,7 +8,13 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField]
+    private GameObject _stick;
+
+    [SerializeField]
     private InputActionReference _moveAction;
+
+    [SerializeField]
+    private GameObject _canva;
 
     [SerializeField]
     private float _speed;
@@ -30,8 +36,18 @@ public class PlayerControls : MonoBehaviour
         controller.Move(moveDir * _speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
+    // WIP Joystick 
+
+    //private void OnTouch(InputValue value)
+    //{
+
+    //    //Debug.Log(value.Get<Vector2>());
+    //    Debug.Log(Touchscreen.current.position);
+    //    bool stickShow = false;
+    //    if (stickShow == false)
+    //    {
+    //        var joyStick = Instantiate(_stick, Touchscreen.current.position.ReadValue(), Quaternion.identity);
+    //        joyStick.transform.parent = _canva.transform;
+    //    }
+    //}
 }
