@@ -1,27 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _stick;
-
-    [SerializeField]
     private InputActionReference _moveAction;
-
-    [SerializeField]
-    private GameObject _canva;
 
     [SerializeField]
     private float _speed;
 
-    private Vector3 _dir;
+    [SerializeField]
+    private float _rotationSpeed;
 
     private CharacterController controller;
+
+    private Quaternion _lastRotation;
+
 
     void Start()
     {
@@ -32,8 +26,19 @@ public class PlayerControls : MonoBehaviour
     {
         Vector2 inputDir = _moveAction.action.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
-
         controller.Move(moveDir * _speed * Time.deltaTime);
+
+        if (inputDir != Vector2.zero)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+            _lastRotation = transform.rotation;
+        }
+        else if (_lastRotation != null)
+        {
+            transform.rotation = _lastRotation;
+        }
+
     }
 
     // WIP Joystick 
