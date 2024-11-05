@@ -1,13 +1,22 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
+using System.Collections.Generic;
+
 
 public class PlayerControls : MonoBehaviour
 {
+    Button a;
+
     [SerializeField]
     private InputActionReference _moveAction;
 
     [SerializeField]
     private GameObject _joyStick;
+
+    [SerializeField]
+    private GameObject _interactButton;
 
     [SerializeField]
     private float _speed;
@@ -16,6 +25,11 @@ public class PlayerControls : MonoBehaviour
     private float _rotationSpeed;
 
     private Quaternion _lastRotation;
+
+    [SerializeField] GraphicRaycaster m_Raycaster;
+    PointerEventData m_PointerEventData;
+    [SerializeField] EventSystem m_EventSystem;
+    [SerializeField] RectTransform canvasRect;
 
     /// <summary>
     /// Permet de faire bouger le personnage
@@ -40,6 +54,17 @@ public class PlayerControls : MonoBehaviour
             transform.rotation = _lastRotation;
         }
 
+        SpawnJoystick();
+    }
+
+
+    /// <summary>
+    /// Permet de faire spawn le joystick
+    /// Si jamais notre doigt est sur l'ui on ne pourra pas le faire spawn
+    /// </summary>
+    private void SpawnJoystick()
+    {
+
         if (_joyStick.activeSelf)
         {
             if (Input.touchCount == 0)
@@ -52,10 +77,24 @@ public class PlayerControls : MonoBehaviour
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
-                _joyStick.SetActive(true);
-                _joyStick.transform.position = new Vector2(touch.position.x, touch.position.y);
+
+                Vector2 touchePos = new Vector2(touch.position.x, touch.position.y);
+                m_PointerEventData = new PointerEventData(m_EventSystem);
+                //Set the Pointer Event Position to that of the game object
+                m_PointerEventData.position = touchePos;
+
+                //Create a list of Raycast Results
+                List<RaycastResult> results = new List<RaycastResult>();
+
+                //Raycast using the Graphics Raycaster and mouse click position
+                m_Raycaster.Raycast(m_PointerEventData, results);
+
+                if (results.Count == 0)
+                {
+                    _joyStick.SetActive(true);
+                    _joyStick.transform.position = touchePos;
+                }
             }
         }
-        
     }
 }
