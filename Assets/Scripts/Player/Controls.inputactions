@@ -15,10 +15,10 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Touch",
+                    "name": "Machine",
                     "type": "Value",
                     "id": "74d87d71-7343-4080-80ad-7c16c42056b8",
-                    "expectedControlType": "Touch",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -38,12 +38,23 @@
                 },
                 {
                     "name": "",
-                    "id": "2487637f-34b8-44c1-8a0c-1d7b8d3327e2",
-                    "path": "<Pointer>/primaryTouch",
+                    "id": "d8f99b57-d95b-47e3-9926-e92f72a14100",
+                    "path": "<Gamepad>/dpad/left",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Touch",
+                    "action": "Machine",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4fcf9c7e-786b-4fd2-bba8-e150a6b2964a",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Machine",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
