@@ -7,6 +7,9 @@ public class PlayerControls : MonoBehaviour
     private InputActionReference _moveAction;
 
     [SerializeField]
+    private GameObject _joyStick;
+
+    [SerializeField]
     private float _speed;
 
     [SerializeField]
@@ -21,7 +24,7 @@ public class PlayerControls : MonoBehaviour
     {
         Vector2 inputDir = _moveAction.action.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
-        
+
         // Le personnage se déplacera
         transform.Translate(moveDir * _speed * Time.deltaTime, Space.World);
 
@@ -37,5 +40,22 @@ public class PlayerControls : MonoBehaviour
             transform.rotation = _lastRotation;
         }
 
+        if (_joyStick.activeSelf)
+        {
+            if (Input.touchCount == 0)
+            {
+                _joyStick.SetActive(false);
+            }
+        }
+        else
+        {
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                _joyStick.SetActive(true);
+                _joyStick.transform.position = new Vector2(touch.position.x, touch.position.y);
+            }
+        }
+        
     }
 }
