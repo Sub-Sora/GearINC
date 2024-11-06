@@ -1,46 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using System.Collections.Generic;
 
 
 public class PlayerControls : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _stick;
-
-    Button a;
-
-    [SerializeField]
     private InputActionReference _moveAction;
 
-    [SerializeField]
-    private GameObject _canva;
+    [Header("Movement")]
 
     [SerializeField]
-    private GameObject _interactButton;
+    private GameObject _joyStick;
 
     [SerializeField]
     private float _speed;
 
-    private Vector3 _dir;
+    [SerializeField]
+    private float _rotationSpeed;
 
-    private CharacterController controller;
+    private Quaternion _lastRotation;
 
-    [SerializeField] GraphicRaycaster m_Raycaster;
-    PointerEventData m_PointerEventData;
-    [SerializeField] EventSystem m_EventSystem;
-    [SerializeField] RectTransform canvasRect;
+    [Header("Canva Raycast")]
+
+    [SerializeField]
+    private GraphicRaycaster m_Raycaster;
+
+    [SerializeField]
+    private EventSystem m_EventSystem;
+
+    [SerializeField]
+    private RectTransform canvasRect;
+
+    private PointerEventData m_PointerEventData;
+
+    void FixedUpdate()
+    {
+        MovePlayer();
+        SpawnJoystick();
+    }
 
     /// <summary>
     /// Permet de faire bouger le personnage
     /// </summary>
-    void FixedUpdate()
+    private void MovePlayer()
     {
         Vector2 inputDir = _moveAction.action.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
@@ -59,8 +65,6 @@ public class PlayerControls : MonoBehaviour
         {
             transform.rotation = _lastRotation;
         }
-
-        SpawnJoystick();
     }
 
 
@@ -103,19 +107,4 @@ public class PlayerControls : MonoBehaviour
             }
         }
     }
-
-    // WIP Joystick 
-
-    //private void OnTouch(InputValue value)
-    //{
-
-    //    //Debug.Log(value.Get<Vector2>());
-    //    Debug.Log(Touchscreen.current.position);
-    //    bool stickShow = false;
-    //    if (stickShow == false)
-    //    {
-    //        var joyStick = Instantiate(_stick, Touchscreen.current.position.ReadValue(), Quaternion.identity);
-    //        joyStick.transform.parent = _canva.transform;
-    //    }
-    //}
 }
