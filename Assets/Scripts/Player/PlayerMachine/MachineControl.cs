@@ -16,31 +16,31 @@ public class MachineControl : MonoBehaviour
     //Take the current Engine come from
     private int _currentEngine;
 
-    private NavMeshAgent _agent;
+    public NavMeshAgent Agent;
 
     [SerializeField]
     private InputActionReference _moveMachine;
 
     void Start()
     {
-        if (_listEngine == null) Debug.LogError("No Engine List Added");
+        if (_listEngineObj == null) Debug.LogError("No Engine List Added");
         _listEngine = _listEngineObj.GetComponent<AreasEnginesManager>().EngineList;
-        _agent = GetComponent<NavMeshAgent>();
+        Agent = GetComponent<NavMeshAgent>();
         _currentEngine = 1;
         InitializedPath();
     }
 
     private void InitializedPath()
     {
-        _agent.SetDestination(_listEngine[_currentEngine].transform.position);
-        _agent.isStopped = true;
+        Agent.SetDestination(_listEngine[_currentEngine].transform.position);
+        Agent.isStopped = true;
     }
 
     private void Update()
     {
         if (_moveMachine.action.ReadValue<float>() == 1)
         {
-            if (!_agent.pathPending && _agent.remainingDistance < 0.1f)
+            if (!Agent.pathPending && Agent.remainingDistance < 0.1f)
             {
                 _currentEngine++;
                 if (_currentEngine >= _listEngine.Count) _currentEngine = _listEngine.Count;
@@ -50,7 +50,7 @@ public class MachineControl : MonoBehaviour
 
         if (_moveMachine.action.ReadValue<float>() == -1)
         {
-            if (!_agent.pathPending && _agent.remainingDistance < 0.1f && _currentEngine >= 1)
+            if (!Agent.pathPending && Agent.remainingDistance < 0.1f && _currentEngine >= 1)
             {
                 _currentEngine--;
                 if (_currentEngine <= 0) _currentEngine = 1;
@@ -67,8 +67,8 @@ public class MachineControl : MonoBehaviour
         {
             if (_currentEngine < _listEngine.Count)
             {
-                _agent.SetDestination(_listEngine[_currentEngine].transform.position);
-                _agent.isStopped = false;
+                Agent.SetDestination(_listEngine[_currentEngine].transform.position);
+                Agent.isStopped = false;
             }
         }
 
@@ -77,8 +77,8 @@ public class MachineControl : MonoBehaviour
         {
             if (_currentEngine >= 0)
             {
-                _agent.SetDestination(_listEngine[_currentEngine - 1].transform.position);
-                _agent.isStopped = false;
+                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.position);
+                Agent.isStopped = false;
             }
         }
 
@@ -86,7 +86,7 @@ public class MachineControl : MonoBehaviour
         if (_moveMachine.action.ReadValue<float>() == 0)
         {
             //_agent.ResetPath();
-            _agent.isStopped = true;
+            Agent.isStopped = true;
         }
     }
 
@@ -97,8 +97,8 @@ public class MachineControl : MonoBehaviour
             if (_currentEngine < _listEngine.Count)
             {
                 if (_currentEngine >= _listEngine.Count) _currentEngine = _listEngine.Count;
-                _agent.SetDestination(_listEngine[_currentEngine].transform.position);
-                _agent.isStopped = false;
+                Agent.SetDestination(_listEngine[_currentEngine].transform.position);
+                Agent.isStopped = false;
             }
         }
 
@@ -106,8 +106,8 @@ public class MachineControl : MonoBehaviour
         {
             if (_currentEngine >= 0)
             {
-                _agent.SetDestination(_listEngine[_currentEngine - 1].transform.position);
-                _agent.isStopped = false;
+                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.position);
+                Agent.isStopped = false;
             }
         }
     }
