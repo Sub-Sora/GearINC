@@ -21,11 +21,14 @@ public class MachineControl : MonoBehaviour
     [SerializeField]
     private InputActionReference _moveMachine;
 
+    private MachineInteract _interact;
+
     void Start()
     {
         if (_listEngineObj == null) Debug.LogError("No Engine List Added");
         _listEngine = _listEngineObj.GetComponent<AreasEnginesManager>().EngineList;
         Agent = GetComponent<NavMeshAgent>();
+        _interact = GetComponent<MachineInteract>();
         _currentEngine = 1;
         InitializedPath();
     }
@@ -69,6 +72,7 @@ public class MachineControl : MonoBehaviour
             {
                 Agent.SetDestination(_listEngine[_currentEngine].transform.position);
                 Agent.isStopped = false;
+                _interact.StartMoving();
             }
         }
 
@@ -79,14 +83,15 @@ public class MachineControl : MonoBehaviour
             {
                 Agent.SetDestination(_listEngine[_currentEngine - 1].transform.position);
                 Agent.isStopped = false;
+                _interact.StartMoving();
             }
         }
 
         //Stop the machine when no button pressed
         if (_moveMachine.action.ReadValue<float>() == 0)
         {
-            //_agent.ResetPath();
             Agent.isStopped = true;
+            _interact.StopMoving();
         }
     }
 

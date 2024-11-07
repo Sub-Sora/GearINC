@@ -322,7 +322,7 @@ PrefabInstance:
     - target: {fileID: 2415044415151234995, guid: 932f4bd910d600e46849b9e4172d658d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6718835435854377871, guid: 932f4bd910d600e46849b9e4172d658d,
         type: 3}
@@ -397,7 +397,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2415044415151234995, guid: 932f4bd910d600e46849b9e4172d658d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 388975205}
+    - targetCorrespondingSourceObject: {fileID: 2415044415151234995, guid: 932f4bd910d600e46849b9e4172d658d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 388975215}
   m_SourcePrefab: {fileID: 100100000, guid: 932f4bd910d600e46849b9e4172d658d, type: 3}
 --- !u!1001 &150900488
 PrefabInstance:
@@ -986,6 +994,35 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 149609218}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &388975205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388975204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e69ac08a4616c1c4496c41410f836e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Controls: {fileID: 0}
+  Interact: {fileID: 0}
+  Job: {fileID: 0}
+--- !u!114 &388975215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 388975204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c78f7aae65f4ab4da0b1856360529a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Job: 0
+  EnginePut: {fileID: 0}
 --- !u!1 &573171803 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8801708251138794141, guid: eb583c75df25ac14ba74f57fc450aa43,
@@ -1113,7 +1150,6 @@ MonoBehaviour:
   _exitButton: {fileID: 1958389573}
   _machineButton: {fileID: 698045188}
   _playerButton: {fileID: 1508655221}
-  _player: {fileID: 388975204}
 --- !u!1 &663148698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1346,7 +1382,7 @@ PrefabInstance:
     - target: {fileID: 5604739930140245631, guid: e469574faa552004b987f4412f44104e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.82
+      value: -0.53
       objectReference: {fileID: 0}
     - target: {fileID: 5604739930140245631, guid: e469574faa552004b987f4412f44104e,
         type: 3}
@@ -1391,6 +1427,10 @@ PrefabInstance:
         type: 3}
       insertIndex: 5
       addedObject: {fileID: 1960077954}
+    - targetCorrespondingSourceObject: {fileID: 3494624039325768617, guid: e469574faa552004b987f4412f44104e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1960077962}
   m_SourcePrefab: {fileID: 100100000, guid: e469574faa552004b987f4412f44104e, type: 3}
 --- !u!114 &1270976478 stripped
 MonoBehaviour:
@@ -2108,6 +2148,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2f5a72456f42d448585c429f8f6f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _plMain: {fileID: 0}
+--- !u!54 &1960077962
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960077951}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2052878548
 GameObject:
   m_ObjectHideFlags: 0
