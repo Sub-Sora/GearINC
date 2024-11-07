@@ -16,7 +16,7 @@ public class AreasEnginesManager : MonoBehaviour
     /// <summary>
     /// Tout les AreaEngines vont être initiés
     /// </summary>
-    private void Start()
+    public void InitAllAreaEngine()
     {
         foreach (AreaEngine engine in EngineList)
         {

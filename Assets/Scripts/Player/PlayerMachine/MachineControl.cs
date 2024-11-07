@@ -7,8 +7,6 @@ using UnityEngine.UI;
 
 public class MachineControl : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _listEngineObj;
 
     private List<AreaEngine> _listEngine;
 
@@ -25,21 +23,21 @@ public class MachineControl : MonoBehaviour
 
     void Start()
     {
-        if (_listEngineObj == null) Debug.LogError("No Engine List Added");
-        _listEngine = _listEngineObj.GetComponent<AreasEnginesManager>().EngineList;
         Agent = GetComponent<NavMeshAgent>();
-        _interact = GetComponent<MachineInteract>();
-        _currentEngine = 1;
-        InitializedPath();
+      //  InitializedPath();
     }
 
     /// <summary>
     /// Vas initialiser un passage pour l'agent pour éviter des erreurs de démarage
     /// </summary>
-    private void InitializedPath()
+    public void InitializedPath(List<AreaEngine> engineList)
     {
+        _listEngine = engineList;
+        _interact = GetComponent<MachineInteract>();
+        _currentEngine = 1;
         Agent.SetDestination(_listEngine[_currentEngine].transform.position);
         Agent.isStopped = true;
+
     }
 
     /// <summary>

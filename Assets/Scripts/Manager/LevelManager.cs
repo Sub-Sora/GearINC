@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager: MonoBehaviour
 {
+    public event Action InitEngine;
+
     [SerializeField]
     private List<GameObject> _workstation = new List<GameObject> ();
 
@@ -58,5 +61,14 @@ public class LevelManager: MonoBehaviour
             _engineSpot[_engineSpot.Count-1].SetActive(false);
             _engineSpot.Remove(_engineSpot[_engineSpot.Count - 1]);
         }
+
+        foreach(GameObject engine in _engineSpot)
+        {
+            _main.AreasEngines.EngineList.Add(engine.GetComponent<AreaEngine>());
+        }
+
+        _main.AreasEngines.InitAllAreaEngine();
+        _main.Machine.InitializedPath(_main.AreasEngines.EngineList);
+
     }
 }

@@ -24,7 +24,7 @@ public class SwitchPlayer : Interactable
     /// </summary>
     public override void Interact(PlayerMain player)
     {
-        _player = _player.GetComponent<PlayerControls>();
+        _player = player.GetComponent<PlayerControls>();
         EnterMachine();
     }
 

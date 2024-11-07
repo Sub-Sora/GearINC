@@ -13,6 +13,8 @@ public class ManagerMain : MonoBehaviour
 
     public UIPool UI;
 
+    public MachineControl Machine;
+
     private void Awake()
     {
         SendMessage("Init", this);
