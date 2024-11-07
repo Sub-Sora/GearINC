@@ -43,6 +43,11 @@ public class PlayerControls : MonoBehaviour
         SpawnJoystick();
     }
 
+    private void Init(PlayerMain main)
+    {
+        main.Controls = this;
+    }
+
     /// <summary>
     /// Permet de faire bouger le personnage
     /// </summary>
