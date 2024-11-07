@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MachineInteract : MonoBehaviour
 {
+    [SerializeField]
     private List<AreaEngine> _listEngine;
 
     private int _currentEngine;
@@ -13,8 +14,10 @@ public class MachineInteract : MonoBehaviour
 
     private MachineControl _machControl;
 
+    [SerializeField]
     private Animator _animator;
 
+    [SerializeField]
     private AnimInteract _interact;
 
     private IEnumerator _coroutine;
@@ -35,6 +38,7 @@ public class MachineInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         _animator = other.GetComponent<Animator>();
         _interact = other.GetComponent<AnimInteract>();
     }
@@ -53,10 +57,14 @@ public class MachineInteract : MonoBehaviour
                 if (_interact.AnimEnd == false && _interact.LateAnim == false) Complete();
                 else Failed();
             }
-            _ressource = _listEngine[_currentEngine].Ressource;
+            if (_listEngine[_currentEngine].Ressource !=null)
+            {
+                _ressource = _listEngine[_currentEngine].Ressource;
+            }
             _animator = null;
             _interact = null;
         }
+
     }
 
     /// <summary>
@@ -65,12 +73,15 @@ public class MachineInteract : MonoBehaviour
     public void StopMoving(int CurrentEngine)
     {
         _currentEngine = CurrentEngine;
-        if (_animator != null && _interact != null)
+        if (_ressource.RessourceState == _currentEngine)
         {
-            Debug.Log("Machine stopped");
-            StartCoroutine(_coroutine);
+            if (_animator != null && _interact != null)
+            {
+                _listEngine[_currentEngine].Ressource = _ressource;
+                StartCoroutine(_coroutine);
+                Debug.Log("start");
+            }
         }
-            
     }
 
     /// <summary>
@@ -81,7 +92,6 @@ public class MachineInteract : MonoBehaviour
     private IEnumerator StartWaitingCraft(float time)
     {
         yield return new WaitForSeconds(time);
-        _listEngine[_currentEngine].Ressource = _ressource;
         _ressource = null;
         _animator.SetBool("isPlay", true);
     }
