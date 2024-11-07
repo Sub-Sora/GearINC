@@ -5,6 +5,7 @@ public class AreaEngine : Interactable
 {
     public GameObject Engine;
     public JobType EngineType;
+    public Ressource Ressource;
     private AreasEnginesManager _manager;
     private int _engineId;
 
