@@ -23,21 +23,26 @@ public class MachineInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Enter Collider");
-
-        //Gérer le temps avec  animation, si trop court ou trop long, raté.
+        _animator = other.GetComponent<Animator>();
+        _interact = other.GetComponent<AnimInteract>();
         if (_machControl.Agent.isStopped == true)
         {
-            _animator = other.GetComponent<Animator>();
-            _interact = other.GetComponent<AnimInteract>();
-            StartCoroutine(_coroutine);
+             
         }
 
         if (_machControl.Agent.isStopped == false)
         {
-            _animator.StopPlayback();
+            
+        }
+    }
+
+    public void StartMoving()
+    {
+        if (_animator != null && _interact != null)
+        {
+            //_animator.StopPlayback();
             StopCoroutine(_coroutine);
-            if (_animator && _interact != null)
+            if (_animator.GetBool("isPlay") == true)
             {
                 if (_interact.AnimEnd == false && _interact.LateAnim == false) Complete();
                 else Failed();
@@ -47,6 +52,17 @@ public class MachineInteract : MonoBehaviour
         }
     }
 
+    public void StopMoving()
+    {
+        if (_animator != null && _interact != null)
+        {
+            Debug.Log("Machine stopped");
+            StartCoroutine(_coroutine);
+        }
+            
+    }
+
+    //Gérer le temps avec  animation, si trop court ou trop long, raté.
     private IEnumerator StartWaitingCraft(float time)
     {
         yield return new WaitForSeconds(time);
