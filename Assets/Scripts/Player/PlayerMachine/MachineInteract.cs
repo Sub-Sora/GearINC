@@ -26,16 +26,11 @@ public class MachineInteract : MonoBehaviour
         _animator = other.GetComponent<Animator>();
         _interact = other.GetComponent<AnimInteract>();
         if (_machControl.Agent.isStopped == true)
-        {
-             
-        }
-
-        if (_machControl.Agent.isStopped == false)
-        {
-            
-        }
     }
 
+    /// <summary>
+    /// Fonction qui s'active lorsque le joueur bouge en contact d'une machine posé
+    /// </summary>
     public void StartMoving()
     {
         if (_animator != null && _interact != null)
@@ -52,6 +47,9 @@ public class MachineInteract : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Fonction qui s'active lorsque le joueur se stop en contact d'une machine posé
+    /// </summary>
     public void StopMoving()
     {
         if (_animator != null && _interact != null)
@@ -62,18 +60,28 @@ public class MachineInteract : MonoBehaviour
             
     }
 
-    //Gérer le temps avec  animation, si trop court ou trop long, raté.
+    /// <summary>
+    /// Coroutine qui vas attendre "time" temps avant de lancer l'aniamtion à l'arrêt du joueur
+    /// </summary>
+    /// <param name="time">Temps avant du lancement de l'animation</param>
+    /// <returns></returns>
     private IEnumerator StartWaitingCraft(float time)
     {
         yield return new WaitForSeconds(time);
         _animator.SetBool("isPlay", true);
     }
 
+    /// <summary>
+    /// Lorsque le joueur bouge au bon moment de la fin de l'anim
+    /// </summary>
     private void Complete()
     {
 
     }
 
+    /// <summary>
+    /// Lorsque le joueur bouge au mauvais moment de la fin de l'anim
+    /// </summary>
     private void Failed()
     {
         

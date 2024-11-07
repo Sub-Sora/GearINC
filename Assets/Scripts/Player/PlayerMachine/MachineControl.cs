@@ -33,12 +33,18 @@ public class MachineControl : MonoBehaviour
         InitializedPath();
     }
 
+    /// <summary>
+    /// Vas initialiser un passage pour l'agent pour éviter des erreurs de démarage
+    /// </summary>
     private void InitializedPath()
     {
         Agent.SetDestination(_listEngine[_currentEngine].transform.position);
         Agent.isStopped = true;
     }
 
+    /// <summary>
+    /// Va permettre à l'agent de continuer son trajet lorsqu'il arrive à un engine
+    /// </summary>
     private void Update()
     {
         if (_moveMachine.action.ReadValue<float>() == 1)
@@ -65,7 +71,7 @@ public class MachineControl : MonoBehaviour
 
     private void OnMachine()
     {
-        //Make the machine go to the next JobEngine
+        // Amène l'agent vers la machine suivante
         if (_moveMachine.action.ReadValue<float>() == 1)
         {
             if (_currentEngine < _listEngine.Count)
@@ -76,7 +82,7 @@ public class MachineControl : MonoBehaviour
             }
         }
 
-        //Make the machine get back to the previous JobEngine
+        // Amène l'agent vers la machine précedente
         if (_moveMachine.action.ReadValue<float>() == -1)
         {
             if (_currentEngine >= 0)
@@ -87,7 +93,7 @@ public class MachineControl : MonoBehaviour
             }
         }
 
-        //Stop the machine when no button pressed
+        //Arrête l'agent quand aucune touche n'es pressé
         if (_moveMachine.action.ReadValue<float>() == 0)
         {
             Agent.isStopped = true;
@@ -95,8 +101,12 @@ public class MachineControl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Fonction appelé lors de l'update pour permettre à l'agent de continuer sa route quand il atteint une machine
+    /// </summary>
     private void NextDestination()
     {
+        // Condition pour vérifier que l'agent avance et donc aller à la machine suivante
         if (_moveMachine.action.ReadValue<float>() == 1)
         {
             if (_currentEngine < _listEngine.Count)
@@ -107,6 +117,7 @@ public class MachineControl : MonoBehaviour
             }
         }
 
+        // Condition pour vérifier que l'agent recul et donc aller à la machine précedente
         if (_moveMachine.action.ReadValue<float>() == -1)
         {
             if (_currentEngine >= 0)

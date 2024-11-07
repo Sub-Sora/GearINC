@@ -16,12 +16,18 @@ public class AnimInteract : MonoBehaviour
         LateAnim = false;
     }
 
+    /// <summary>
+    /// Se déclanche lors de la fin de l'animation
+    /// </summary>
     public void AnimationFinished()
     {
         AnimEnd = true;
         Debug.Log("Anim Finish");
     }
 
+    /// <summary>
+    /// Se déclanche quand au moment dit "trop tard" et que l'objet rate
+    /// </summary>
     public void TooLateAnim()
     {
         LateAnim = true;
