@@ -5,6 +5,8 @@ public class PlayerMain : MonoBehaviour
     public PlayerControls Controls;
     public PlayerInteract Interact;
     public PlayerJob Job;
+    public PlayerRessource Ressource;
+    public PlayerTrigger Trigger;
 
     private void Awake()
     {

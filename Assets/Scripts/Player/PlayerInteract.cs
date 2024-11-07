@@ -37,6 +37,18 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
+    public void ActiveInteractButton(GameObject other)
+    {
+        _interButton.gameObject.SetActive(true);
+        _interObj = other;
+    }
+
+    public void DesactiveInteractButton()
+    {
+        _interButton.gameObject.SetActive(false);
+        _interObj = null;
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<Workstation>())

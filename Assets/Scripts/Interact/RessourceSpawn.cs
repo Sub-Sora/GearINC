@@ -3,7 +3,7 @@ using UnityEngine;
 public class RessourceSpawn : Interactable
 {
     [SerializeField]
-    private GameObject _ressourceToSpawn;
+    private Ressource _ressourceToSpawn;
 
     [SerializeField]
     private Transform _posSpawn;
@@ -11,6 +11,8 @@ public class RessourceSpawn : Interactable
     public override void Interact(PlayerMain player)
     {
         //Fait spawn les matériaux
-        Instantiate(_ressourceToSpawn, _posSpawn);
+        //Instantiate(_ressourceToSpawn, _posSpawn);
+        player.Ressource.RessourceHold = new Ressource();
+        player.Ressource.RessourceHold.RessourceState = 0;
     }
 }

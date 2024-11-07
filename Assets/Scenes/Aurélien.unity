@@ -1726,6 +1726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Engine: {fileID: 0}
   EngineType: 0
+  Ressource: {fileID: 0}
 --- !u!65 &1026554028
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2042,6 +2043,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Engine: {fileID: 0}
   EngineType: 0
+  Ressource: {fileID: 0}
 --- !u!65 &1239823185
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2923,6 +2925,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1728753874}
+    - targetCorrespondingSourceObject: {fileID: 2415044415151234995, guid: 932f4bd910d600e46849b9e4172d658d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1728753886}
+    - targetCorrespondingSourceObject: {fileID: 2415044415151234995, guid: 932f4bd910d600e46849b9e4172d658d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1728753885}
   m_SourcePrefab: {fileID: 100100000, guid: 932f4bd910d600e46849b9e4172d658d, type: 3}
 --- !u!1001 &1574536437
 PrefabInstance:
@@ -3345,6 +3355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Engine: {fileID: 0}
   EngineType: 0
+  Ressource: {fileID: 0}
 --- !u!65 &1725131019
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3451,12 +3462,39 @@ MonoBehaviour:
   Controls: {fileID: 0}
   Interact: {fileID: 0}
   Job: {fileID: 0}
+  Ressource: {fileID: 0}
+  Trigger: {fileID: 0}
 --- !u!4 &1728753884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9155855517704970751, guid: 932f4bd910d600e46849b9e4172d658d,
     type: 3}
   m_PrefabInstance: {fileID: 1501938033}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1728753885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728753864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6a60ee6c7bb0eb4381a2462877d9968, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1728753886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728753864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a81a84c77867e0f4faf8e14d69039e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RessourceHold: {fileID: 0}
 --- !u!1 &1770603150
 GameObject:
   m_ObjectHideFlags: 0
