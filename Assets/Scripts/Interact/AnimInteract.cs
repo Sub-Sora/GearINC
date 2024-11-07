@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class AnimInteract : MonoBehaviour
 {
+    [HideInInspector]
     public bool AnimEnd;
 
+    [HideInInspector]
     public bool LateAnim;
 
     private void Start()
@@ -17,10 +19,12 @@ public class AnimInteract : MonoBehaviour
     public void AnimationFinished()
     {
         AnimEnd = true;
+        Debug.Log("Anim Finish");
     }
 
-    public void TooLate()
+    public void TooLateAnim()
     {
         LateAnim = true;
+        Debug.Log("Too Late to go");
     }
 }
