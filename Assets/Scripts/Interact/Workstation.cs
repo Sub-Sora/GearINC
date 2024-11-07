@@ -3,8 +3,7 @@ using static Job;
 
 public class Workstation : Interactable
 {
-    [SerializeField]
-    private JobType _type;
+    public JobType Type;
 
     [SerializeField]
     private GameObject _engineToPut;
@@ -15,7 +14,7 @@ public class Workstation : Interactable
 
     public override void Interact(PlayerMain player)
     {
-        player.Job.Job = _type;
+        player.Job.Job = Type;
         player.Job.EnginePut = _engineToPut;
         player.GetComponent<Renderer>().material = _skinJob;
     }

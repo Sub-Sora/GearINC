@@ -12,7 +12,7 @@ public class AreaEngine : Interactable
     /// Initie l'areasEnginesManager et set la position de l'AreaEngine
     /// </summary>
     /// <param name="manager"></param>
-    private void Init(AreasEnginesManager manager)
+    public void InitAreaEngine(AreasEnginesManager manager)
     {
         _manager = manager;
         for (int i = 0; i < manager.EngineList.Count; i++)
@@ -45,7 +45,7 @@ public class AreaEngine : Interactable
     /// </summary>
     private void VerifyEngine()
     {
-        if (_manager.Objective.Object.TypesNeeded[_engineId] == EngineType)
+        if (_manager.Main.Objective.Object.TypesNeeded[_engineId] == EngineType)
         {
             Debug.Log("Great");
         }
