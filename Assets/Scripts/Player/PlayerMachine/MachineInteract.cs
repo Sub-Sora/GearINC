@@ -4,35 +4,61 @@ using UnityEngine;
 
 public class MachineInteract : MonoBehaviour
 {
+    [SerializeField]
+    private PlayerMain _plMain;
+
     private MachineControl _machControl;
 
     private Animator _animator;
 
     private AnimInteract _interact;
 
+    private IEnumerator _coroutine;
+
     private void Start()
     {
         _machControl = GetComponent<MachineControl>();
+        _coroutine = StartWaitingCraft(0.5f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Enter Collider");
+
         //Gérer le temps avec  animation, si trop court ou trop long, raté.
         if (_machControl.Agent.isStopped == true)
         {
             _animator = other.GetComponent<Animator>();
             _interact = other.GetComponent<AnimInteract>();
-            StartCoroutine(StartWaitingCraft(5));
+            StartCoroutine(_coroutine);
+        }
+
+        if (_machControl.Agent.isStopped == false)
+        {
+            _animator.StopPlayback();
+            StopCoroutine(_coroutine);
+            if (_animator && _interact != null)
+            {
+                if (_interact.AnimEnd == false && _interact.LateAnim == false) Complete();
+                else Failed();
+            }
+            _animator = null;
+            _interact = null;
         }
     }
 
     private IEnumerator StartWaitingCraft(float time)
     {
         yield return new WaitForSeconds(time);
-        _animator.Play("EngineAnim");
+        _animator.SetBool("isPlay", true);
     }
 
-    private void OnTriggerExit(Collider other)
+    private void Complete()
+    {
+
+    }
+
+    private void Failed()
     {
         
     }
