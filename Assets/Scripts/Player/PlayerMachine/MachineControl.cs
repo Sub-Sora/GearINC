@@ -7,13 +7,14 @@ using UnityEngine.UI;
 
 public class MachineControl : MonoBehaviour
 {
-
+    [SerializeField]
     private List<AreaEngine> _listEngine;
 
     [SerializeField]
     //Take the current Engine come from
     private int _currentEngine;
 
+    [HideInInspector]
     public NavMeshAgent Agent;
 
     [SerializeField]
@@ -95,7 +96,11 @@ public class MachineControl : MonoBehaviour
         if (_moveMachine.action.ReadValue<float>() == 0)
         {
             Agent.isStopped = true;
-            _interact.StopMoving();
+            if (_listEngine[_currentEngine].Ressource.RessourceState == _currentEngine)
+            {
+
+            }
+            _interact.StopMoving(_currentEngine);
         }
     }
 
