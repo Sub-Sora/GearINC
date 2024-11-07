@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class MachineControl : MonoBehaviour
 {
-    [SerializeField]
     private List<AreaEngine> _listEngine;
 
     [SerializeField]
@@ -35,10 +34,10 @@ public class MachineControl : MonoBehaviour
     {
         _listEngine = engineList;
         _interact = GetComponent<MachineInteract>();
-        _currentEngine = 1;
+        _currentEngine = 0;
         Agent.SetDestination(_listEngine[_currentEngine].transform.position);
         Agent.isStopped = true;
-
+        _interact.InitializedPath(engineList);
     }
 
     /// <summary>
@@ -96,10 +95,6 @@ public class MachineControl : MonoBehaviour
         if (_moveMachine.action.ReadValue<float>() == 0)
         {
             Agent.isStopped = true;
-            if (_listEngine[_currentEngine].Ressource.RessourceState == _currentEngine)
-            {
-
-            }
             _interact.StopMoving(_currentEngine);
         }
     }
