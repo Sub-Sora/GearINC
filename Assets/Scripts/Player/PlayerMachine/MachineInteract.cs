@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class MachineInteract : MonoBehaviour
 {
+    private List<AreaEngine> _listEngine;
+
+    private int _currentEngine;
+
     [SerializeField]
     private PlayerMain _plMain;
 
@@ -15,10 +19,18 @@ public class MachineInteract : MonoBehaviour
 
     private IEnumerator _coroutine;
 
+    [SerializeField]
+    private Ressource _ressource;
+
     private void Start()
     {
         _machControl = GetComponent<MachineControl>();
         _coroutine = StartWaitingCraft(0.5f);
+    }
+
+    public void InitializedPath(List<AreaEngine> engineList)
+    {
+        _listEngine = engineList;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,6 +53,7 @@ public class MachineInteract : MonoBehaviour
                 if (_interact.AnimEnd == false && _interact.LateAnim == false) Complete();
                 else Failed();
             }
+            _ressource = _listEngine[_currentEngine].Ressource;
             _animator = null;
             _interact = null;
         }
@@ -49,8 +62,9 @@ public class MachineInteract : MonoBehaviour
     /// <summary>
     /// Fonction qui s'active lorsque le joueur se stop en contact d'une machine posé
     /// </summary>
-    public void StopMoving()
+    public void StopMoving(int CurrentEngine)
     {
+        _currentEngine = CurrentEngine;
         if (_animator != null && _interact != null)
         {
             Debug.Log("Machine stopped");
@@ -67,6 +81,8 @@ public class MachineInteract : MonoBehaviour
     private IEnumerator StartWaitingCraft(float time)
     {
         yield return new WaitForSeconds(time);
+        _listEngine[_currentEngine].Ressource = _ressource;
+        _ressource = null;
         _animator.SetBool("isPlay", true);
     }
 
@@ -75,7 +91,7 @@ public class MachineInteract : MonoBehaviour
     /// </summary>
     private void Complete()
     {
-
+        _listEngine[_currentEngine].Ressource.RessourceState ++;
     }
 
     /// <summary>
