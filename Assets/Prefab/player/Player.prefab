@@ -182,7 +182,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveAction: {fileID: -6605834972089306631, guid: 3b937047e0421e547b445118c42dc28f,
     type: 3}
+  _joyStick: {fileID: 0}
   _speed: 5
+  _rotationSpeed: 0
+  m_Raycaster: {fileID: 0}
+  m_EventSystem: {fileID: 0}
+  canvasRect: {fileID: 0}
 --- !u!143 &537605028017566415
 CharacterController:
   m_ObjectHideFlags: 0
@@ -222,4 +227,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _interButton: {fileID: 0}
-  _interObj: {fileID: 0}
