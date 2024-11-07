@@ -25,7 +25,6 @@ public class MachineInteract : MonoBehaviour
     {
         _animator = other.GetComponent<Animator>();
         _interact = other.GetComponent<AnimInteract>();
-        if (_machControl.Agent.isStopped == true)
     }
 
     /// <summary>
