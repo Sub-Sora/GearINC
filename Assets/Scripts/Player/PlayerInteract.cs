@@ -27,6 +27,11 @@ public class PlayerInteract : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Interactable>())
         {
+            if (other.gameObject.GetComponent<Workstation>())
+            {
+                other.SendMessage("ShowJobView");
+            }
+
             _interButton.gameObject.SetActive(true);
             _interObj = other.gameObject;
         }
@@ -34,14 +39,21 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.GetComponent<Workstation>())
+        {
+            other.SendMessage("HideJobView");
+        }
+
         _interButton.gameObject.SetActive(false);
         _interObj = null;
 
     }
 
+    /// <summary>
+    /// Permet au joueur d'intéragir avec les éléments interactable
+    /// </summary>
     public void InteractButton()
     {
-        Debug.Log("button");
         if (_interObj != null)
         {
             _interObj.SendMessage("Interact", _main);

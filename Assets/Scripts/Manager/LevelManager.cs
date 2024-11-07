@@ -34,7 +34,16 @@ public class LevelManager: MonoBehaviour
             {
                 if (_workstation[j].GetComponent<Workstation>().Type == _main.Objective.Object.AllJob[i])
                 {
-                    Instantiate(_workstation[j], _workstationSpot[i]);
+                    Workstation newWorkstation = Instantiate(_workstation[j], _workstationSpot[i]).GetComponent<Workstation>();
+                    foreach (UIJobName jobName in _main.UI.JobName)
+                    {
+                        if (jobName.JobType == newWorkstation.Type)
+                        {
+                            jobName.transform.position = new Vector3 (_workstationSpot[i].position.x, _workstationSpot[i].position.y + 2, _workstationSpot[i].position.z);
+                            newWorkstation.SetWorkstation(jobName.gameObject);
+                        }
+                    }
+                    
                 }
             }
         }

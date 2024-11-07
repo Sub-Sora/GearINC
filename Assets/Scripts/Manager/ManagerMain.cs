@@ -11,6 +11,8 @@ public class ManagerMain : MonoBehaviour
 
     public Objective Objective;
 
+    public UIPool UI;
+
     private void Awake()
     {
         SendMessage("Init", this);
