@@ -5,8 +5,12 @@ using UnityEngine;
 public class MachineInteract : MonoBehaviour
 {
     [SerializeField]
+    private ManagerMain _main;
+
+    [SerializeField]
     private List<AreaEngine> _listEngine;
 
+    [SerializeField]
     private int _currentEngine;
 
     [SerializeField]
@@ -38,9 +42,9 @@ public class MachineInteract : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         _animator = other.GetComponent<Animator>();
         _interact = other.GetComponent<AnimInteract>();
+        _currentEngine = _listEngine.IndexOf(other.gameObject.GetComponent<AreaEngine>());
     }
 
     /// <summary>
@@ -70,16 +74,16 @@ public class MachineInteract : MonoBehaviour
     /// <summary>
     /// Fonction qui s'active lorsque le joueur se stop en contact d'une machine posé
     /// </summary>
-    public void StopMoving(int CurrentEngine)
+    public void StopMoving()
     {
-        _currentEngine = CurrentEngine;
+        Debug.Log("is stopped");
         if (_ressource.RessourceState == _currentEngine)
         {
+            Debug.Log("enter ressources condition");
             if (_animator != null && _interact != null)
             {
                 _listEngine[_currentEngine].Ressource = _ressource;
                 StartCoroutine(_coroutine);
-                Debug.Log("start");
             }
         }
     }

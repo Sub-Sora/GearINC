@@ -9,7 +9,6 @@ public class MachineControl : MonoBehaviour
 {
     private List<AreaEngine> _listEngine;
 
-    [SerializeField]
     //Take the current Engine come from
     private int _currentEngine;
 
@@ -21,17 +20,12 @@ public class MachineControl : MonoBehaviour
 
     private MachineInteract _interact;
 
-    void Start()
-    {
-        Agent = GetComponent<NavMeshAgent>();
-      //  InitializedPath();
-    }
-
     /// <summary>
     /// Vas initialiser un passage pour l'agent pour éviter des erreurs de démarage
     /// </summary>
     public void InitializedPath(List<AreaEngine> engineList)
     {
+        Agent = GetComponent<NavMeshAgent>();
         _listEngine = engineList;
         _interact = GetComponent<MachineInteract>();
         _currentEngine = 0;
@@ -83,7 +77,7 @@ public class MachineControl : MonoBehaviour
         // Amène l'agent vers la machine précedente
         if (_moveMachine.action.ReadValue<float>() == -1)
         {
-            if (_currentEngine >= 0)
+            if (_currentEngine > 0)
             {
                 Agent.SetDestination(_listEngine[_currentEngine - 1].transform.position);
                 Agent.isStopped = false;
@@ -95,7 +89,7 @@ public class MachineControl : MonoBehaviour
         if (_moveMachine.action.ReadValue<float>() == 0)
         {
             Agent.isStopped = true;
-            _interact.StopMoving(_currentEngine);
+            _interact.StopMoving();
         }
     }
 
