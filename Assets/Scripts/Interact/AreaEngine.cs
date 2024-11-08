@@ -3,6 +3,7 @@ using static Job;
 
 public class AreaEngine : Interactable
 {
+    public bool isHolding;
     public GameObject Engine;
     public JobType EngineType;
     public Ressource Ressource;

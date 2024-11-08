@@ -8,7 +8,7 @@ public class MachineInteract : MonoBehaviour
     private ManagerMain _main;
 
     [SerializeField]
-    private List<AreaEngine> _listEngine;
+    private List<AreaEngine> _listEngine = new List<AreaEngine>();
 
     [SerializeField]
     private int _currentEngine;
@@ -58,12 +58,14 @@ public class MachineInteract : MonoBehaviour
             StopCoroutine(_coroutine);
             if (_animator.GetBool("isPlay") == true)
             {
-                if (_interact.AnimEnd == false && _interact.LateAnim == false) Complete();
+                if (_interact.AnimEnd == true) Complete();
                 else Failed();
             }
-            if (_listEngine[_currentEngine].Ressource !=null)
+            if (_listEngine[_currentEngine].isHolding)
             {
                 _ressource = _listEngine[_currentEngine].Ressource;
+                _listEngine[_currentEngine].Ressource = null;
+                _listEngine[_currentEngine].isHolding = false;
             }
             _animator = null;
             _interact = null;
@@ -76,15 +78,16 @@ public class MachineInteract : MonoBehaviour
     /// </summary>
     public void StopMoving()
     {
-        Debug.Log("is stopped");
-        if (_ressource.RessourceState == _currentEngine)
+        
+        if (_animator != null && _interact != null)
         {
-            Debug.Log("enter ressources condition");
-            if (_animator != null && _interact != null)
+            if (!_listEngine[_currentEngine].isHolding)
             {
                 _listEngine[_currentEngine].Ressource = _ressource;
-                StartCoroutine(_coroutine);
+                _ressource = null;
+                _listEngine[_currentEngine].isHolding = true;
             }
+            StartCoroutine(StartWaitingCraft(0.5f));
         }
     }
 
@@ -106,6 +109,7 @@ public class MachineInteract : MonoBehaviour
     private void Complete()
     {
         _listEngine[_currentEngine].Ressource.RessourceState ++;
+        Debug.Log(_listEngine[_currentEngine].Ressource.RessourceState);
     }
 
     /// <summary>

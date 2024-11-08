@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class MachineControl : MonoBehaviour
 {
-    private List<AreaEngine> _listEngine;
+    private List<AreaEngine> _listEngine = new List<AreaEngine>();
 
     //Take the current Engine come from
     private int _currentEngine;
