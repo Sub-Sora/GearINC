@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class LevelManager: MonoBehaviour
 {
-    public event Action InitEngine;
-
     [SerializeField]
     private List<GameObject> _workstation = new List<GameObject> ();
 

@@ -8,6 +8,7 @@ public class AreaEngine : Interactable
     public Ressource Ressource;
     private AreasEnginesManager _manager;
     private int _engineId;
+    public int EngineId { get { return _engineId; } }
 
     /// <summary>
     /// Initie l'areasEnginesManager et set la position de l'AreaEngine
