@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimInteract : MonoBehaviour
@@ -10,10 +8,13 @@ public class AnimInteract : MonoBehaviour
     [HideInInspector]
     public bool LateAnim;
 
+    private AreaEngine _engine;
+
     private void Start()
     {
         AnimEnd = false;
         LateAnim = false;
+        _engine = GetComponent<AreaEngine>();
     }
 
     /// <summary>
@@ -22,6 +23,7 @@ public class AnimInteract : MonoBehaviour
     public void AnimationFinished()
     {
         AnimEnd = true;
+        _engine.Complete();
         Debug.Log("Anim Finish");
     }
 
@@ -31,6 +33,5 @@ public class AnimInteract : MonoBehaviour
     public void TooLateAnim()
     {
         LateAnim = true;
-        Debug.Log("Too Late to go");
     }
 }

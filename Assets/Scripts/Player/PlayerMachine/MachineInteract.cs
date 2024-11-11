@@ -29,6 +29,8 @@ public class MachineInteract : MonoBehaviour
     [SerializeField]
     private Ressource _ressource;
 
+    private bool _isHolding;
+
     private void Start()
     {
         _machControl = GetComponent<MachineControl>();
@@ -54,23 +56,30 @@ public class MachineInteract : MonoBehaviour
     {
         if (_animator != null && _interact != null)
         {
-            //_animator.StopPlayback();
             StopCoroutine(_coroutine);
-            if (_animator.GetBool("isPlay") == true)
+            /*if (_animator.GetBool("isPlay") == true)
             {
                 if (_interact.AnimEnd == true) Complete();
                 else Failed();
-            }
-            if (_listEngine[_currentEngine].isHolding)
+            }*/
+
+            if (_listEngine[_currentEngine].isHolding && _listEngine[_currentEngine].Ressource.RessourceState > -1)
             {
+                Debug.Log("est rentré");
                 _ressource = _listEngine[_currentEngine].Ressource;
+                _isHolding = true;
                 _listEngine[_currentEngine].Ressource = null;
                 _listEngine[_currentEngine].isHolding = false;
+                _ressource.RessourceAsset.transform.parent = transform;
             }
+            else
+            {
+                Debug.Log("n'est pas rentré");
+            }
+
             _animator = null;
             _interact = null;
         }
-
     }
 
     /// <summary>
@@ -81,13 +90,20 @@ public class MachineInteract : MonoBehaviour
         
         if (_animator != null && _interact != null)
         {
-            if (!_listEngine[_currentEngine].isHolding)
+            if (!_listEngine[_currentEngine].isHolding && _isHolding)
             {
                 _listEngine[_currentEngine].Ressource = _ressource;
                 _ressource = null;
+                _isHolding = false;
                 _listEngine[_currentEngine].isHolding = true;
+                _listEngine[_currentEngine].Ressource.RessourceAsset.transform.parent = _listEngine[_currentEngine].transform;
             }
-            StartCoroutine(StartWaitingCraft(0.5f));
+
+            if (_listEngine[_currentEngine].isHolding)
+            {
+                StartCoroutine(StartWaitingCraft(0.5f));
+            }
+            
         }
     }
 
@@ -99,7 +115,6 @@ public class MachineInteract : MonoBehaviour
     private IEnumerator StartWaitingCraft(float time)
     {
         yield return new WaitForSeconds(time);
-        _ressource = null;
         _animator.SetBool("isPlay", true);
     }
 
@@ -108,8 +123,15 @@ public class MachineInteract : MonoBehaviour
     /// </summary>
     private void Complete()
     {
-        _listEngine[_currentEngine].Ressource.RessourceState ++;
-        Debug.Log(_listEngine[_currentEngine].Ressource.RessourceState);
+        if (_listEngine[_currentEngine].VerifyEngine())
+        {
+            _listEngine[_currentEngine].Ressource.RessourceState++;
+        }
+        else
+        {
+            _listEngine[_currentEngine].Ressource.RessourceState = -1;
+        }
+        
     }
 
     /// <summary>

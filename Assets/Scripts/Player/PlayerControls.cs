@@ -1,10 +1,9 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+using TMPro;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -37,6 +36,9 @@ public class PlayerControls : MonoBehaviour
 
     private PointerEventData m_PointerEventData;
 
+    [SerializeField]
+    private TMP_Text _text;
+
     void FixedUpdate()
     {
         MovePlayer();
@@ -53,9 +55,10 @@ public class PlayerControls : MonoBehaviour
     /// </summary>
     private void MovePlayer()
     {
+        Debug.Log("Is action enabled: " + _moveAction.action.enabled);
         Vector2 inputDir = _moveAction.action.ReadValue<Vector2>();
         Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
-
+        _text.text = "Is action enabled: " + _moveAction.action.enabled;
         // Le personnage se d�placera
         transform.Translate(moveDir * _speed * Time.deltaTime, Space.World);
 
@@ -71,7 +74,6 @@ public class PlayerControls : MonoBehaviour
             transform.rotation = _lastRotation;
         }
     }
-
 
     /// <summary>
     /// Permet de faire spawn le joystick

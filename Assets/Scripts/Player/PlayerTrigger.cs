@@ -18,17 +18,22 @@ public class PlayerTrigger : MonoBehaviour
             {
                 other.SendMessage("ShowJobView");
             }
-            else if (other.GetComponent<AreaEngine>() && _main.Ressource.RessourceHold.RessourceState == 0)
+            else if (_main.Ressource.IsHolding)
             {
                 AreaEngine engineTrigger = other.GetComponent<AreaEngine>();
-                if (engineTrigger.EngineId == 0)
+                if (engineTrigger && _main.Ressource.RessourceHold.RessourceState == 0)
                 {
-                    other.GetComponent<AreaEngine>().Ressource = _main.Ressource.RessourceHold;
-                    _main.Ressource.RessourceHold = null;
-                    engineTrigger.isHolding = true;
+                    if (engineTrigger.EngineId == 0)
+                    {
+                        engineTrigger.Ressource = _main.Ressource.RessourceHold;
+                        _main.Ressource.RessourceHold = null;
+                        _main.Ressource.IsHolding = false;
+                        engineTrigger.isHolding = true;
+                        engineTrigger.Ressource.RessourceAsset.transform.parent = engineTrigger.transform;
+                    }
                 }
             }
-
+            
             _main.Interact.ActiveInteractButton(other.gameObject);
         }
     }

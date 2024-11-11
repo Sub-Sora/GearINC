@@ -2,21 +2,20 @@ using UnityEngine;
 
 public class RessourceSpawn : Interactable
 {
-    /*[SerializeField]
-    private Ressource _ressourceToSpawn;*/
+    [SerializeField]
+    private GameObject _ressourceToSpawn;
 
     [SerializeField]
     private Transform _posSpawn;
 
-    [SerializeField]
-    private ParticleSystem _particle;
-
     public override void Interact(PlayerMain player)
     {
         //Fait spawn les matériaux
-        //Instantiate(_ressourceToSpawn, _posSpawn);
+        GameObject newRessource = Instantiate(_ressourceToSpawn, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
         player.Ressource.RessourceHold = new Ressource();
         player.Ressource.RessourceHold.RessourceState = 0;
-        _particle.Play();
+        player.Ressource.RessourceHold.RessourceAsset = newRessource;
+        player.Ressource.RessourceHold.RessourceAsset.transform.parent = player.transform;
+        player.Ressource.IsHolding = true;
     }
 }

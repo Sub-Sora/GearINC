@@ -46,15 +46,33 @@ public class AreaEngine : Interactable
     /// <summary>
     /// Permet de vérifier si le job est le bon
     /// </summary>
-    private void VerifyEngine()
+    public bool VerifyEngine()
     {
         if (_manager.Main.Objective.Object.TypesNeeded[_engineId] == EngineType)
         {
-            Debug.Log("Great");
+            if (_manager.Main.Objective.Object.TypesNeeded.Count-1 == _engineId)
+            {
+                _manager.Main.UI.Victory();
+            }
+
+            return true;
         }
         else
         {
-            Debug.Log("Bad");
+            return false;
         }
+    }
+
+    public void Complete()
+    {
+        if (VerifyEngine())
+        {
+            Ressource.RessourceState++;
+        }
+        else
+        {
+            Ressource.RessourceState = -1;
+        }
+
     }
 }
