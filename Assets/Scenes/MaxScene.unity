@@ -608,12 +608,28 @@ MonoBehaviour:
         - m_Target: {fileID: 1797790924}
           m_TargetAssemblyTypeName: MachineControl, Assembly-CSharp
           m_MethodName: OnMachine
-          m_Mode: 4
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: -1
+            m_FloatArgument: -1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1797790924}
+          m_TargetAssemblyTypeName: MachineControl, Assembly-CSharp
+          m_MethodName: OnMachine
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: -1
+            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -2059,12 +2075,28 @@ MonoBehaviour:
         - m_Target: {fileID: 1797790924}
           m_TargetAssemblyTypeName: MachineControl, Assembly-CSharp
           m_MethodName: OnMachine
-          m_Mode: 4
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 1
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1797790924}
+          m_TargetAssemblyTypeName: MachineControl, Assembly-CSharp
+          m_MethodName: OnMachine
+          m_Mode: 3
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
-            m_FloatArgument: 1
+            m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
@@ -2772,6 +2804,16 @@ PrefabInstance:
     - target: {fileID: 3765358014265259114, guid: 5c6ab5b7e3565e44f80749433305ce9c,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6849040452981915706, guid: 5c6ab5b7e3565e44f80749433305ce9c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8759477741448730571, guid: 5c6ab5b7e3565e44f80749433305ce9c,
+        type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
