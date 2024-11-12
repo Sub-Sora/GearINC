@@ -16,6 +16,9 @@ public class PlayerControls : MonoBehaviour
     private GameObject _joyStick;
 
     [SerializeField]
+    private GameObject _joyStickMovable;
+
+    [SerializeField]
     private float _speed;
 
     [SerializeField]
@@ -39,6 +42,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private TMP_Text _text;
 
+    private Vector2 _initJoyStickPos;
+
     void FixedUpdate()
     {
         MovePlayer();
@@ -55,24 +60,30 @@ public class PlayerControls : MonoBehaviour
     /// </summary>
     private void MovePlayer()
     {
-        Debug.Log("Is action enabled: " + _moveAction.action.enabled);
-        Vector2 inputDir = _moveAction.action.ReadValue<Vector2>();
-        Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
-        _text.text = "Is action enabled: " + _moveAction.action.enabled;
-        // Le personnage se d�placera
-        transform.Translate(moveDir * _speed * Time.deltaTime, Space.World);
+        /* Debug.Log("Is action enabled: " + _moveAction.action.enabled);
+         Vector2 inputDir = _moveAction.action.ReadValue<Vector2>();*/
+        if (_joyStick.activeSelf)
+        {
+            Vector2 inputDir = new Vector2(_joyStickMovable.transform.position.x - _initJoyStickPos.x, _joyStickMovable.transform.position.y - _initJoyStickPos.y).normalized;
 
-        // Va changer la rotation du personnage
-        if (inputDir != Vector2.zero)
-        {
-            Quaternion targetRotation = Quaternion.LookRotation(moveDir);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-            _lastRotation = transform.rotation;
+            Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
+            Debug.Log(moveDir);
+            // Le personnage se d�placera
+            transform.Translate(moveDir * _speed * Time.deltaTime, Space.World);
+
+            // Va changer la rotation du personnage
+            if (inputDir != Vector2.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(moveDir);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+                _lastRotation = transform.rotation;
+            }
+            else if (_lastRotation != null)
+            {
+                transform.rotation = _lastRotation;
+            }
         }
-        else if (_lastRotation != null)
-        {
-            transform.rotation = _lastRotation;
-        }
+
     }
 
     /// <summary>
@@ -110,6 +121,7 @@ public class PlayerControls : MonoBehaviour
                 {
                     _joyStick.SetActive(true);
                     _joyStick.transform.position = touchePos;
+                    _initJoyStickPos = touchePos;
                 }
             }
         }

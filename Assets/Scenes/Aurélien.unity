@@ -5664,6 +5664,7 @@ MonoBehaviour:
   - {fileID: 2101336514}
   - {fileID: 582103178}
   - {fileID: 904874705}
+  _victory: {fileID: 0}
 --- !u!1 &571647375
 GameObject:
   m_ObjectHideFlags: 0
@@ -6571,6 +6572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fe3121e33e647499f9528645cdc0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHolding: 0
   Engine: {fileID: 0}
   EngineType: 0
   Ressource: {fileID: 0}
@@ -6888,6 +6890,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fe3121e33e647499f9528645cdc0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHolding: 0
   Engine: {fileID: 0}
   EngineType: 0
   Ressource: {fileID: 0}
@@ -7174,7 +7177,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae2f5a72456f42d448585c429f8f6f01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _main: {fileID: 0}
   _listEngine: []
+  _currentEngine: 0
   _plMain: {fileID: 1728753875}
   _animator: {fileID: 0}
   _interact: {fileID: 0}
@@ -7717,6 +7722,11 @@ PrefabInstance:
       propertyPath: _interactButton
       value: 
       objectReference: {fileID: 1659536353}
+    - target: {fileID: 6718835435854377871, guid: 932f4bd910d600e46849b9e4172d658d,
+        type: 3}
+      propertyPath: _joyStickMovable
+      value: 
+      objectReference: {fileID: 1766269982}
     - target: {fileID: 9155855517704970751, guid: 932f4bd910d600e46849b9e4172d658d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8211,6 +8221,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fe3121e33e647499f9528645cdc0c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHolding: 0
   Engine: {fileID: 0}
   EngineType: 0
   Ressource: {fileID: 0}
@@ -8353,6 +8364,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RessourceHold: {fileID: 0}
+  IsHolding: 0
+--- !u!1 &1766269982 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6732409108783455153, guid: eb583c75df25ac14ba74f57fc450aa43,
+    type: 3}
+  m_PrefabInstance: {fileID: 1574536437}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1770603150
 GameObject:
   m_ObjectHideFlags: 0
