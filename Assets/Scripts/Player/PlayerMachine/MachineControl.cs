@@ -20,6 +20,8 @@ public class MachineControl : MonoBehaviour
 
     private MachineInteract _interact;
 
+    private int _moving;
+
     /// <summary>
     /// Vas initialiser un passage pour l'agent pour éviter des erreurs de démarage
     /// </summary>
@@ -61,11 +63,12 @@ public class MachineControl : MonoBehaviour
         }
     }
 
-    private void OnMachine()
+    public void OnMachine(int Move)
     {
         // Amène l'agent vers la machine suivante
-        if (_moveMachine.action.ReadValue<float>() == 1)
+        if (Move == 1)
         {
+            _moving = Move;
             if (_currentEngine < _listEngine.Count)
             {
                 Agent.SetDestination(_listEngine[_currentEngine].transform.position);
@@ -75,8 +78,9 @@ public class MachineControl : MonoBehaviour
         }
 
         // Amène l'agent vers la machine précedente
-        if (_moveMachine.action.ReadValue<float>() == -1)
+        if (Move == -1)
         {
+            _moving = Move;
             if (_currentEngine > 0)
             {
                 Agent.SetDestination(_listEngine[_currentEngine - 1].transform.position);
@@ -86,11 +90,11 @@ public class MachineControl : MonoBehaviour
         }
 
         //Arrête l'agent quand aucune touche n'es pressé
-        if (_moveMachine.action.ReadValue<float>() == 0)
-        {
-            Agent.isStopped = true;
-            _interact.StopMoving();
-        }
+        //if (_moveMachine.action.ReadValue<float>() == 0)
+        //{
+        //    Agent.isStopped = true;
+        //    _interact.StopMoving();
+        //}
     }
 
     /// <summary>
