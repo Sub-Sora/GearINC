@@ -39,9 +39,6 @@ public class PlayerControls : MonoBehaviour
 
     private PointerEventData m_PointerEventData;
 
-    [SerializeField]
-    private TMP_Text _text;
-
     private Vector2 _initJoyStickPos;
 
     void FixedUpdate()
@@ -83,7 +80,6 @@ public class PlayerControls : MonoBehaviour
                 transform.rotation = _lastRotation;
             }
         }
-
     }
 
     /// <summary>
