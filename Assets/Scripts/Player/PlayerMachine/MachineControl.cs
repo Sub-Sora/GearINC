@@ -41,7 +41,7 @@ public class MachineControl : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (_moveMachine.action.ReadValue<float>() == 1)
+        if (_moving == 1)
         {
             if (!Agent.pathPending && Agent.remainingDistance < 0.1f)
             {
@@ -51,7 +51,7 @@ public class MachineControl : MonoBehaviour
             }
         }
 
-        if (_moveMachine.action.ReadValue<float>() == -1)
+        if (_moving == -1)
         {
             if (!Agent.pathPending && Agent.remainingDistance < 0.1f && _currentEngine >= 1)
             {
@@ -59,7 +59,6 @@ public class MachineControl : MonoBehaviour
                 if (_currentEngine <= 0) _currentEngine = 1;
                 NextDestination();
             }
-
         }
     }
 
@@ -90,11 +89,12 @@ public class MachineControl : MonoBehaviour
         }
 
         //Arrête l'agent quand aucune touche n'es pressé
-        //if (_moveMachine.action.ReadValue<float>() == 0)
-        //{
-        //    Agent.isStopped = true;
-        //    _interact.StopMoving();
-        //}
+        if (Move == 0)
+        {
+            _moving = Move;
+            Agent.isStopped = true;
+            _interact.StopMoving();
+        }
     }
 
     /// <summary>
@@ -103,7 +103,7 @@ public class MachineControl : MonoBehaviour
     private void NextDestination()
     {
         // Condition pour vérifier que l'agent avance et donc aller à la machine suivante
-        if (_moveMachine.action.ReadValue<float>() == 1)
+        if (_moving == 1)
         {
             if (_currentEngine < _listEngine.Count)
             {
@@ -114,7 +114,7 @@ public class MachineControl : MonoBehaviour
         }
 
         // Condition pour vérifier que l'agent recul et donc aller à la machine précedente
-        if (_moveMachine.action.ReadValue<float>() == -1)
+        if (_moving == -1)
         {
             if (_currentEngine >= 0)
             {
