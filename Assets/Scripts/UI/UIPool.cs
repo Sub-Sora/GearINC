@@ -6,6 +6,8 @@ public class UIPool : MonoBehaviour
 {
     public List<UIJobName> JobName = new List<UIJobName>();
 
+    public List<GameObject> JobDescriptionList = new List<GameObject>();
+
     public Image ObjectiveIcone;
 
     [SerializeField]

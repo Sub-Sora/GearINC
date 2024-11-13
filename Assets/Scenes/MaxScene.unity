@@ -5006,32 +5006,12 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!1 &1941785256 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2258771572859758002, guid: 10e436f0764edf846be6b7af8b55aae2,
-    type: 3}
-  m_PrefabInstance: {fileID: 928725915049366548}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1941785257 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4179452879578317344, guid: 10e436f0764edf846be6b7af8b55aae2,
     type: 3}
   m_PrefabInstance: {fileID: 928725915049366548}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1941785258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1941785256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 507d187e34a830048a483ab5618c81c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jobTextUI: {fileID: 0}
-  _jobDescription: 
 --- !u!1 &2099183881
 GameObject:
   m_ObjectHideFlags: 0
@@ -5812,11 +5792,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Job Description
       objectReference: {fileID: 0}
-    - target: {fileID: 3201720557706719885, guid: 10e436f0764edf846be6b7af8b55aae2,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.21176471
-      objectReference: {fileID: 0}
     - target: {fileID: 4179452879578317344, guid: 10e436f0764edf846be6b7af8b55aae2,
         type: 3}
       propertyPath: m_Pivot.x
@@ -5917,19 +5892,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4588103898226620652, guid: 10e436f0764edf846be6b7af8b55aae2,
-        type: 3}
-      propertyPath: m_isRightToLeft
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2258771572859758002, guid: 10e436f0764edf846be6b7af8b55aae2,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1941785258}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 10e436f0764edf846be6b7af8b55aae2, type: 3}
 --- !u!1001 &3598071201257585089
 PrefabInstance:

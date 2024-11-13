@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ListJobMenu : MonoBehaviour
+public class ListJobButton : MonoBehaviour
 {
     [SerializeField]
     private GameObject _levelJob;
