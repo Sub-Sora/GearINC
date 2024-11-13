@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class ListJobMenu : MonoBehaviour
 {
-    private void LevelJobList()
-    {
+    [SerializeField]
+    private GameObject _levelJob;
 
+    [SerializeField]
+    private GameObject _allJob;
+
+    public void LevelJobList()
+    {
+        _levelJob.SetActive(true);
+        _allJob.SetActive(false);
     }
 
-    private void AllJobList()
+    public void AllJobList()
     {
-
+        _levelJob.SetActive(false);
+        _allJob.SetActive(true);
     }
 }
