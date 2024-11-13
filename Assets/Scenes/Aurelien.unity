@@ -811,6 +811,7 @@ MonoBehaviour:
   - {fileID: 2101336514}
   - {fileID: 582103178}
   - {fileID: 904874705}
+  JobDescriptionList: []
   ObjectiveIcone: {fileID: 1952788210}
   _victory: {fileID: 1587422299}
 --- !u!114 &510078938
@@ -2403,10 +2404,10 @@ VisualEffect:
   m_GameObject: {fileID: 1260624287}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: c97fa4c51331dd848b0c9026c55d1de9, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
-  m_ResetSeedOnPlay: 1
+  m_ResetSeedOnPlay: 0
   m_AllowInstancing: 1
   m_ResourceVersion: 1
   m_PropertySheet:
@@ -3244,6 +3245,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1728753894}
+    - targetCorrespondingSourceObject: {fileID: 2415044415151234995, guid: 932f4bd910d600e46849b9e4172d658d,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1728753895}
   m_SourcePrefab: {fileID: 100100000, guid: 932f4bd910d600e46849b9e4172d658d, type: 3}
 --- !u!1001 &1574536437
 PrefabInstance:
@@ -3840,6 +3845,7 @@ MonoBehaviour:
   Job: {fileID: 0}
   Ressource: {fileID: 0}
   Trigger: {fileID: 0}
+  VFX: {fileID: 0}
 --- !u!4 &1728753884 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9155855517704970751, guid: 932f4bd910d600e46849b9e4172d658d,
@@ -3872,6 +3878,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RessourceHold: {fileID: 0}
   IsHolding: 0
+--- !u!114 &1728753895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728753864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7fa6ef3e388e8e4783dd825abde5341, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsWalking: 0
+  WalkEffect: {fileID: 1260624290}
 --- !u!1 &1779238641
 GameObject:
   m_ObjectHideFlags: 0

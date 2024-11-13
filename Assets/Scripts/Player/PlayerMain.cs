@@ -7,6 +7,7 @@ public class PlayerMain : MonoBehaviour
     public PlayerJob Job;
     public PlayerRessource Ressource;
     public PlayerTrigger Trigger;
+    public PlayerVFX VFX;
 
     private void Awake()
     {
