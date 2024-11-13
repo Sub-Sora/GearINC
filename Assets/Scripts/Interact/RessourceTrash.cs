@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class RessourceTrash : Interactable
 {
     public override void Interact(PlayerMain player)

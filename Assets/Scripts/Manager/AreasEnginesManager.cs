@@ -5,9 +5,9 @@ public class AreasEnginesManager : MonoBehaviour
 {
     public List<AreaEngine> EngineList = new List<AreaEngine>();
     
-    public ManagerMain Main;
+    public ManagerOnce Main;
 
-    private void Init(ManagerMain main)
+    private void Init(ManagerOnce main)
     {
         Main = main;
         main.AreasEngines = this;

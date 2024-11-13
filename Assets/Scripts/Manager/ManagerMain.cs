@@ -5,18 +5,21 @@ public class ManagerMain : MonoBehaviour
     private static ManagerMain _instance = null;
     public static ManagerMain Instance => _instance;
 
-    public LevelManager Level;
-
-    public AreasEnginesManager AreasEngines;
-
     public Objective Objective;
 
-    public UIPool UI;
-
-    public MachineControl Machine;
-
-    private void Awake()
+    public void Awake()
     {
-        SendMessage("Init", this);
+        if (_instance != null && _instance != this)
+        {
+            _instance.Awake();
+            Destroy(gameObject);
+            return;
+        }
+        else
+        {
+            _instance = this;
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 }

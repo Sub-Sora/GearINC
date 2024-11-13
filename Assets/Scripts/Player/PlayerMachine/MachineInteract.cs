@@ -5,7 +5,7 @@ using UnityEngine;
 public class MachineInteract : MonoBehaviour
 {
     [SerializeField]
-    private ManagerMain _main;
+    private ManagerOnce _main;
 
     [SerializeField]
     private List<AreaEngine> _listEngine = new List<AreaEngine>();

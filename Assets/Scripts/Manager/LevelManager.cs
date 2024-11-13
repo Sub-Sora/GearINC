@@ -13,9 +13,9 @@ public class LevelManager: MonoBehaviour
     [SerializeField]
     private List<GameObject> _engineSpot = new List<GameObject> ();
 
-    private ManagerMain _main;
+    private ManagerOnce _main;
 
-    private void Init(ManagerMain main)
+    private void Init(ManagerOnce main)
     {
         _main = main;
         main.Level = this;
@@ -44,7 +44,6 @@ public class LevelManager: MonoBehaviour
                             newWorkstation.SetWorkstation(jobName.gameObject);
                         }
                     }
-                    
                 }
             }
         }
@@ -67,6 +66,5 @@ public class LevelManager: MonoBehaviour
 
         _main.AreasEngines.InitAllAreaEngine();
         _main.Machine.InitializedPath(_main.AreasEngines.EngineList);
-
     }
 }
