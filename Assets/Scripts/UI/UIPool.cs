@@ -26,11 +26,17 @@ public class UIPool : MonoBehaviour
         SetObjectiveIcone();
     }
 
+    /// <summary>
+    /// Se lance lorqu'on gagne une partie
+    /// </summary>
     public void Victory()
     {
         _victory.SetActive(true);
     }
 
+    /// <summary>
+    /// Va set l'icone de l'objectif
+    /// </summary>
     private void SetObjectiveIcone()
     {
         ObjectiveIcone.sprite = _main.Objective.Object.ObjectiveIcone;

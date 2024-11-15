@@ -7,6 +7,8 @@ using TMPro;
 
 public class PlayerControls : MonoBehaviour
 {
+    public bool IsGameInit;
+
     [SerializeField]
     private InputActionReference _moveAction;
 
@@ -42,16 +44,21 @@ public class PlayerControls : MonoBehaviour
     private Vector2 _initJoyStickPos;
 
     private PlayerMain _main;
+
     void FixedUpdate()
     {
-        MovePlayer();
-        SpawnJoystick();
+        if (IsGameInit)
+        {
+            MovePlayer();
+            SpawnJoystick();
+        }
     }
 
     private void Init(PlayerMain main)
     {
         _main = main;
         main.Controls = this;
+        IsGameInit = true;
     }
 
     /// <summary>
