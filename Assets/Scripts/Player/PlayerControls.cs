@@ -58,6 +58,10 @@ public class PlayerControls : MonoBehaviour
     {
         _main = main;
         main.Controls = this;
+    }
+
+    public void InitThePlayer()
+    {
         IsGameInit = true;
     }
 
