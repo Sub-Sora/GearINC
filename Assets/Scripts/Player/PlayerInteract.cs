@@ -37,12 +37,19 @@ public class PlayerInteract : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Va créer un bouton pour pouvoir activé une interraction
+    /// </summary>
+    /// <param name="other"></param>
     public void ActiveInteractButton(GameObject other)
     {
         _interButton.gameObject.SetActive(true);
         _interObj = other;
     }
 
+    /// <summary>
+    /// Va désactivé le bouton d'interaction
+    /// </summary>
     public void DesactiveInteractButton()
     {
         _interButton.gameObject.SetActive(false);

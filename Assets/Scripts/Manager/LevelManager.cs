@@ -27,6 +27,9 @@ public class LevelManager: MonoBehaviour
         SetEngineSpot();
     }
 
+    /// <summary>
+    /// Va set tout les workstations, on toutes les poser ici
+    /// </summary>
     private void SetJobOnWorkstation()
     {
         for (int i = 0;  i < _main.Objective.Object.AllJob.Count; i++)
@@ -49,6 +52,9 @@ public class LevelManager: MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Va set tout les endroits pour poser les machines, va désactivé ceux qui ne seront pas présent pour le niveau
+    /// </summary>
     private void SetEngineSpot()
     {
         int jobNeeded = _engineSpot.Count - _main.Objective.Object.TypesNeeded.Count;
