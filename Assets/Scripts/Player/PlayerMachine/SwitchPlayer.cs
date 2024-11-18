@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,12 @@ public class SwitchPlayer : Interactable
 
     [SerializeField]
     private GameObject _playerButton;
+
+    [SerializeField]
+    private CinemachineVirtualCamera _playerCam;
+
+    [SerializeField]
+    private CinemachineVirtualCamera _robotCam;
 
     private PlayerControls _player;
 
@@ -36,15 +43,19 @@ public class SwitchPlayer : Interactable
         _machineButton.SetActive(true);
         _playerButton.SetActive(false);
         _player.enabled = false;
+        _robotCam.Priority = 20;
+        _playerCam.Priority = 0;
     }
 
     /// <summary>
     /// Permet de contrôler l'humain
     /// </summary>
-    private void ExitMachine()
+    public void ExitMachine()
     {
         _machineButton.SetActive(false);
         _playerButton.SetActive(true);
         _player.enabled = true;
+        _playerCam.Priority = 20;
+        _robotCam.Priority = 0;
     }
 }
