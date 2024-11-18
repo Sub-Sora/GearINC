@@ -40,10 +40,11 @@ public class ListJobButton : MonoBehaviour
         _levelJob.SetActive(true);
         _allJob.SetActive(false);
         _jobDescriptionTab.SetActive(false);
-        foreach (var job in _jobsDescription)
-        {
-            job.SetActive(false);
-        }
+        HideJobSheets();
+        //foreach (var job in _jobsDescription)
+        //{
+        //    job.SetActive(false);
+        //}
     }
 
     public void AllJobList()
@@ -51,10 +52,11 @@ public class ListJobButton : MonoBehaviour
         _levelJob.SetActive(false);
         _allJob.SetActive(true);
         _jobDescriptionTab.SetActive(false);
-        foreach (var job in _jobsDescription)
-        {
-            job.SetActive(false);
-        }
+        HideJobSheets();
+        //foreach (var job in _jobsDescription)
+        //{
+        //    job.SetActive(false);
+        //}
     }
 
     public void CloseWindow()
@@ -64,10 +66,11 @@ public class ListJobButton : MonoBehaviour
         _levelJobButton.SetActive(false);
         _allJobButton.SetActive(false);
         _jobDescriptionTab.SetActive(false);
-        foreach (var job in _jobsDescription)
-        {
-            job.SetActive(false);
-        }
+        HideJobSheets();
+        //foreach (var job in _jobsDescription)
+        //{
+        //    job.SetActive(false);
+        //}
     }
 
     public void HideJobSheets()
