@@ -80,28 +80,4 @@ public class ListJobButton : MonoBehaviour
             _jobWorkSheets.transform.GetChild(i).gameObject.SetActive(false);
         }
     }
-
-    public void HideJobSheets()
-    {
-        for (int i = 0; i < _jobWorkSheets.transform.childCount; i++)
-        {
-            _jobWorkSheets.transform.GetChild(i).gameObject.SetActive(false);
-        }
-    }
-
-    public void HideJobSheets()
-    {
-        for (int i = 0; i < _jobWorkSheets.transform.childCount; i++)
-        {
-            _jobWorkSheets.transform.GetChild(i).gameObject.SetActive(false);
-        }
-    }
-
-    public void HideJobSheets()
-    {
-        for (int i = 0; i < _jobWorkSheets.transform.childCount; i++)
-        {
-            _jobWorkSheets.transform.GetChild(i).gameObject.SetActive(false);
-        }
-    }
 }
