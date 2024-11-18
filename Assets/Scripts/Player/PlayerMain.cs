@@ -8,6 +8,7 @@ public class PlayerMain : MonoBehaviour
     public PlayerRessource Ressource;
     public PlayerTrigger Trigger;
     public PlayerVFX VFX;
+    public PlayerHolding Holding;
 
     private void Awake()
     {

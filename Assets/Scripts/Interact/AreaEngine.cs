@@ -1,7 +1,7 @@
 using UnityEngine;
 using static Job;
 
-public class AreaEngine : Interactable
+public class AreaEngine : Interactable, IRessourceHolder
 {
     public bool isHolding;
     public GameObject Engine;
@@ -73,6 +73,18 @@ public class AreaEngine : Interactable
         {
             Ressource.RessourceState = -1;
         }
+    }
 
+    public void GetRessource(Ressource ressource)
+    {
+        Ressource = ressource;
+        isHolding = true;
+        Ressource.RessourceAsset.transform.parent = transform;
+    }
+
+    public void LoseRessource()
+    {
+        Ressource = null;
+        isHolding = false;
     }
 }

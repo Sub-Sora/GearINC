@@ -25,11 +25,13 @@ public class PlayerTrigger : MonoBehaviour
                 {
                     if (engineTrigger.EngineId == 0)
                     {
-                        engineTrigger.Ressource = _main.Ressource.RessourceHold;
+                        engineTrigger.GetRessource(_main.Ressource.RessourceHold);
+                        _main.Ressource.LoseRessource();
+                        /*engineTrigger.Ressource = _main.Ressource.RessourceHold;
                         _main.Ressource.RessourceHold = null;
                         _main.Ressource.IsHolding = false;
                         engineTrigger.isHolding = true;
-                        engineTrigger.Ressource.RessourceAsset.transform.parent = engineTrigger.transform;
+                        engineTrigger.Ressource.RessourceAsset.transform.parent = engineTrigger.transform;*/
                     }
                 }
             }

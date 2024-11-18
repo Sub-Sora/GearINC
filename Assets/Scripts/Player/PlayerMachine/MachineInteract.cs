@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MachineInteract : MonoBehaviour
+public class MachineInteract : MonoBehaviour, IRessourceHolder
 {
     [SerializeField]
     private ManagerOnce _main;
@@ -66,11 +66,13 @@ public class MachineInteract : MonoBehaviour
             if (_listEngine[_currentEngine].isHolding && _listEngine[_currentEngine].Ressource.RessourceState > -1)
             {
                 Debug.Log("est rentré");
-                _ressource = _listEngine[_currentEngine].Ressource;
+                GetRessource(_listEngine[_currentEngine].Ressource);
+                _listEngine[_currentEngine].LoseRessource();
+                /*_ressource = _listEngine[_currentEngine].Ressource;
                 _isHolding = true;
                 _listEngine[_currentEngine].Ressource = null;
                 _listEngine[_currentEngine].isHolding = false;
-                _ressource.RessourceAsset.transform.parent = transform;
+                _ressource.RessourceAsset.transform.parent = transform;*/
             }
             else
             {
@@ -92,11 +94,11 @@ public class MachineInteract : MonoBehaviour
         {
             if (!_listEngine[_currentEngine].isHolding && _isHolding)
             {
-                _listEngine[_currentEngine].Ressource = _ressource;
+                /*_listEngine[_currentEngine].Ressource = _ressource;
                 _ressource = null;
                 _isHolding = false;
                 _listEngine[_currentEngine].isHolding = true;
-                _listEngine[_currentEngine].Ressource.RessourceAsset.transform.parent = _listEngine[_currentEngine].transform;
+                _listEngine[_currentEngine].Ressource.RessourceAsset.transform.parent = _listEngine[_currentEngine].transform;*/
             }
 
             if (_listEngine[_currentEngine].isHolding)
@@ -132,6 +134,19 @@ public class MachineInteract : MonoBehaviour
             _listEngine[_currentEngine].Ressource.RessourceState = -1;
         }
         
+    }
+
+    public void GetRessource(Ressource ressource)
+    {
+        _ressource = ressource;
+        _isHolding = true;
+        _ressource.RessourceAsset.transform.parent = transform;
+    }
+
+    public void LoseRessource()
+    {
+        _ressource = null;
+        _isHolding = false;
     }
 
     /// <summary>
