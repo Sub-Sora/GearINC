@@ -26,7 +26,7 @@ public class ListJobButton : MonoBehaviour
     private GameObject _jobWorkSheets;
 
     [SerializeField]
-    private List<GameObject> _jobsDescription = new List<GameObject>();
+    private GameObject _jobsDescription;
 
     public void OpenUIWindow()
     {
@@ -40,11 +40,7 @@ public class ListJobButton : MonoBehaviour
         _levelJob.SetActive(true);
         _allJob.SetActive(false);
         _jobDescriptionTab.SetActive(false);
-        HideJobSheets();
-        //foreach (var job in _jobsDescription)
-        //{
-        //    job.SetActive(false);
-        //}
+        HideJobDescription();
     }
 
     public void AllJobList()
@@ -52,11 +48,7 @@ public class ListJobButton : MonoBehaviour
         _levelJob.SetActive(false);
         _allJob.SetActive(true);
         _jobDescriptionTab.SetActive(false);
-        HideJobSheets();
-        //foreach (var job in _jobsDescription)
-        //{
-        //    job.SetActive(false);
-        //}
+        HideJobDescription();
     }
 
     public void CloseWindow()
@@ -66,11 +58,15 @@ public class ListJobButton : MonoBehaviour
         _levelJobButton.SetActive(false);
         _allJobButton.SetActive(false);
         _jobDescriptionTab.SetActive(false);
-        HideJobSheets();
-        //foreach (var job in _jobsDescription)
-        //{
-        //    job.SetActive(false);
-        //}
+        HideJobDescription();
+    }
+
+    private void HideJobDescription()
+    {
+        for (int i = 0; i < _jobsDescription.transform.childCount; i++)
+        {
+            _jobsDescription.transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
     public void HideJobSheets()
