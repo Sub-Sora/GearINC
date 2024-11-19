@@ -1,9 +1,13 @@
 using Cinemachine;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SwitchPlayer : Interactable
 {
+    [SerializeField]
+    private AreasEnginesManager _allArea;
+
     [SerializeField]
     private Button _exitButton;
 
@@ -40,11 +44,15 @@ public class SwitchPlayer : Interactable
     /// </summary>
     private void EnterMachine()
     {
-        _machineButton.SetActive(true);
-        _playerButton.SetActive(false);
-        _player.enabled = false;
-        _robotCam.Priority = 20;
-        _playerCam.Priority = 0;
+        if (_allArea.CheckAreaEngineReady(_allArea.Main.Machine._interact._isHolding))
+        {
+            _machineButton.SetActive(true);
+            _playerButton.SetActive(false);
+            _player.enabled = false;
+            _robotCam.Priority = 20;
+            _playerCam.Priority = 0;
+        }
+        
     }
 
     /// <summary>

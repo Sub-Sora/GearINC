@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerHolding : MonoBehaviour
 {
     public GameObject ObjectHolding;
-    private bool _isHolding;
+    public bool IsHolding;
 
     private void Init(PlayerMain main)
     {
@@ -16,10 +16,16 @@ public class PlayerHolding : MonoBehaviour
     /// <param name="objectToHold"></param>
     public void TakeObject(GameObject objectToHold)
     {
-        if (!_isHolding)
-        {
-            ObjectHolding = objectToHold;
-            _isHolding = true;
-        }
+        ObjectHolding = objectToHold;
+        IsHolding = true;
+    }
+
+    /// <summary>
+    /// Permet de déposer un objet
+    /// </summary>
+    public void LoseObject()
+    {
+        ObjectHolding = null;
+        IsHolding = false;
     }
 }

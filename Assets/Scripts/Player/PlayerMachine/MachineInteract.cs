@@ -29,7 +29,7 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     [SerializeField]
     private Ressource _ressource;
 
-    private bool _isHolding;
+    public bool _isHolding;
 
     private void Start()
     {
@@ -37,6 +37,10 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         _coroutine = StartWaitingCraft(0.5f);
     }
 
+    /// <summary>
+    /// Ce lance à l'initialisation
+    /// </summary>
+    /// <param name="engineList"></param>
     public void InitializedPath(List<AreaEngine> engineList)
     {
         _listEngine = engineList;
@@ -57,26 +61,11 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         if (_animator != null && _interact != null)
         {
             StopCoroutine(_coroutine);
-            /*if (_animator.GetBool("isPlay") == true)
-            {
-                if (_interact.AnimEnd == true) Complete();
-                else Failed();
-            }*/
 
             if (_listEngine[_currentEngine].isHolding && _listEngine[_currentEngine].Ressource.RessourceState > -1)
             {
-                Debug.Log("est rentré");
                 GetRessource(_listEngine[_currentEngine].Ressource);
                 _listEngine[_currentEngine].LoseRessource();
-                /*_ressource = _listEngine[_currentEngine].Ressource;
-                _isHolding = true;
-                _listEngine[_currentEngine].Ressource = null;
-                _listEngine[_currentEngine].isHolding = false;
-                _ressource.RessourceAsset.transform.parent = transform;*/
-            }
-            else
-            {
-                Debug.Log("n'est pas rentré");
             }
 
             _animator = null;
@@ -94,18 +83,14 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         {
             if (!_listEngine[_currentEngine].isHolding && _isHolding)
             {
-                /*_listEngine[_currentEngine].Ressource = _ressource;
-                _ressource = null;
-                _isHolding = false;
-                _listEngine[_currentEngine].isHolding = true;
-                _listEngine[_currentEngine].Ressource.RessourceAsset.transform.parent = _listEngine[_currentEngine].transform;*/
+                _listEngine[_currentEngine].GetRessource(_ressource);
+                LoseRessource();
             }
 
             if (_listEngine[_currentEngine].isHolding)
             {
                 StartCoroutine(StartWaitingCraft(0.5f));
             }
-            
         }
     }
 
@@ -133,7 +118,6 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         {
             _listEngine[_currentEngine].Ressource.RessourceState = -1;
         }
-        
     }
 
     public void GetRessource(Ressource ressource)

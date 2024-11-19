@@ -8,10 +8,16 @@ public class RessourceSpawn : Interactable
     [SerializeField]
     private Transform _posSpawn;
 
+    [SerializeField]
+    private Material _brokeRessourceColor;
+
     public override void Interact(PlayerMain player)
     {
         //Fait spawn les matériaux
-        GameObject newRessource = Instantiate(_ressourceToSpawn, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
-        player.Ressource.GetNewRessource(newRessource);
+        if (!player.Holding.IsHolding)
+        {
+            GameObject newRessource = Instantiate(_ressourceToSpawn, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
+            player.Ressource.GetNewRessource(newRessource, _brokeRessourceColor);
+        }
     }
 }

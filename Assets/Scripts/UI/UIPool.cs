@@ -13,6 +13,9 @@ public class UIPool : MonoBehaviour
     public Image ObjectiveIcone;
 
     [SerializeField]
+    private SwitchPlayer _commandTable;
+
+    [SerializeField]
     private GameObject _victory;
 
     private ManagerOnce _main;

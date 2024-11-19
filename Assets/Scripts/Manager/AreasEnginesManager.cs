@@ -4,7 +4,7 @@ using UnityEngine;
 public class AreasEnginesManager : MonoBehaviour
 {
     public List<AreaEngine> EngineList = new List<AreaEngine>();
-    
+
     public ManagerOnce Main;
 
     private void Init(ManagerOnce main)
@@ -22,5 +22,29 @@ public class AreasEnginesManager : MonoBehaviour
         {
             engine.InitAreaEngine(this); ;
         }
+    }
+
+    public bool CheckAreaEngineReady(bool robotIsHolding)
+    {
+        bool ressourceIsPut = false;
+        if (robotIsHolding)
+        {
+            ressourceIsPut = true;
+        }
+
+        foreach (AreaEngine engine in EngineList)
+        {
+            if (engine.Engine == null)
+            { 
+                return false;
+            }
+
+            if (engine.isHolding) 
+            {
+                ressourceIsPut = true;
+            }
+        }
+
+        return ressourceIsPut;
     }
 }

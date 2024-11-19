@@ -4,30 +4,38 @@ public class PlayerRessource : MonoBehaviour, IRessourceHolder
 {
     public Ressource RessourceHold;
     public bool IsHolding;
+    private PlayerMain _main;
 
     private void Init(PlayerMain main)
     {
         main.Ressource = this;
+        _main = main;
     }
 
     /// <summary>
     /// Permet de créer une nouvelle ressource
     /// </summary>
     /// <param name="newRessource"></param>
-    public void GetNewRessource(GameObject newRessource)
+    public void GetNewRessource(GameObject newRessource, Material brokeRessourceColor)
     {
         RessourceHold = new Ressource();
         RessourceHold.RessourceState = 0;
+        RessourceHold.BrokeRessourceColor = brokeRessourceColor;
         RessourceHold.RessourceAsset = newRessource;
-        RessourceHold.RessourceAsset.transform.parent = transform;
-        IsHolding = true;
+        HoldRessource();
     }
 
     public void GetRessource(Ressource ressource)
     {
         RessourceHold = ressource;
+        HoldRessource();
+    }
+
+    private void HoldRessource()
+    {
+        _main.Holding.TakeObject(RessourceHold.RessourceAsset);
         IsHolding = true;
-        ressource.RessourceAsset.transform.parent = transform;
+        RessourceHold.RessourceAsset.transform.parent = transform;
     }
 
     public void LoseRessource()
