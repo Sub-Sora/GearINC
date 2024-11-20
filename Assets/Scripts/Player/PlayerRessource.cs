@@ -40,6 +40,7 @@ public class PlayerRessource : MonoBehaviour, IRessourceHolder
 
     public void LoseRessource()
     {
+        _main.Holding.LoseObject();
         RessourceHold = null;
         IsHolding = false;
     }

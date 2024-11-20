@@ -15,6 +15,7 @@ public class Ressource : MonoBehaviour
             }
         }
     }
+
     public GameObject RessourceAsset;
     public Material BrokeRessourceColor;
 }

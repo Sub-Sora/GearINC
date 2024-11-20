@@ -34,7 +34,7 @@ public class PlayerTrigger : MonoBehaviour
             {
                 if (engineTrigger.isHolding)
                 {
-                    if (engineTrigger.Ressource.RessourceState == -1)
+                    if (engineTrigger.Ressource.RessourceState == -1 && !_main.Holding.IsHolding)
                     {
                         _main.Ressource.GetRessource(engineTrigger.Ressource);
                         engineTrigger.LoseRessource();
