@@ -8,6 +8,8 @@ public class EventManager : MonoBehaviour
     [HideInInspector]
     public EventBrokenEngine Engine;
 
+    public EventTrash Trash;
+
     [HideInInspector]
     public ManagerOnce Main;
 
@@ -16,6 +18,7 @@ public class EventManager : MonoBehaviour
         Main = main;
         Elec = new EventElec();
         Engine = new EventBrokenEngine();
+
         Engine.SetEvents(this);
     }
 
@@ -26,5 +29,9 @@ public class EventManager : MonoBehaviour
     public void BeginEngineEvent()
     {
         Engine.EventBegin();
+    }
+    public void BeginTrashEvent()
+    {
+        Trash.EventBegin();
     }
 }

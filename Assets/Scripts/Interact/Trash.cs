@@ -1,4 +1,4 @@
-public class RessourceTrash : Interactable
+public class Trash : Interactable
 {
     public override void Interact(PlayerMain player)
     {
@@ -9,6 +9,12 @@ public class RessourceTrash : Interactable
                 Destroy(player.Ressource.RessourceHold.RessourceAsset);
                 player.Ressource.RessourceHold = null;
                 player.Ressource.IsHolding = false;
+            }
+
+            if (player.Holding.HoldingObjectType == Objects.ObjectType.none)
+            {
+                Destroy(player.Holding.ObjectHolding);
+                player.Holding.LoseObject();
             }
         }
     }

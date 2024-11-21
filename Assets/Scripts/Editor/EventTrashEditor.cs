@@ -1,31 +1,30 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(EventTrashTooling))]
+[CustomEditor(typeof(EventTrash))]
 
 public class EventTrashEditor : Editor
 {
     private void OnSceneGUI()
     {
-        EventTrashTooling gizmo = (EventTrashTooling)target;
-        Debug.Log("gui");
-        for (int i = 0; i < gizmo.points.Count; i++)
+        EventTrash gizmo = (EventTrash)target;
+        for (int i = 0; i < gizmo.Points.Count; i++)
         {
             // Afficher le label pour chaque point
-            Handles.Label(gizmo.transform.position + gizmo.points[i], $"Trash Spawn: {i}", new GUIStyle
+            Handles.Label(gizmo.transform.position + gizmo.Points[i], $"Trash Spawn: {i}", new GUIStyle
             {
                 fontStyle = FontStyle.Bold,
                 normal = new GUIStyleState { textColor = Color.white }
             });
 
             // Manipuler la position avec PositionHandle
-            Vector3 newPosition = Handles.PositionHandle(gizmo.transform.position + gizmo.points[i], Quaternion.identity);
+            Vector3 newPosition = Handles.PositionHandle(gizmo.transform.position + gizmo.Points[i], Quaternion.identity);
 
             // Vérifier si le point a changé de position
-            if (gizmo.points[i] != newPosition - gizmo.transform.position)
+            if (gizmo.Points[i] != newPosition - gizmo.transform.position)
             {
                 Undo.RecordObject(gizmo, "Move Point");
-                gizmo.points[i] = newPosition - gizmo.transform.position;
+                gizmo.Points[i] = newPosition - gizmo.transform.position;
             }
         }
     }
