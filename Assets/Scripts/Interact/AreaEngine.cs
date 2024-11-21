@@ -1,8 +1,11 @@
 using UnityEngine;
+using UnityEngine.VFX;
 using static Job;
+using static Objects;
 
-public class AreaEngine : Interactable
+public class AreaEngine : Interactable, IRessourceHolder
 {
+    [Header("Base Game")]
     public bool isHolding;
     public GameObject Engine;
     public JobType EngineType;
@@ -10,6 +13,12 @@ public class AreaEngine : Interactable
     private AreasEnginesManager _manager;
     private int _engineId;
     public int EngineId { get { return _engineId; } }
+
+    [Header("Gameplay en plus")]
+    [SerializeField]
+    private ObjectType _typeNeededToRepairEngine;
+    public VisualEffect SmokeEffect;
+    private bool EngineInFire;
 
     /// <summary>
     /// Initie l'areasEnginesManager et set la position de l'AreaEngine
@@ -32,14 +41,21 @@ public class AreaEngine : Interactable
     /// </summary>
     public override void Interact(PlayerMain player)
     {
-        if ( Engine != null )
+        if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
         {
-            VerifyEngine();
+            if (Engine != null)
+            {
+                VerifyEngine();
+            }
+            else if (player.Job.EnginePut != null)
+            {
+                EngineType = player.Job.Job;
+                Engine = Instantiate(player.Job.EnginePut, transform);
+            }
         }
-        else if (player.Job.EnginePut != null)
+        else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
         {
-            EngineType = player.Job.Job;
-            Engine = Instantiate(player.Job.EnginePut, transform);
+            RepairTheEngine();
         }
     }
 
@@ -73,6 +89,30 @@ public class AreaEngine : Interactable
         {
             Ressource.RessourceState = -1;
         }
+    }
 
+    public void GetRessource(Ressource ressource)
+    {
+        Ressource = ressource;
+        isHolding = true;
+        Ressource.RessourceAsset.transform.parent = transform;
+    }
+
+    public void LoseRessource()
+    {
+        Ressource = null;
+        isHolding = false;
+    }
+
+    public void BrokeTheEngine()
+    {
+        EngineInFire = true;
+        SmokeEffect.Play();
+    }
+
+    public void RepairTheEngine()
+    {
+        EngineInFire = false;
+        SmokeEffect.Stop();
     }
 }

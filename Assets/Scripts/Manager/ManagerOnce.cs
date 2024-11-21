@@ -1,7 +1,8 @@
 using UnityEngine;
 
 public class ManagerOnce : MonoBehaviour
-{ 
+{
+    [Header("Base Game")]
     public LevelManager Level;
 
     public AreasEnginesManager AreasEngines;
@@ -15,6 +16,9 @@ public class ManagerOnce : MonoBehaviour
     public InitManager InitManager;
     
     public PlayerMain Player;
+
+    [Header("New Gameplay")]
+    public bool NewGameplayIsAdd;
 
     public void Awake()
     {

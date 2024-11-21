@@ -44,7 +44,16 @@ public class LevelManager: MonoBehaviour
                         if (jobName.JobType == newWorkstation.Type)
                         {
                             jobName.transform.position = new Vector3 (_workstationSpot[i].position.x, _workstationSpot[i].position.y + 2, _workstationSpot[i].position.z);
-                            newWorkstation.SetWorkstation(jobName.gameObject);
+                            newWorkstation.SetWorkstationJobName(jobName.gameObject);
+                        }
+                    }
+
+                    foreach (UIJobName jobSheet in _main.UI.JobSheets)
+                    {
+                        if (jobSheet.JobType == newWorkstation.Type)
+                        {
+
+                            newWorkstation.SetWorkstationJobSheets(jobSheet.gameObject);
                         }
                     }
                 }

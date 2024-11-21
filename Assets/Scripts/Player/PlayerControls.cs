@@ -12,13 +12,18 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private InputActionReference _moveAction;
 
-    [Header("Movement")]
+    [Header("Joystick")]
 
     [SerializeField]
     private GameObject _joyStick;
 
+    [SerializeField] 
+    private float _joyStickDeadZone;
+
     [SerializeField]
     private GameObject _joyStickMovable;
+
+    [Header("Movement")]
 
     [SerializeField]
     private float _speed;
@@ -72,16 +77,22 @@ public class PlayerControls : MonoBehaviour
     {
         if (_joyStick.activeSelf)
         {
+            float distanceJoystick = Vector3.Distance(_joyStickMovable.transform.position, _initJoyStickPos);
             if ((Vector2)_joyStickMovable.transform.position != _initJoyStickPos)
             {
-                _main.VFX.StartWalkingVFX();
                 Vector2 inputDir = new Vector2(_joyStickMovable.transform.position.x - _initJoyStickPos.x, _joyStickMovable.transform.position.y - _initJoyStickPos.y).normalized;
+
+                if (distanceJoystick < _joyStickDeadZone)
+                {
+                    inputDir = Vector2.zero;
+                }
 
                 Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
                 transform.Translate(moveDir * _speed * Time.deltaTime, Space.World);
 
                 if (inputDir != Vector2.zero)
                 {
+                    _main.VFX.StartWalkingVFX();
                     Quaternion targetRotation = Quaternion.LookRotation(moveDir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
                     _lastRotation = transform.rotation;
@@ -89,6 +100,7 @@ public class PlayerControls : MonoBehaviour
                 else if (_lastRotation != null)
                 {
                     transform.rotation = _lastRotation;
+                    _main.VFX.StopWalkingVFX();
                 }
             }
         }

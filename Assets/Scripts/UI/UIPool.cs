@@ -8,7 +8,12 @@ public class UIPool : MonoBehaviour
 
     public List<GameObject> JobDescriptionList = new List<GameObject>();
 
+    public List<UIJobName> JobSheets = new List<UIJobName>();
+
     public Image ObjectiveIcone;
+
+    [SerializeField]
+    private SwitchPlayer _commandTable;
 
     [SerializeField]
     private GameObject _victory;

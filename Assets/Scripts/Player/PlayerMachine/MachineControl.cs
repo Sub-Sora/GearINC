@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class MachineControl : MonoBehaviour
 {
+    public MachineInteract _interact;
+
     private List<AreaEngine> _listEngine = new List<AreaEngine>();
 
     //Take the current Engine come from
@@ -17,8 +19,6 @@ public class MachineControl : MonoBehaviour
 
     [SerializeField]
     private InputActionReference _moveMachine;
-
-    private MachineInteract _interact;
 
     private int _moving;
 

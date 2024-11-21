@@ -14,6 +14,8 @@ public class Workstation : Interactable
     [SerializeField]
     private GameObject _UIPos;
 
+    private GameObject _jobSheet;
+
     public override void Interact(PlayerMain player)
     {
         player.Job.Job = Type;
@@ -21,9 +23,14 @@ public class Workstation : Interactable
         player.GetComponent<Renderer>().material = _skinJob;
     }
 
-    public void SetWorkstation(GameObject uiJob)
+    public void SetWorkstationJobName(GameObject uiJob)
     {
         _UIPos = uiJob;
+    }
+
+    public void SetWorkstationJobSheets(GameObject uiJob)
+    {
+        _jobSheet = uiJob;
     }
 
     /// <summary>
@@ -32,6 +39,7 @@ public class Workstation : Interactable
     private void ShowJobView()
     {
         _UIPos.SetActive(true);
+        _jobSheet.SetActive(true);
     }
 
     private void HideJobView()
