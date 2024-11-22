@@ -1,11 +1,14 @@
-using System;
 using UnityEditor;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+//using static SerializedPropertyExtensions;
 
-[CustomEditor(typeof(Tasks))]
+[CustomEditor(typeof(AllTasks))]
 
 public class TasksAtWork : Editor
 {
+    
     private SerializedProperty _tasksInProgressProperty;
     string stringToEdit = "";
     private int leftPosition = Screen.width / 2;
@@ -22,16 +25,45 @@ public class TasksAtWork : Editor
     }
     private void OnEnable()
     {
-        _tasksInProgressProperty = serializedObject.FindProperty("TasksInProgress");
+        //_tasksInProgressProperty = serializedObject.FindProperty("TasksInProgress");
     }
     public override void OnInspectorGUI()
     {
-        serializedObject.Update();
-        EditorGUILayout.LabelField("Tache en cours", EditorStyles.boldLabel);
-        for (int i = 0;  i < _tasksInProgressProperty.arraySize; ++i)
-        {
-            EditorGUILayout.LabelField(_tasksInProgressProperty.GetArrayElementAtIndex(i).stringValue, EditorStyles.boldLabel);
+        //serializedObject.Update();
 
+        
+        /*EditorGUILayout.LabelField("Tache en cours", EditorStyles.boldLabel);
+        for (int i = 0;  i < _tasksInProgressProperty.arraySize; i++)
+        {
+            SerializedProperty elementProperty = _tasksInProgressProperty.GetArrayElementAtIndex(i);
+            AllTasks convertedMCL = elementProperty.objectReferenceValue as System.Object as AllTasks;
+            if (convertedMCL == null)
+            {
+                convertedMCL = new AllTasks();
+            }
+            Debug.Log(convertedMCL);
+            if (elementProperty.objectReferenceValue != null)
+            {
+                if (elementProperty.objectReferenceValue is AllTasks scriptInstance)
+                {
+                    EditorGUILayout.LabelField(scriptInstance.TasksInProgress[i].TasksName, EditorStyles.boldLabel);
+                }
+                else
+                {
+                    Debug.Log("Mauvais");
+                }
+            }
+            else
+            {
+                Debug.Log("pire");
+            }
+
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.Toggle(false);
+            //EditorGUILayout.LabelField(_tasksInProgressProperty.GetArrayElementAtIndex(i).GetType(), EditorStyles.boldLabel);
+            GUILayout.Button("Info");
+            GUILayout.EndHorizontal();
+            /*
             //Calculates the size of your label text with myStyle
             sizeOfLabel = myStyle.CalcSize(new GUIContent(_tasksInProgressProperty.GetArrayElementAtIndex(i).stringValue));
 
@@ -46,6 +78,7 @@ public class TasksAtWork : Editor
 
             //The button, drawn to the right of wherever the label ends.
             GUI.Button(new Rect(leftPosition + newBoxWidth / 2, topPosition + 15 * i, 25, boxHeight), "");
+            
         }
 
        stringToEdit = GUILayout.TextField(stringToEdit, 25);
@@ -53,9 +86,35 @@ public class TasksAtWork : Editor
         if (GUILayout.Button("Ajouter un élément"))
         {
             _tasksInProgressProperty.arraySize++; // Augmente la taille de la liste
-            _tasksInProgressProperty.GetArrayElementAtIndex(_tasksInProgressProperty.arraySize - 1).stringValue = stringToEdit; // Initialise le nouvel élément à la première valeur de l'enum
+            SerializedProperty elementProperty = _tasksInProgressProperty.GetArrayElementAtIndex(_tasksInProgressProperty.arraySize-1);
+            Tasks convertedMCL = elementProperty.objectReferenceValue as System.Object as Tasks;
+            if (_tasksInProgressProperty.GetArrayElementAtIndex(_tasksInProgressProperty.arraySize - 1).objectReferenceValue is Tasks scriptInstance)
+            {
+                scriptInstance.TasksName = stringToEdit;
+            }
         }
 
+        
+    }*/
+
+       /* if (GUILayout.Button("Ajouter une tâche"))
+        {
+            // Ajouter une tâche fictive (à personnaliser selon vos besoins)
+            Tasks newTask = CreateTaskExample();
+            taskManager.AddTask(newTask);
+            EditorUtility.SetDirty(taskManager); // Marque le script comme modifié pour sauvegarde
+        }
+       */
         serializedObject.ApplyModifiedProperties();
     }
+
+    /*private Tasks CreateTaskExample()
+    {
+        // Crée un nouveau GameObject avec le script Tasks (exemple)
+        GameObject newTaskObject = new GameObject("NewTask");
+        Tasks newTask = newTaskObject.AddComponent<Tasks>();
+        newTask.TasksName = "Nouvelle Tâche";
+        return newTask;
+    }*/
+
 }
