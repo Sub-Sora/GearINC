@@ -1,7 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tasks : MonoBehaviour
+[CreateAssetMenu(fileName = "New Task", menuName = "Tasks/Task")]
+public class Tasks : ScriptableObject
 {
-    public List<string> TasksInProgress = new List<string>();
+    public bool TaskState;
+    public string TaskDescription;
+    public string TasksName;
 }
