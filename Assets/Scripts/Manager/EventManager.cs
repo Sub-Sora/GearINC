@@ -13,6 +13,9 @@ public class EventManager : MonoBehaviour
     [HideInInspector]
     public ManagerOnce Main;
 
+    [SerializeField]
+    private GameObject _light;
+
     [Header("Chance to begin specific event")]
 
     [SerializeField]
@@ -34,6 +37,7 @@ public class EventManager : MonoBehaviour
     {
         Main = main;
         Elec = new EventElec();
+        Elec.Light = _light;
         Engine = new EventBrokenEngine();
         Engine.SetEvents(this);
 

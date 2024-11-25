@@ -3,13 +3,18 @@ using UnityEngine;
 public class ElecInteract : Interactable
 {
     [SerializeField]
-    private EventElec _eventElec;
+    private EventManager _event;
+
+    private void Start()
+    {
+        _event = FindAnyObjectByType<EventManager>();
+    }
 
     public override void Interact(PlayerMain player)
     {
-        if (_eventElec.EventHappend)
+        if (_event.Elec.EventHappend)
         {
-            _eventElec.FinishTheEvent();
+            _event.Elec.FinishTheEvent();
         }
     }
 }
