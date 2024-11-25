@@ -48,12 +48,12 @@ public class LevelManager: MonoBehaviour
                         }
                     }
 
-                    foreach (UIJobName jobSheet in _main.UI.JobSheets)
+                    foreach (JobSheet jobSheet in _main.UI.JobSheets)
                     {
                         if (jobSheet.JobType == newWorkstation.Type)
                         {
 
-                            newWorkstation.SetWorkstationJobSheets(jobSheet.gameObject);
+                            newWorkstation.SetWorkstationJobSheets(jobSheet);
                         }
                     }
                 }

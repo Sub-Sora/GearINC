@@ -31,7 +31,7 @@ public class TaskManagerWindow : EditorWindow
     private void CreateNewTask()
     {
         // Créer une nouvelle instance de Task en tant qu'asset
-        Tasks newTask = ScriptableObject.CreateInstance<Tasks>();
+        Tasks newTask = CreateInstance<Tasks>();
 
         // Remplir les propriétés de la tâche
         newTask.TasksName = taskName;
