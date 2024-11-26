@@ -56,6 +56,11 @@ public class PlayerInteract : MonoBehaviour
         _interObj = null;
     }
 
+    public void ChangeInteractObject(GameObject other)
+    {
+        _interObj = other;
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.GetComponent<Workstation>())
@@ -65,7 +70,6 @@ public class PlayerInteract : MonoBehaviour
 
         _interButton.gameObject.SetActive(false);
         _interObj = null;
-
     }
 
     /// <summary>
