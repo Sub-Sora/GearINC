@@ -12,7 +12,7 @@ public class ElecInteract : Interactable
 
     public override void Interact(PlayerMain player)
     {
-        if (_event.Elec.EventHappend)
+        if (_event.ElecIsBroken)
         {
             _event.Elec.FinishTheEvent();
         }

@@ -28,6 +28,7 @@ public class SwitchPlayer : Interactable
     private void Start()
     {
         _exitButton.onClick.AddListener(ExitMachine);
+        _allArea.Main.Event.ConceptionIsBlocked += ExitMachine;
     }
 
     /// <summary>
@@ -35,8 +36,11 @@ public class SwitchPlayer : Interactable
     /// </summary>
     public override void Interact(PlayerMain player)
     {
-        _player = player.GetComponent<PlayerControls>();
-        EnterMachine();
+        if (!_allArea.Main.Event.EngineIsBroken && !_allArea.Main.Event.ElecIsBroken)
+        {
+            _player = player.GetComponent<PlayerControls>();
+            EnterMachine();
+        }
     }
 
     /// <summary>
@@ -52,7 +56,6 @@ public class SwitchPlayer : Interactable
             _robotCam.Priority = 20;
             _playerCam.Priority = 0;
         }
-        
     }
 
     /// <summary>

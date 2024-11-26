@@ -1,7 +1,12 @@
+using System;
 using UnityEngine;
 
 public class EventManager : MonoBehaviour
 {
+    public bool EngineIsBroken;
+    public bool ElecIsBroken;
+    public event Action ConceptionIsBlocked;
+
     [HideInInspector]
     public EventElec Elec;
 
@@ -36,12 +41,13 @@ public class EventManager : MonoBehaviour
     private void Init(ManagerOnce main)
     {
         Main = main;
+        main.Event = this;
         Elec = new EventElec();
         Elec.Light = _light;
         Engine = new EventBrokenEngine();
         Engine.SetEvents(this);
 
-        if (Random.Range(0f, 101f) <= _percentTrashEvent && Main.NewGameplayIsAdd)
+        if (UnityEngine.Random.Range(0f, 101f) <= _percentTrashEvent && Main.NewGameplayIsAdd)
         {
             BeginTrashEvent();
         }
@@ -60,35 +66,40 @@ public class EventManager : MonoBehaviour
         Trash.EventBegin();
     }
 
-    public void ConceptionIsConplete(bool completeIsCorrect)
+    public void ConceptionIsConplete(bool completeIsCorrect, AreaEngine brokenEngine)
     {
         if (Main.NewGameplayIsAdd)
         {
+            Engine.EngineBroken = brokenEngine;
             if (completeIsCorrect)
             {
-                if (Random.Range(0f, 101f) <= _percentGoodConceptionEngineBroken)
+                if (UnityEngine.Random.Range(0f, 101f) <= _percentGoodConceptionEngineBroken)
                 {
                     BeginEngineEvent();
                 }
 
-                if (Random.Range(0f, 101f) <= _percentGoodConceptionElec)
+                if (UnityEngine.Random.Range(0f, 101f) <= _percentGoodConceptionElec)
                 {
                     BeginElecEvent();
                 }
             }
             else
             {
-                if (Random.Range(0f, 101f) <= _percentBadConceptionEngineBroken)
+                if (UnityEngine.Random.Range(0f, 101f) <= _percentBadConceptionEngineBroken)
                 {
                     BeginEngineEvent();
                 }
 
-                if (Random.Range(0f, 101f) <= _percentBadConceptionElec)
+                if (UnityEngine.Random.Range(0f, 101f) <= _percentBadConceptionElec)
                 {
-                    BeginEngineEvent();
+                    BeginElecEvent();
                 }
             }
         }
-        
+    }
+
+    public void StopMachine()
+    {
+        ConceptionIsBlocked.Invoke();
     }
 }
