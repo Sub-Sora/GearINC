@@ -31,6 +31,7 @@ public class UIParchment : MonoBehaviour
             _isOpen = false;
             _isAnim = true;
         }
+        Debug.Log("Le bouton à cliqué");
     }
 
     public void EndAnim()
