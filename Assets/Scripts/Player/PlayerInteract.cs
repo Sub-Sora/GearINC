@@ -63,9 +63,14 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<Workstation>())
+     /*   if (other.gameObject.GetComponent<Workstation>())
         {
             other.SendMessage("HideJobView");
+        }*/
+
+        if (_interObj.TryGetComponent(out Workstation work))
+        {
+            work.HideJobView();
         }
 
         _interButton.gameObject.SetActive(false);
@@ -79,7 +84,11 @@ public class PlayerInteract : MonoBehaviour
     {
         if (_interObj != null)
         {
-            _interObj.SendMessage("Interact", _main);
+            //_interObj.SendMessage("Interact", _main);
+            if (_interObj.TryGetComponent(out Interactable inter))
+            {
+                inter.Interact(_main);
+            }
         }
     }
 }

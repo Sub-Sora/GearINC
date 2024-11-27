@@ -51,7 +51,7 @@ public class Workstation : Interactable
         _UIPos.SetActive(true);
     }
 
-    private void HideJobView()
+    public void HideJobView()
     {
         _UIPos.SetActive(false);
     }
