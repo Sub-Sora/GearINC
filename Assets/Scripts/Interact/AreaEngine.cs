@@ -119,5 +119,6 @@ public class AreaEngine : Interactable, IRessourceHolder
     {
         EngineInFire = false;
         SmokeEffect.Stop();
+        _manager.Main.Event.Engine.FinishTheEvent();
     }
 }

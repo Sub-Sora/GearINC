@@ -42,10 +42,11 @@ public class EventManager : MonoBehaviour
     {
         Main = main;
         main.Event = this;
-        Elec = new EventElec();
+        Elec = gameObject.AddComponent<EventElec>();
         Elec.Light = _light;
-        Engine = new EventBrokenEngine();
+        Engine = gameObject.AddComponent<EventBrokenEngine>();
         Engine.SetEvents(this);
+        Elec.SetEvents(this);
 
         if (UnityEngine.Random.Range(0f, 101f) <= _percentTrashEvent && Main.NewGameplayIsAdd)
         {

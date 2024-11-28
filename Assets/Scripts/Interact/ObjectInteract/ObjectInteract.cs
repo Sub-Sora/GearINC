@@ -12,6 +12,7 @@ public class ObjectInteract : Interactable
     {
         if (!player.Holding.IsHolding)
         {
+            Debug.Log(player.Holding.IsHolding);
             player.Holding.TakeObject(_object, Type);
             player.Holding.HoldObject(_object);
         }

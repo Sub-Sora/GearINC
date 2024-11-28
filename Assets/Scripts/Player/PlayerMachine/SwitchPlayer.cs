@@ -36,6 +36,7 @@ public class SwitchPlayer : Interactable
     /// </summary>
     public override void Interact(PlayerMain player)
     {
+        Debug.Log("EngineIsBroken : " + _allArea.Main.Event.EngineIsBroken + ", ElecIsBroken : " + _allArea.Main.Event.ElecIsBroken);
         if (!_allArea.Main.Event.EngineIsBroken && !_allArea.Main.Event.ElecIsBroken)
         {
             _player = player.GetComponent<PlayerControls>();

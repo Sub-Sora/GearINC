@@ -5,7 +5,7 @@ public class EventElec : EventMap
     public GameObject Light;
     private EventManager _main;
 
-    public void SetMachine(EventManager main)
+    public override void SetEvents(EventManager main)
     {
         _main = main;
     }
