@@ -16,6 +16,6 @@ public class HapticButton : MonoBehaviour
 
     public void PlayHapticButton()
     {
-        HapticFeedback.LightFeedback();
+        HapticFeedback.MediumFeedback();
     }
 }
