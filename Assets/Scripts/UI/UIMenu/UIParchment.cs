@@ -36,7 +36,6 @@ public class UIParchment : MonoBehaviour
             _scrollAnim.SetBool("isScrolled", false);
             _isOpen = false;
             _isAnim = true;
-            Handheld.Vibrate();
         }
     }
 
