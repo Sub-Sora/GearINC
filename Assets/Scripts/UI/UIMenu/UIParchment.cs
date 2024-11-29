@@ -12,7 +12,6 @@ public class UIParchment : MonoBehaviour
     [HideInInspector]
     public bool _isAnim;
 
-    [SerializeField]
     private HapticButton _haptic;
 
     private void Start()
@@ -43,6 +42,13 @@ public class UIParchment : MonoBehaviour
 
     public void EndAnim()
     {
+        _isAnim = false;
+    }
+
+    public void ResetAnim()
+    {
+        _scrollAnim.SetBool("isScrolled", false);
+        _isOpen = false;
         _isAnim = false;
     }
 }
