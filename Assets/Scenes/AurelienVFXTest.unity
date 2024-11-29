@@ -690,7 +690,7 @@ MonoBehaviour:
     m_Name: Direction
   m_TargetHit:
     m_Name: Hit
-  RaycastSource: {fileID: 0}
+  RaycastSource: {fileID: 1049038858}
   RaycastDirection: {x: 0, y: 0, z: 1}
   RaycastDirectionSpace: 0
   Layers:
@@ -774,7 +774,13 @@ VisualEffect:
     m_Vector2f:
       m_Array: []
     m_Vector3f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 0, y: 0, z: 0}
+        m_Name: Position_position
+        m_Overridden: 1
+      - m_Value: {x: 0, y: 0, z: 0}
+        m_Name: Direction_direction
+        m_Overridden: 1
     m_Vector4f:
       m_Array: []
     m_Uint:
@@ -790,7 +796,10 @@ VisualEffect:
     m_NamedObject:
       m_Array: []
     m_Bool:
-      m_Array: []
+      m_Array:
+      - m_Value: 0
+        m_Name: Hit
+        m_Overridden: 1
 --- !u!4 &1049038863
 Transform:
   m_ObjectHideFlags: 0
@@ -799,13 +808,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049038858}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -1, w: 0}
-  m_LocalPosition: {x: 0.005, y: 0.55405015, z: -0.123}
-  m_LocalScale: {x: 0.14847769, y: 0.8165237, z: 0.14847769}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.18, y: 0.551, z: 0.031040967}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1080506770
 GameObject:
   m_ObjectHideFlags: 0
