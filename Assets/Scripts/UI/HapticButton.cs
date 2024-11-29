@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class HapticButton : MonoBehaviour
 {
+    [HideInInspector]
     public UnityEvent hapticEvent;
 
     private void Start()
@@ -16,6 +17,6 @@ public class HapticButton : MonoBehaviour
 
     public void PlayHapticButton()
     {
-        HapticFeedback.LightFeedback();
+        HapticFeedback.HeavyFeedback();
     }
 }
