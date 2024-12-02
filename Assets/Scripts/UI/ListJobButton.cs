@@ -28,8 +28,16 @@ public class ListJobButton : MonoBehaviour
     [SerializeField]
     private GameObject _jobsDescription;
 
+    private HapticButton _haptic;
+
+    private void Start()
+    {
+        _haptic = GetComponent<HapticButton>();
+    }
+
     public void OpenUIWindow()
     {
+        if (_haptic != null) _haptic.hapticEvent.Invoke();
         _jobMenu.SetActive(true);
         _levelJobButton.SetActive(true);
         _allJobButton.SetActive(true);
@@ -37,6 +45,7 @@ public class ListJobButton : MonoBehaviour
 
     public void LevelJobList()
     {
+        if (_haptic != null) _haptic.hapticEvent.Invoke();
         _levelJob.SetActive(true);
         _allJob.SetActive(false);
         _jobDescriptionTab.SetActive(false);
@@ -45,6 +54,7 @@ public class ListJobButton : MonoBehaviour
 
     public void AllJobList()
     {
+        if (_haptic != null) _haptic.hapticEvent.Invoke();
         _levelJob.SetActive(false);
         _allJob.SetActive(true);
         _jobDescriptionTab.SetActive(false);
@@ -53,6 +63,7 @@ public class ListJobButton : MonoBehaviour
 
     public void CloseWindow()
     {
+        if (_haptic != null) _haptic.hapticEvent.Invoke();
         _levelJob.SetActive(false);
         _allJob.SetActive(false);
         _levelJobButton.SetActive(false);

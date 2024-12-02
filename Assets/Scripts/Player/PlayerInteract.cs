@@ -56,15 +56,27 @@ public class PlayerInteract : MonoBehaviour
         _interObj = null;
     }
 
+    public void ChangeInteractObject(GameObject other)
+    {
+        _interObj = other;
+    }
+
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.GetComponent<Workstation>())
+        /*   if (other.gameObject.GetComponent<Workstation>())
+           {
+               other.SendMessage("HideJobView");
+           }*/
+        if (_interObj != null)
         {
-            other.SendMessage("HideJobView");
-        }
+            if (_interObj.TryGetComponent(out Workstation work))
+            {
+                work.HideJobView();
+            }
 
-        _interButton.gameObject.SetActive(false);
-        _interObj = null;
+            _interButton.gameObject.SetActive(false);
+            _interObj = null;
+        }
 
     }
 
@@ -75,7 +87,11 @@ public class PlayerInteract : MonoBehaviour
     {
         if (_interObj != null)
         {
-            _interObj.SendMessage("Interact", _main);
+            //_interObj.SendMessage("Interact", _main);
+            if (_interObj.TryGetComponent(out Interactable inter))
+            {
+                inter.Interact(_main);
+            }
         }
     }
 }

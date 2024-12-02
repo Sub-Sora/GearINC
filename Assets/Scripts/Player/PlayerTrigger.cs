@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerTrigger : MonoBehaviour
 {
     private PlayerMain _main;
+    private List<GameObject> _allInteractObject = new List<GameObject>();
 
     private void Init(PlayerMain main)
     {
@@ -41,8 +44,10 @@ public class PlayerTrigger : MonoBehaviour
                     }
                 }
             }
-            
-            _main.Interact.ActiveInteractButton(other.gameObject);
+
+            GameObject interactObject = other.gameObject;
+            _allInteractObject.Add(interactObject);
+            _main.Interact.ActiveInteractButton(interactObject);
         }
     }
 
@@ -53,6 +58,14 @@ public class PlayerTrigger : MonoBehaviour
             other.SendMessage("HideJobView");
         }
 
-        _main.Interact.DesactiveInteractButton();
+        _allInteractObject.Remove(other.gameObject);
+        if (_allInteractObject.Count == 0)
+        {
+            _main.Interact.DesactiveInteractButton();
+        }
+        else
+        {
+            _main.Interact.ChangeInteractObject(_allInteractObject.Last());
+        }
     }
 }

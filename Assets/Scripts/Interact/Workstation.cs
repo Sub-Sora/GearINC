@@ -14,13 +14,22 @@ public class Workstation : Interactable
     [SerializeField]
     private GameObject _UIPos;
 
-    private GameObject _jobSheet;
+    private JobSheet _jobSheet;
+    
+    private PlayerMain _player;
 
     public override void Interact(PlayerMain player)
     {
-        player.Job.Job = Type;
-        player.Job.EnginePut = _engineToPut;
-        player.GetComponent<Renderer>().material = _skinJob;
+        _player = player;
+        _jobSheet.JobSheetObject.SetActive(true);
+    }
+
+    public void GiveJobInformationToPlayer()
+    {
+        _player.Job.Job = Type;
+        _player.Job.EnginePut = _engineToPut;
+        _jobSheet.JobSheetObject.SetActive(false);
+        _player.GetComponent<Renderer>().material = _skinJob;
     }
 
     public void SetWorkstationJobName(GameObject uiJob)
@@ -28,9 +37,10 @@ public class Workstation : Interactable
         _UIPos = uiJob;
     }
 
-    public void SetWorkstationJobSheets(GameObject uiJob)
+    public void SetWorkstationJobSheets(JobSheet uiJobSheet)
     {
-        _jobSheet = uiJob;
+        _jobSheet = uiJobSheet;
+        _jobSheet.AcceptJobButton.onClick.AddListener(GiveJobInformationToPlayer);
     }
 
     /// <summary>
@@ -39,10 +49,9 @@ public class Workstation : Interactable
     private void ShowJobView()
     {
         _UIPos.SetActive(true);
-        _jobSheet.SetActive(true);
     }
 
-    private void HideJobView()
+    public void HideJobView()
     {
         _UIPos.SetActive(false);
     }

@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class AnimInteract : MonoBehaviour
 {
-    [HideInInspector]
-    public bool AnimEnd;
 
     [HideInInspector]
     public bool LateAnim;
 
     private AreaEngine _engine;
 
+    private Animator _animator;
+
     private void Start()
     {
-        AnimEnd = false;
+        _animator = GetComponent<Animator>();  
         LateAnim = false;
         _engine = GetComponent<AreaEngine>();
     }
@@ -22,9 +22,8 @@ public class AnimInteract : MonoBehaviour
     /// </summary>
     public void AnimationFinished()
     {
-        AnimEnd = true;
+        _animator.SetBool("isPlay", false);
         _engine.Complete();
-        Debug.Log("Anim Finish");
     }
 
     /// <summary>

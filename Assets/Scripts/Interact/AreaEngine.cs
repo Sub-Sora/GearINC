@@ -43,12 +43,13 @@ public class AreaEngine : Interactable, IRessourceHolder
     {
         if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
         {
-            if (Engine != null)
+            if (player.Job.EnginePut != null)
             {
-                VerifyEngine();
-            }
-            else if (player.Job.EnginePut != null)
-            {
+                if (Engine != null)
+                {
+                    Destroy(Engine);
+                }
+
                 EngineType = player.Job.Job;
                 Engine = Instantiate(player.Job.EnginePut, transform);
             }
@@ -66,7 +67,7 @@ public class AreaEngine : Interactable, IRessourceHolder
     {
         if (_manager.Main.Objective.Object.TypesNeeded[_engineId] == EngineType)
         {
-            if (_manager.Main.Objective.Object.TypesNeeded.Count-1 == _engineId)
+            if (_manager.Main.Objective.Object.TypesNeeded.Count - 1 == _engineId)
             {
                 _manager.Main.UI.Victory();
             }
@@ -81,14 +82,18 @@ public class AreaEngine : Interactable, IRessourceHolder
 
     public void Complete()
     {
-        if (VerifyEngine())
+        bool theConceptionIsCorrect = VerifyEngine();
+        if (theConceptionIsCorrect)
         {
             Ressource.RessourceState++;
+            
         }
         else
         {
             Ressource.RessourceState = -1;
         }
+
+        _manager.Main.Event.ConceptionIsConplete(theConceptionIsCorrect, this);
     }
 
     public void GetRessource(Ressource ressource)
@@ -114,5 +119,6 @@ public class AreaEngine : Interactable, IRessourceHolder
     {
         EngineInFire = false;
         SmokeEffect.Stop();
+        _manager.Main.Event.Engine.FinishTheEvent();
     }
 }
