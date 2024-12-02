@@ -14,7 +14,6 @@ public class ExtinguisherInteract : ObjectInteract
 
     public override void Interact(PlayerMain player)
     {
-        base.Interact(player);
         if (player.Holding.IsHolding)
         {
             if (player.Holding.HoldingObjectType == Type)
@@ -25,6 +24,10 @@ public class ExtinguisherInteract : ObjectInteract
                 _object.transform.localRotation = Quaternion.identity;
                 _object.transform.localScale = _objectScale;
             }
+        }
+        else
+        {
+            base.Interact(player);
         }
     }
 }

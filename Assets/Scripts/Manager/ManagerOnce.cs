@@ -17,6 +17,8 @@ public class ManagerOnce : MonoBehaviour
     
     public PlayerMain Player;
 
+    public EventManager Event;
+
     [Header("New Gameplay")]
     public bool NewGameplayIsAdd;
 

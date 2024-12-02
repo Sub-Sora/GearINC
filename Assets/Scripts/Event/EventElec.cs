@@ -1,16 +1,28 @@
+using UnityEngine;
+
 public class EventElec : EventMap
 {
-    public bool EventHappend;
+    public GameObject Light;
+    private EventManager _main;
+
+    public override void SetEvents(EventManager main)
+    {
+        _main = main;
+    }
+
     public override void EventBegin()
     {
-        //Eteindre les lumières
+        _main.ElecIsBroken = true;
+        Light.SetActive(false);
+        _main.StopMachine();
     }
 
     public void FinishTheEvent()
     {
-        if( EventHappend)
+        if (_main.ElecIsBroken)
         {
-            EventHappend = false;
+            Light.SetActive(true);
+            _main.ElecIsBroken = false;
         }
     }
 }

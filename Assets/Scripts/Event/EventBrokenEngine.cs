@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class EventBrokenEngine : EventMap
 {
-    public bool EventHappend;
     private EventManager _main;
+    public AreaEngine EngineBroken;
 
     public override void SetEvents(EventManager main)
     {
@@ -12,14 +12,16 @@ public class EventBrokenEngine : EventMap
 
     public override void EventBegin()
     {
-        _main.Main.AreasEngines.EngineList[Random.Range(0, _main.Main.AreasEngines.EngineList.Count)].BrokeTheEngine();
+        EngineBroken.BrokeTheEngine();
+        _main.StopMachine();
+        _main.EngineIsBroken = true;
     }
 
     public void FinishTheEvent()
     {
-        if (EventHappend)
+        if (_main.EngineIsBroken)
         {
-            EventHappend = false;
+            _main.EngineIsBroken = false;
         }
     }
 }

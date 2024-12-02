@@ -60,7 +60,7 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     {
         if (_animator != null && _interact != null)
         {
-            StopCoroutine(_coroutine);
+            StopAllCoroutines();
 
             if (_listEngine[_currentEngine].isHolding && _listEngine[_currentEngine].Ressource.RessourceState > -1)
             {
@@ -95,7 +95,7 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     }
 
     /// <summary>
-    /// Coroutine qui vas attendre "time" temps avant de lancer l'aniamtion à l'arrêt du joueur
+    /// Coroutine qui vas attendre "time" temps avant de lancer l'animation à l'arrêt du joueur
     /// </summary>
     /// <param name="time">Temps avant du lancement de l'animation</param>
     /// <returns></returns>

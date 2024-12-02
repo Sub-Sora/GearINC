@@ -12,21 +12,27 @@ public class UIParchment : MonoBehaviour
     [HideInInspector]
     public bool _isAnim;
 
+    private HapticButton _haptic;
+
     private void Start()
     {
-        _scrollAnim = this.GetComponent<Animator>();
+        _scrollAnim = GetComponent<Animator>();
+        _haptic = GameObject.Find("Canvas").GetComponent<HapticButton>();
+
     }
 
     public void OpenScroll()
     {
         if (!_isOpen && !_isAnim)
         {
+            if (_haptic != null) _haptic.hapticEvent.Invoke();
             _scrollAnim.SetBool("isScrolled", true);
             _isOpen = true;
             _isAnim = true;
         }
         if (_isOpen && !_isAnim)
         {
+            if (_haptic != null) _haptic.hapticEvent.Invoke();
             _scrollAnim.SetBool("isScrolled", false);
             _isOpen = false;
             _isAnim = true;
@@ -35,6 +41,13 @@ public class UIParchment : MonoBehaviour
 
     public void EndAnim()
     {
+        _isAnim = false;
+    }
+
+    public void ResetAnim()
+    {
+        _scrollAnim.SetBool("isScrolled", false);
+        _isOpen = false;
         _isAnim = false;
     }
 }
