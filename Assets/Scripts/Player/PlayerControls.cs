@@ -68,6 +68,7 @@ public class PlayerControls : MonoBehaviour
     public void InitThePlayer()
     {
         IsGameInit = true;
+        Debug.Log("Init the player");
     }
 
     /// <summary>
