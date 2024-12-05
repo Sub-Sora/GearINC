@@ -1648,6 +1648,7 @@ GameObject:
   - component: {fileID: 294154048}
   - component: {fileID: 294154049}
   - component: {fileID: 294154050}
+  - component: {fileID: 294154051}
   m_Layer: 0
   m_Name: CineCam
   m_TagString: Untagged
@@ -1720,6 +1721,36 @@ PlayableDirector:
     - 9f758bd708b5af046b937af0b1796dc4: {fileID: 1863174445}
     - 884e57942d281a34999f4b3d35828e4c: {fileID: 1664585111}
     - 74bcded0d12eeb8469517d75e0e834a9: {fileID: 646982323}
+--- !u!114 &294154051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294154047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: fee9ab717f99aa64188ddb357cc38156, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1728753901}
+          m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
+          m_MethodName: InitThePlayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &297137396
 GameObject:
   m_ObjectHideFlags: 0
@@ -5118,7 +5149,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &821449627
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9381,6 +9412,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerControl
       objectReference: {fileID: 0}
+    - target: {fileID: 3378257688908569664, guid: eb583c75df25ac14ba74f57fc450aa43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6064211652721441057, guid: eb583c75df25ac14ba74f57fc450aa43,
         type: 3}
       propertyPath: m_Pivot.x
@@ -9481,7 +9517,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6732409108783455153, guid: eb583c75df25ac14ba74f57fc450aa43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8309155553558897772, guid: eb583c75df25ac14ba74f57fc450aa43,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8801708251138794141, guid: eb583c75df25ac14ba74f57fc450aa43,
         type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -11131,7 +11177,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1863174446}
   - component: {fileID: 1863174445}
-  - component: {fileID: 1863174447}
   - component: {fileID: 1863174448}
   m_Layer: 0
   m_Name: CinematicCam
@@ -11195,36 +11240,6 @@ Transform:
   - {fileID: 565360755}
   m_Father: {fileID: 294154048}
   m_LocalEulerAnglesHint: {x: 36.961, y: 179.566, z: -0.261}
---- !u!114 &1863174447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863174443}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Events:
-    m_Signals:
-    - {fileID: 11400000, guid: fee9ab717f99aa64188ddb357cc38156, type: 2}
-    m_Events:
-    - m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 1728753901}
-          m_TargetAssemblyTypeName: PlayerControls, Assembly-CSharp
-          m_MethodName: InitThePlayer
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!95 &1863174448
 Animator:
   serializedVersion: 5
@@ -11338,6 +11353,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1863973183}
+  - component: {fileID: 1863973184}
+  - component: {fileID: 1863973185}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -11366,6 +11383,40 @@ RectTransform:
   m_AnchoredPosition: {x: 5.3588257, y: -57.000122}
   m_SizeDelta: {x: 152.58029, y: -1319.1592}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!95 &1863973184
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863973182}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: df0ca8aa8ca5cb8439bff9c6728dbf0b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1863973185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863973182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 029fdd454ec6999409bc956bc07e1348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuButton: {fileID: 1080715470}
 --- !u!1 &1872666453
 GameObject:
   m_ObjectHideFlags: 0
