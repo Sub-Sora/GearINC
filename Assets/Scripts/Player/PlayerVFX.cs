@@ -34,7 +34,7 @@ public class PlayerVFX : MonoBehaviour
     {
         if (IsWalking)
         {
-            Debug.Log("move");
+            //Debug.Log("move");
         }
     }
 }
