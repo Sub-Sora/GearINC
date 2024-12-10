@@ -32,6 +32,6 @@ public class TimeScore : MonoBehaviour
 
     private void TooMuchTime()
     {
-        _scoreManager.MinusScore(_scoreloss);
+        _scoreManager.ChangeScore(-_scoreloss);
     }
 }

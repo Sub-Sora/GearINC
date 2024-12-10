@@ -19,6 +19,6 @@ public class BadPlacment : MonoBehaviour
 
     private void WrongPlacment()
     {
-        _scoreManager.MinusScore(_scoreloss);
+        _scoreManager.ChangeScore(-_scoreloss);
     }
 }
