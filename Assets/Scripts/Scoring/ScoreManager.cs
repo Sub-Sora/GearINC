@@ -15,18 +15,21 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private int _oneStarScore;
 
+    private StarScore _starScore;
+
     private void Start()
     {
         _initScore = 100;
+        _starScore = GetComponent<StarScore>();
     }
 
     /// <summary>
-    /// Fonction pour récupérer un int qui se déduira du score
+    /// Fonction pour récupérer un int qui viendra modifier le score
     /// </summary>
     /// <param name="ScoreDeduction"></param>
-    public void MinusScore(int ScoreDeduction)
+    public void ChangeScore(int ScoreDeduction)
     {
-        _initScore -= ScoreDeduction;
+        _initScore += ScoreDeduction;
     }
 
     private void StarsScore()
@@ -34,17 +37,17 @@ public class ScoreManager : MonoBehaviour
         //Condition pour avoir 3 étoiles de score
         if (_threeStarScore >= _initScore)
         {
-
+            _starScore.OneStar.Invoke();
         }
         //Condition pour avoir 2 étoiles de score
         if (_twoStarScore >= _initScore && _threeStarScore < _initScore)
         {
-
+            _starScore.TwoStar.Invoke();
         }
         //Condition pour avoir 1 étoiles de score
         if (_oneStarScore >= _initScore && _twoStarScore < _initScore)
         {
-
+            _starScore.OneStar.Invoke();
         }
         //Condition pour avoir 0 étoiles de score
         if (_oneStarScore < _initScore)

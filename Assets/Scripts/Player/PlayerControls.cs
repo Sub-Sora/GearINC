@@ -12,6 +12,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private InputActionReference _moveAction;
 
+    private Animator _playerAnim;
+
     [Header("Joystick")]
 
     [SerializeField]
@@ -63,11 +65,13 @@ public class PlayerControls : MonoBehaviour
     {
         _main = main;
         main.Controls = this;
+        _playerAnim = GetComponentInChildren<Animator>();
     }
 
     public void InitThePlayer()
     {
         IsGameInit = true;
+        Debug.Log("Init the player");
     }
 
     /// <summary>
@@ -85,6 +89,7 @@ public class PlayerControls : MonoBehaviour
                 if (distanceJoystick < _joyStickDeadZone)
                 {
                     inputDir = Vector2.zero;
+                    _playerAnim.SetBool("isRun", false);
                 }
 
                 Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
@@ -96,6 +101,7 @@ public class PlayerControls : MonoBehaviour
                     Quaternion targetRotation = Quaternion.LookRotation(moveDir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
                     _lastRotation = transform.rotation;
+                    _playerAnim.SetBool("isRun", true);
                 }
                 else if (_lastRotation != null)
                 {
@@ -104,6 +110,7 @@ public class PlayerControls : MonoBehaviour
                 }
             }
         }
+        else _playerAnim.SetBool("isRun", false);
     }
 
     /// <summary>
