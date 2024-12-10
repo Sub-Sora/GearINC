@@ -1,18 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ChangeWordColor : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private TextMeshProUGUI m_TextMeshPro;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
