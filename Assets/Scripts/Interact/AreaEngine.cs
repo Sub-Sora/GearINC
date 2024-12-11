@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.VFX;
 using static Job;
@@ -93,7 +94,10 @@ public class AreaEngine : Interactable, IRessourceHolder
             Ressource.RessourceState = -1;
         }
 
-        _manager.Main.Event.ConceptionIsConplete(theConceptionIsCorrect, this);
+        if (_manager.Main.NewGameplayIsAdd)
+        {
+            _manager.Main.Event.ConceptionIsConplete(theConceptionIsCorrect, this);
+        }
     }
 
     public void GetRessource(Ressource ressource)
