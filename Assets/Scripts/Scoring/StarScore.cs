@@ -29,7 +29,9 @@ public class StarScore : MonoBehaviour
 
     private void OneStarAnim()
     {
-        _firstStarImage.transform.DOScale(1, 1).SetEase(Ease.OutBounce);
+        _stars.Clear();
+
+        _stars.Add(_firstStarImage);
     }
 
     private void TwoStarAnim()
@@ -53,12 +55,16 @@ public class StarScore : MonoBehaviour
         StartCoroutine(StarAnimCoroutine());
     }
 
+    /// <summary>
+    /// Va jouer l'animation d'étoiles de score
+    /// </summary>
+    /// <returns></returns>
     IEnumerator StarAnimCoroutine()
     {
         for (int i = 0; i < _stars.Count; i++)
         {
-            Tween StarTween = _stars[i].transform.DOScale(1, 0.5f).SetEase(Ease.OutBounce);
-            yield return StarTween.WaitForCompletion();
+            Tween StarTween = _stars[i].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
+            yield return new WaitForSeconds(0.3f);
         }
 
         yield return null;

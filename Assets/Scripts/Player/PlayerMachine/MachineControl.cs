@@ -31,7 +31,7 @@ public class MachineControl : MonoBehaviour
         _listEngine = engineList;
         _interact = GetComponent<MachineInteract>();
         _currentEngine = 0;
-        Agent.SetDestination(_listEngine[_currentEngine].transform.position);
+        Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
         Agent.isStopped = true;
         _interact.InitializedPath(engineList);
     }
@@ -70,7 +70,7 @@ public class MachineControl : MonoBehaviour
             _moving = Move;
             if (_currentEngine < _listEngine.Count)
             {
-                Agent.SetDestination(_listEngine[_currentEngine].transform.position);
+                Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
                 Agent.isStopped = false;
                 _interact.StartMoving();
             }
@@ -82,7 +82,7 @@ public class MachineControl : MonoBehaviour
             _moving = Move;
             if (_currentEngine > 0)
             {
-                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.position);
+                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
                 Agent.isStopped = false;
                 _interact.StartMoving();
             }
@@ -108,7 +108,7 @@ public class MachineControl : MonoBehaviour
             if (_currentEngine < _listEngine.Count)
             {
                 if (_currentEngine >= _listEngine.Count) _currentEngine = _listEngine.Count;
-                Agent.SetDestination(_listEngine[_currentEngine].transform.position);
+                Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
                 Agent.isStopped = false;
             }
         }
@@ -118,7 +118,7 @@ public class MachineControl : MonoBehaviour
         {
             if (_currentEngine >= 0)
             {
-                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.position);
+                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
                 Agent.isStopped = false;
             }
         }
