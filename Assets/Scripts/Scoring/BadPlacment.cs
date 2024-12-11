@@ -7,18 +7,13 @@ public class BadPlacment : MonoBehaviour
     [SerializeField]
     private int _scoreloss;
 
-    [SerializeField]
-    private GameObject _scoreManagerObj;
-
-    private ScoreManager _scoreManager;
-
     private void Start()
     {
-        _scoreManager = _scoreManagerObj.GetComponent<ScoreManager>();
+        ScoreManager.Instance.badPlacment += WrongPlacment;
     }
 
     private void WrongPlacment()
     {
-        _scoreManager.ChangeScore(-_scoreloss);
+        ScoreManager.Instance.ChangeScore(-_scoreloss);
     }
 }

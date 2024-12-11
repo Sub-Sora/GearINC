@@ -37,7 +37,8 @@ public class UIPool : MonoBehaviour
     /// </summary>
     public void Victory()
     {
-        _victory.SetActive(true);
+        //_victory.SetActive(true);
+        ScoreManager.Instance.StarsScore();
     }
 
     /// <summary>

@@ -8130,6 +8130,7 @@ GameObject:
   - component: {fileID: 1227081349}
   - component: {fileID: 1227081348}
   - component: {fileID: 1227081347}
+  - component: {fileID: 1227081350}
   m_Layer: 0
   m_Name: ScoreManager
   m_TagString: Untagged
@@ -8181,7 +8182,7 @@ MonoBehaviour:
   _threeStarScore: 75
   _twoStarScore: 50
   _oneStarScore: 25
-  _scoreWindow: {fileID: 0}
+  _scoreWindow: {fileID: 2011789516}
 --- !u!114 &1227081349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8197,6 +8198,19 @@ MonoBehaviour:
   _firstStarImage: {fileID: 1087147557}
   _secondStarImage: {fileID: 535113796}
   _thirdStarImage: {fileID: 952513375}
+--- !u!114 &1227081350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227081345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d7d483c660a1c8428447f9d97a9bd61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scoreloss: 0
 --- !u!1 &1234763906
 GameObject:
   m_ObjectHideFlags: 0

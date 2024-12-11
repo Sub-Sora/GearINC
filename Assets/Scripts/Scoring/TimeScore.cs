@@ -24,7 +24,7 @@ public class TimeScore : MonoBehaviour
         float minutes = Mathf.FloorToInt(_time / 60);
         float seconds = Mathf.FloorToInt(_time % 60);
 
-        if (minutes == 1 && seconds == 30)
+        if (minutes >= 1 && seconds >= 30)
         {
             TooMuchTime();
         }
