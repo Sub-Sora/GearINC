@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    [SerializeField]
     private int _initScore;
+
+    private int _score;
 
     [SerializeField]
     private int _threeStarScore;
@@ -15,11 +18,14 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     private int _oneStarScore;
 
+    [SerializeField]
+    private GameObject _scoreWindow;
+
     private StarScore _starScore;
 
     private void Start()
     {
-        _initScore = 100;
+        _score = _initScore;
         _starScore = GetComponent<StarScore>();
     }
 
@@ -29,15 +35,20 @@ public class ScoreManager : MonoBehaviour
     /// <param name="ScoreDeduction"></param>
     public void ChangeScore(int ScoreDeduction)
     {
-        _initScore += ScoreDeduction;
+        _score += ScoreDeduction;
+        if (_score < 0) _score = 0;
+        if (_score > _initScore) _score = _initScore;
     }
 
     private void StarsScore()
     {
+        // Affiche la fenêtre de score
+        _scoreWindow.SetActive(true);
+
         //Condition pour avoir 3 étoiles de score
         if (_threeStarScore >= _initScore)
         {
-            _starScore.OneStar.Invoke();
+            _starScore.ThreeStar.Invoke();
         }
         //Condition pour avoir 2 étoiles de score
         if (_twoStarScore >= _initScore && _threeStarScore < _initScore)

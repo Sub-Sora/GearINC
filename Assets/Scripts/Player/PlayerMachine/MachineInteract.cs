@@ -48,9 +48,12 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
 
     private void OnTriggerEnter(Collider other)
     {
-        _animator = other.GetComponent<Animator>();
-        _interact = other.GetComponent<AnimInteract>();
-        _currentEngine = _listEngine.IndexOf(other.gameObject.GetComponent<AreaEngine>());
+        //_animator = other.GetComponent<Animator>();
+        _animator = other.GetComponentInParent<Animator>();
+        //_interact = other.GetComponent<AnimInteract>();
+        _interact = other.GetComponentInParent<AnimInteract>();
+        //_currentEngine = _listEngine.IndexOf(other.gameObject.GetComponent<AreaEngine>());
+        _currentEngine = _listEngine.IndexOf(other.gameObject.GetComponentInParent<AreaEngine>());
     }
 
     /// <summary>
