@@ -92,6 +92,7 @@ public class AreaEngine : Interactable, IRessourceHolder
         else
         {
             Ressource.RessourceState = -1;
+            ScoreManager.Instance.badPlacment.Invoke();
         }
 
         if (_manager.Main.NewGameplayIsAdd)
