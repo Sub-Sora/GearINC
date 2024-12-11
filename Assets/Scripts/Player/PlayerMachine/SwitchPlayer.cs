@@ -1,5 +1,4 @@
 using Cinemachine;
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +27,11 @@ public class SwitchPlayer : Interactable
     private void Start()
     {
         _exitButton.onClick.AddListener(ExitMachine);
-        _allArea.Main.Event.ConceptionIsBlocked += ExitMachine;
+
+        if (_allArea.Main.NewGameplayIsAdd)
+        {
+            _allArea.Main.Event.ConceptionIsBlocked += ExitMachine;
+        }
     }
 
     /// <summary>
@@ -36,8 +39,14 @@ public class SwitchPlayer : Interactable
     /// </summary>
     public override void Interact(PlayerMain player)
     {
-        //Debug.Log("EngineIsBroken : " + _allArea.Main.Event.EngineIsBroken + ", ElecIsBroken : " + _allArea.Main.Event.ElecIsBroken);
-        if (!_allArea.Main.Event.EngineIsBroken && !_allArea.Main.Event.ElecIsBroken)
+        if (_allArea.Main.NewGameplayIsAdd)
+        {
+            if (!_allArea.Main.Event.EngineIsBroken && !_allArea.Main.Event.ElecIsBroken)
+            {
+
+            }
+        }
+        else
         {
             _player = player.GetComponent<PlayerControls>();
             EnterMachine();

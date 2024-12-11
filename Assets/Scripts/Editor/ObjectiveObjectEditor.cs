@@ -21,7 +21,7 @@ public class ObjectiveObjectEditor : Editor
          EditorGUILayout.HelpBox("The value is measured in µg (micrograms).", MessageType.Info);
 
          serializedObject.ApplyModifiedProperties();
-     }*/
+     }
 
 
     private SerializedProperty _typesNeededProperty;
@@ -48,7 +48,7 @@ public class ObjectiveObjectEditor : Editor
 
         Debug.Log(_allJobProperty.arraySize);
 
-        /* if (_allJobProperty.arraySize == 0)
+         if (_allJobProperty.arraySize == 0)
          {
              EditorGUILayout.HelpBox("La liste est vide. Ajoutez un élément pour commencer.", MessageType.Info);
          }
@@ -86,12 +86,12 @@ public class ObjectiveObjectEditor : Editor
          index = EditorGUILayout.Popup("Options", index, Array.ConvertAll(options, item => item.ToString()));
          _typesNeededProperty.enumValueIndex = (int)options[index];
 
-         //NormalizeSpawnPercentages();*/
+         //NormalizeSpawnPercentages();
 
         serializedObject.ApplyModifiedProperties();
     }
 
-    /*private Array GetAllValueAvailable()
+    private Array GetAllValueAvailable()
     {
         List<JobType> result = new List<JobType>();
 
@@ -105,7 +105,7 @@ public class ObjectiveObjectEditor : Editor
         }
 
         return _allJobProperty.arr
-    }*/
+    }
 
     private void SetAnotherValueOnAllJob()
     {
@@ -117,5 +117,5 @@ public class ObjectiveObjectEditor : Editor
         string enumString = "Carpenter";
         JobType parsed_enum = (JobType)System.Enum.Parse(typeof(JobType), enumString);
         Debug.Log(parsed_enum);
-    }
+    }*/
 }

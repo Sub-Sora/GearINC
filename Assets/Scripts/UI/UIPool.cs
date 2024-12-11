@@ -11,6 +11,7 @@ public class UIPool : MonoBehaviour
     public List<UIJobName> JobSheets = new List<UIJobName>();
 
     public Image ObjectiveIcone;
+    public Image ObjectiveIconeShadow;
 
     [SerializeField]
     private SwitchPlayer _commandTable;
@@ -45,5 +46,6 @@ public class UIPool : MonoBehaviour
     private void SetObjectiveIcone()
     {
         ObjectiveIcone.sprite = _main.Objective.Object.ObjectiveIcone;
+        ObjectiveIconeShadow.sprite = _main.Objective.Object.ObjectiveIcone;
     }
 }
