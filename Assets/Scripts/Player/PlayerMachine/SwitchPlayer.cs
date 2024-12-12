@@ -54,7 +54,7 @@ public class SwitchPlayer : Interactable
     }
 
     /// <summary>
-    /// Permet de contrôler la machine
+    /// Permet de contrï¿½ler la machine
     /// </summary>
     private void EnterMachine()
     {
@@ -69,7 +69,7 @@ public class SwitchPlayer : Interactable
     }
 
     /// <summary>
-    /// Permet de contrôler l'humain
+    /// Permet de contrï¿½ler l'humain
     /// </summary>
     public void ExitMachine()
     {
