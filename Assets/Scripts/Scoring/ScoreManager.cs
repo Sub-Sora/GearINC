@@ -4,11 +4,9 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField]
-    private int _initScore;
+    public int _initScore;
 
-    [SerializeField] 
-    private int _score;
+    public int _score;
 
     [SerializeField]
     private int _threeStarScore;
