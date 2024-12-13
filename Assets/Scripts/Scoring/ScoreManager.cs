@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField]
-    private int _initScore;
+    public int _initScore;
 
+    [SerializeField]
     private int _score;
 
     [SerializeField]
@@ -23,6 +23,29 @@ public class ScoreManager : MonoBehaviour
 
     private StarScore _starScore;
 
+    //Events de score
+    public delegate void ScoreModifier();
+    public ScoreModifier BadPlacment, startScoreTimer;
+
+    public delegate void ScoreEvent (int score);
+    public ScoreEvent ScoreActual;
+
+    //SINGLETON
+    public static ScoreManager instance = null;
+    public static ScoreManager Instance => instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else instance = this;
+
+        DontDestroyOnLoad(this.gameObject);
+    }
+
     private void Start()
     {
         _score = _initScore;
@@ -30,7 +53,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Fonction pour récupérer un int qui viendra modifier le score
+    /// Fonction pour récupérer un int qui viendra modifier le score (mettre un score négatif pour en retirer)
     /// </summary>
     /// <param name="ScoreDeduction"></param>
     public void ChangeScore(int ScoreDeduction)
@@ -38,30 +61,31 @@ public class ScoreManager : MonoBehaviour
         _score += ScoreDeduction;
         if (_score < 0) _score = 0;
         if (_score > _initScore) _score = _initScore;
+        ScoreActual(_score);
     }
 
-    private void StarsScore()
+    public void StarsScore()
     {
         // Affiche la fenêtre de score
         _scoreWindow.SetActive(true);
 
         //Condition pour avoir 3 étoiles de score
-        if (_threeStarScore >= _initScore)
+        if (_score >= _threeStarScore)
         {
             _starScore.ThreeStar.Invoke();
         }
         //Condition pour avoir 2 étoiles de score
-        if (_twoStarScore >= _initScore && _threeStarScore < _initScore)
+        if (_score >= _twoStarScore && _score < _threeStarScore)
         {
             _starScore.TwoStar.Invoke();
         }
         //Condition pour avoir 1 étoiles de score
-        if (_oneStarScore >= _initScore && _twoStarScore < _initScore)
+        if (_score >= _oneStarScore && _score < _twoStarScore)
         {
             _starScore.OneStar.Invoke();
         }
         //Condition pour avoir 0 étoiles de score
-        if (_oneStarScore < _initScore)
+        if (_score < _oneStarScore)
         {
 
         }

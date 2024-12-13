@@ -4,34 +4,24 @@ using UnityEngine;
 
 public class TimeScore : MonoBehaviour
 {
-    private float _time;
+    [SerializeField]
+    private float _timeToLoosePoint;
 
     [SerializeField]
     private int _scoreloss;
 
-    private ScoreManager _scoreManager;
-
     private void Start()
     {
-        _time = 0;
-        _scoreManager = GetComponent<ScoreManager>();
+        ScoreManager.Instance.startScoreTimer += TimerStarted;
     }
 
-    private void Update()
+    private void TimerStarted()
     {
-        _time += Time.deltaTime;
-
-        float minutes = Mathf.FloorToInt(_time / 60);
-        float seconds = Mathf.FloorToInt(_time % 60);
-
-        if (minutes == 1 && seconds == 30)
-        {
-            TooMuchTime();
-        }
+        InvokeRepeating("TooMuchTime", 0f, _timeToLoosePoint);
     }
 
     private void TooMuchTime()
     {
-        _scoreManager.ChangeScore(-_scoreloss);
+        ScoreManager.Instance.ChangeScore(-_scoreloss);
     }
 }

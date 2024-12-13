@@ -53,6 +53,7 @@ public class AreaEngine : Interactable, IRessourceHolder
 
                 EngineType = player.Job.Job;
                 Engine = Instantiate(player.Job.EnginePut, transform);
+                if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
             }
         }
         else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
