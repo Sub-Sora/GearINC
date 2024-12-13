@@ -9,7 +9,7 @@ public class BadPlacment : MonoBehaviour
 
     private void Start()
     {
-        ScoreManager.Instance.badPlacment += WrongPlacment;
+        ScoreManager.Instance.BadPlacment += WrongPlacment;
     }
 
     private void WrongPlacment()

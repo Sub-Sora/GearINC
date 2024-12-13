@@ -53,6 +53,7 @@ public class AreaEngine : Interactable, IRessourceHolder
 
                 EngineType = player.Job.Job;
                 Engine = Instantiate(player.Job.EnginePut, transform);
+                if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
             }
         }
         else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
@@ -92,7 +93,6 @@ public class AreaEngine : Interactable, IRessourceHolder
         else
         {
             Ressource.RessourceState = -1;
-            ScoreManager.Instance.badPlacment.Invoke();
         }
 
         if (_manager.Main.NewGameplayIsAdd)

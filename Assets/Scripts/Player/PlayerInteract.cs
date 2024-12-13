@@ -74,7 +74,6 @@ public class PlayerInteract : MonoBehaviour
                 work.HideJobView();
             }
 
-            _interButton.gameObject.SetActive(false);
             _interObj = null;
         }
 

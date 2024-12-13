@@ -6,7 +6,8 @@ public class ScoreManager : MonoBehaviour
 {
     public int _initScore;
 
-    public int _score;
+    [SerializeField]
+    private int _score;
 
     [SerializeField]
     private int _threeStarScore;
@@ -24,7 +25,10 @@ public class ScoreManager : MonoBehaviour
 
     //Events de score
     public delegate void ScoreModifier();
-    public ScoreModifier badPlacment;
+    public ScoreModifier BadPlacment, startScoreTimer;
+
+    public delegate void ScoreEvent (int score);
+    public ScoreEvent ScoreActual;
 
     //SINGLETON
     public static ScoreManager instance = null;
@@ -57,6 +61,7 @@ public class ScoreManager : MonoBehaviour
         _score += ScoreDeduction;
         if (_score < 0) _score = 0;
         if (_score > _initScore) _score = _initScore;
+        ScoreActual(_score);
     }
 
     public void StarsScore()
