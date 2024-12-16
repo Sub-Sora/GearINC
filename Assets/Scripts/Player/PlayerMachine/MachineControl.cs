@@ -9,6 +9,12 @@ public class MachineControl : MonoBehaviour
 {
     public MachineInteract _interact;
 
+    [SerializeField]
+    private float _rotationSpeed = 5f;
+    private bool _isRotated;
+    [SerializeField]
+    private float _rotationThreshold;
+
     private List<AreaEngine> _listEngine = new List<AreaEngine>();
 
     //Take the current Engine come from
@@ -70,8 +76,7 @@ public class MachineControl : MonoBehaviour
             _moving = Move;
             if (_currentEngine < _listEngine.Count)
             {
-                Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
-                Agent.isStopped = false;
+                MovingToPoint(true);
                 _interact.StartMoving();
             }
         }
@@ -82,8 +87,7 @@ public class MachineControl : MonoBehaviour
             _moving = Move;
             if (_currentEngine > 0)
             {
-                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
-                Agent.isStopped = false;
+                MovingToPoint(false);
                 _interact.StartMoving();
             }
         }
@@ -108,8 +112,7 @@ public class MachineControl : MonoBehaviour
             if (_currentEngine < _listEngine.Count)
             {
                 if (_currentEngine >= _listEngine.Count) _currentEngine = _listEngine.Count;
-                Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
-                Agent.isStopped = false;
+                MovingToPoint(true);
             }
         }
 
@@ -118,9 +121,75 @@ public class MachineControl : MonoBehaviour
         {
             if (_currentEngine >= 0)
             {
-                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
-                Agent.isStopped = false;
+                MovingToPoint(false);
             }
         }
     }
+
+    /// <summary>
+    /// Fonction pour avancer ou reculer (True avancer, False reculer)
+    /// </summary>
+    /// <param name="isForward">True avancer, False reculer</param>
+    private void MovingToPoint(bool isForward)
+    {
+        //// Calcule la direction vers la cible
+        //Vector3 directionToTarget = (_listEngine[_currentEngine].transform.position - transform.position).normalized;
+        //Quaternion targetRotation = Quaternion.LookRotation(new Vector3(directionToTarget.x, 0, directionToTarget.z));
+
+        //// Vérifie si une rotation est nécessaire
+        //float angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
+
+        //if (angleDifference > _rotationThreshold)
+        //{
+        //    // Arrête l'agent et effectue la rotation
+        //    Agent.isStopped = true;
+        //    _isRotated = false;
+        //    RotateRobot(_listEngine[_currentEngine].transform.position);
+        //}
+        //else
+        //{
+        //    // Pas de rotation nécessaire, se déplace directement
+        //    _isRotated = true;
+        //}
+
+        //if (_isRotated)
+        //{
+        //    if (isForward)
+        //    {
+        //        Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
+        //        Agent.isStopped = false;
+        //    }
+        //    else
+        //    {
+        //        Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
+        //        Agent.isStopped = false;
+        //    }
+        //}
+        if (isForward)
+        {
+            Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
+            Agent.isStopped = false;
+        }
+        else
+        {
+            Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
+            Agent.isStopped = false;
+        }
+    }
+
+    //private void RotateRobot(Vector3 destination)
+    //{
+    //    // Calcule la direction vers la cible
+    //    Vector3 direction = (destination - transform.position).normalized;
+    //    Quaternion targetRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+
+    //    // Continue de tourner jusqu'à ce que l'agent soit aligné
+    //    while (Quaternion.Angle(transform.rotation, targetRotation) > 0.1f)
+    //    {
+    //        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
+    //    }
+
+    //    //transform.rotation = targetRotation;
+    //    _isRotated = true;
+    //}
 }
