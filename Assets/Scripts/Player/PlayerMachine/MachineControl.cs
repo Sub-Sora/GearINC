@@ -155,15 +155,17 @@ public class MachineControl : MonoBehaviour
     {
         // Calculer la direction cible en ignorant les différences d'altitude
         Vector3 targetDirection = (targetPosition - transform.position);
-        targetDirection.y = 0; // Ignorer l'axe vertical
+        // Ignorer l'axe vertical
+        targetDirection.y = 0; 
         targetDirection.Normalize();
         Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 
         // Vérifier si l'entité est déjà alignée
         if (Quaternion.Angle(transform.rotation, targetRotation) <= 1f)
         {
-            onComplete?.Invoke(); // Si déjà aligné, exécuter directement la suite
-            yield break; // Arrêter la coroutine
+            // Si déjà aligné, exécuter directement la suite
+            onComplete?.Invoke(); 
+            yield break; 
         }
 
         // Effectuer la rotation progressivement
