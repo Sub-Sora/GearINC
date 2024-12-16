@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -9,12 +11,6 @@ public class MachineControl : MonoBehaviour
 {
     public MachineInteract _interact;
 
-    [SerializeField]
-    private float _rotationSpeed = 5f;
-    private bool _isRotated;
-    [SerializeField]
-    private float _rotationThreshold;
-
     private List<AreaEngine> _listEngine = new List<AreaEngine>();
 
     //Take the current Engine come from
@@ -23,10 +19,8 @@ public class MachineControl : MonoBehaviour
     [HideInInspector]
     public NavMeshAgent Agent;
 
-    [SerializeField]
-    private InputActionReference _moveMachine;
-
     private int _moving;
+    private bool _isMoving;
 
     /// <summary>
     /// Vas initialiser un passage pour l'agent pour éviter des erreurs de démarage
@@ -49,8 +43,9 @@ public class MachineControl : MonoBehaviour
     {
         if (_moving == 1)
         {
-            if (!Agent.pathPending && Agent.remainingDistance < 0.1f)
+            if (_isMoving && !Agent.pathPending && Agent.remainingDistance < 0.1f)
             {
+                _isMoving = false;
                 _currentEngine++;
                 if (_currentEngine >= _listEngine.Count) _currentEngine = _listEngine.Count;
                 NextDestination();
@@ -59,10 +54,11 @@ public class MachineControl : MonoBehaviour
 
         if (_moving == -1)
         {
-            if (!Agent.pathPending && Agent.remainingDistance < 0.1f && _currentEngine >= 1)
+            if (_isMoving && !Agent.pathPending && Agent.remainingDistance < 0.1f && _currentEngine >= 1)
             {
+                _isMoving = false;
                 _currentEngine--;
-                if (_currentEngine <= 0) _currentEngine = 1;
+                if (_currentEngine <= 0) _currentEngine = 0;
                 NextDestination();
             }
         }
@@ -95,6 +91,7 @@ public class MachineControl : MonoBehaviour
         //Arrête l'agent quand aucune touche n'es pressé
         if (Move == 0)
         {
+            _isMoving = false;
             _moving = Move;
             Agent.isStopped = true;
             _interact.StopMoving();
@@ -132,64 +129,59 @@ public class MachineControl : MonoBehaviour
     /// <param name="isForward">True avancer, False reculer</param>
     private void MovingToPoint(bool isForward)
     {
-        //// Calcule la direction vers la cible
-        //Vector3 directionToTarget = (_listEngine[_currentEngine].transform.position - transform.position).normalized;
-        //Quaternion targetRotation = Quaternion.LookRotation(new Vector3(directionToTarget.x, 0, directionToTarget.z));
+        if (_isMoving) return;
 
-        //// Vérifie si une rotation est nécessaire
-        //float angleDifference = Quaternion.Angle(transform.rotation, targetRotation);
-
-        //if (angleDifference > _rotationThreshold)
-        //{
-        //    // Arrête l'agent et effectue la rotation
-        //    Agent.isStopped = true;
-        //    _isRotated = false;
-        //    RotateRobot(_listEngine[_currentEngine].transform.position);
-        //}
-        //else
-        //{
-        //    // Pas de rotation nécessaire, se déplace directement
-        //    _isRotated = true;
-        //}
-
-        //if (_isRotated)
-        //{
-        //    if (isForward)
-        //    {
-        //        Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
-        //        Agent.isStopped = false;
-        //    }
-        //    else
-        //    {
-        //        Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
-        //        Agent.isStopped = false;
-        //    }
-        //}
+        Vector3 targetPosition;
         if (isForward)
         {
-            Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
-            Agent.isStopped = false;
+            targetPosition = _listEngine[_currentEngine].transform.GetChild(0).position;
         }
         else
         {
-            Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
-            Agent.isStopped = false;
+            targetPosition = _listEngine[_currentEngine - 1].transform.GetChild(0).position;
         }
+
+        // Lancer la coroutine pour tourner, puis avancer/reculer
+        StartCoroutine(RotateTowards(targetPosition, () =>
+        {
+            // Avancer/reculer après la rotation
+            Agent.SetDestination(targetPosition); 
+            Agent.isStopped = false;
+            _isMoving = true;
+        }));
     }
 
-    //private void RotateRobot(Vector3 destination)
-    //{
-    //    // Calcule la direction vers la cible
-    //    Vector3 direction = (destination - transform.position).normalized;
-    //    Quaternion targetRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+    private IEnumerator RotateTowards(Vector3 targetPosition, Action onComplete)
+    {
+        // Calculer la direction cible en ignorant les différences d'altitude
+        Vector3 targetDirection = (targetPosition - transform.position);
+        targetDirection.y = 0; // Ignorer l'axe vertical
+        targetDirection.Normalize();
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 
-    //    // Continue de tourner jusqu'à ce que l'agent soit aligné
-    //    while (Quaternion.Angle(transform.rotation, targetRotation) > 0.1f)
-    //    {
-    //        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime * _rotationSpeed);
-    //    }
+        // Vérifier si l'entité est déjà alignée
+        if (Quaternion.Angle(transform.rotation, targetRotation) <= 1f)
+        {
+            onComplete?.Invoke(); // Si déjà aligné, exécuter directement la suite
+            yield break; // Arrêter la coroutine
+        }
 
-    //    //transform.rotation = targetRotation;
-    //    _isRotated = true;
-    //}
+        // Effectuer la rotation progressivement
+        while (Quaternion.Angle(transform.rotation, targetRotation) > 1f)
+        {
+            // Ajuste la vitesse ici
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360 * Time.deltaTime);
+            // Stop la rotation si la touche n'ai plus pressé
+            if (_moving == 0)
+            {
+                yield break;
+            }
+            yield return null; // Attendre le prochain frame
+        }
+
+        
+
+        // Une fois la rotation terminée, déclencher la suite
+        onComplete?.Invoke();
+    }
 }
