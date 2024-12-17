@@ -69,7 +69,7 @@ public class AreaEngine : Interactable, IRessourceHolder
     {
         if (_manager.Main.Objective.Object.TypesNeeded[_engineId] == EngineType)
         {
-            if (_manager.Main.Objective.Object.TypesNeeded.Count - 1 == _engineId)
+            if (_manager.Main.Objective.Object.TypesNeeded.Count - 1 == _engineId && isHolding)
             {
                 _manager.Main.UI.Victory();
             }
