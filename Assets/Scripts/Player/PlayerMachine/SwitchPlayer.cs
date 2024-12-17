@@ -50,6 +50,7 @@ public class SwitchPlayer : Interactable
         {
             _player = player.GetComponent<PlayerControls>();
             EnterMachine();
+            player.ControlPost(true);
             ScoreManager.Instance.startScoreTimer.Invoke();
         }
     }
