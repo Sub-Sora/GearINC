@@ -16,8 +16,14 @@ public class FootStep : MonoBehaviour
     {
         if (WalkSFX)
         {
-            _audioSRC.Play();
+            if (!_audioSRC.isPlaying)
+            {
+                _audioSRC.Play();
+            }
         }
-        else _audioSRC.Stop();
+        else
+        {
+            _audioSRC.Stop();
+        }
     }
 }
