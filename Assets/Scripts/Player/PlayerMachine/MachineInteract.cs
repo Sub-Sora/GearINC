@@ -65,7 +65,7 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         {
             StopAllCoroutines();
 
-            if (_listEngine[_currentEngine].isHolding && _listEngine[_currentEngine].Ressource.RessourceState > -1)
+            if (_listEngine[_currentEngine].isHolding && _listEngine[_currentEngine].Ressource.RessourceState > -1 && _listEngine[_currentEngine].EngineId == _ressource.RessourceState +1)
             {
                 GetRessource(_listEngine[_currentEngine].Ressource);
                 _listEngine[_currentEngine].LoseRessource();
@@ -81,8 +81,10 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     /// </summary>
     public void StopMoving()
     {
-        
-        if (_animator != null && _interact != null)
+        Debug.Log(_isHolding);
+        Debug.Log("Engine :" + _listEngine[_currentEngine].EngineId);
+        Debug.Log("Ressources :" + _ressource.RessourceState);
+        if (_animator != null && _interact != null && _listEngine[_currentEngine].EngineId == _ressource.RessourceState)
         {
             if (!_listEngine[_currentEngine].isHolding && _isHolding)
             {

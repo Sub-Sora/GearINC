@@ -17,7 +17,7 @@ public class TimeScore : MonoBehaviour
 
     private void TimerStarted()
     {
-        InvokeRepeating("TooMuchTime", 0f, _timeToLoosePoint);
+        InvokeRepeating("TooMuchTime", _timeToLoosePoint, _timeToLoosePoint);
     }
 
     private void TooMuchTime()

@@ -89,7 +89,7 @@ public class PlayerControls : MonoBehaviour
                 if (distanceJoystick < _joyStickDeadZone)
                 {
                     inputDir = Vector2.zero;
-                    _playerAnim.SetBool("isRun", false);
+                    StopMovement();
                 }
 
                 Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
@@ -102,6 +102,7 @@ public class PlayerControls : MonoBehaviour
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
                     _lastRotation = transform.rotation;
                     _playerAnim.SetBool("isRun", true);
+                    SFXManager.Instance.playerStep(true);
                 }
                 else if (_lastRotation != null)
                 {
@@ -110,7 +111,16 @@ public class PlayerControls : MonoBehaviour
                 }
             }
         }
-        else _playerAnim.SetBool("isRun", false);
+        else
+        {
+            StopMovement();
+        }
+    }
+
+    private void StopMovement()
+    {
+        _playerAnim.SetBool("isRun", false);
+        SFXManager.Instance.playerStep(false);
     }
 
     /// <summary>

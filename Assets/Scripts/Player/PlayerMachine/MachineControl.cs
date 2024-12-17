@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro.EditorUtilities;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -17,10 +19,8 @@ public class MachineControl : MonoBehaviour
     [HideInInspector]
     public NavMeshAgent Agent;
 
-    [SerializeField]
-    private InputActionReference _moveMachine;
-
     private int _moving;
+    private bool _isMoving;
 
     /// <summary>
     /// Vas initialiser un passage pour l'agent pour éviter des erreurs de démarage
@@ -43,8 +43,9 @@ public class MachineControl : MonoBehaviour
     {
         if (_moving == 1)
         {
-            if (!Agent.pathPending && Agent.remainingDistance < 0.1f)
+            if (_isMoving && !Agent.pathPending && Agent.remainingDistance < 0.1f)
             {
+                _isMoving = false;
                 _currentEngine++;
                 if (_currentEngine >= _listEngine.Count) _currentEngine = _listEngine.Count;
                 NextDestination();
@@ -53,10 +54,11 @@ public class MachineControl : MonoBehaviour
 
         if (_moving == -1)
         {
-            if (!Agent.pathPending && Agent.remainingDistance < 0.1f && _currentEngine >= 1)
+            if (_isMoving && !Agent.pathPending && Agent.remainingDistance < 0.1f && _currentEngine >= 1)
             {
+                _isMoving = false;
                 _currentEngine--;
-                if (_currentEngine <= 0) _currentEngine = 1;
+                if (_currentEngine <= 0) _currentEngine = 0;
                 NextDestination();
             }
         }
@@ -70,8 +72,7 @@ public class MachineControl : MonoBehaviour
             _moving = Move;
             if (_currentEngine < _listEngine.Count)
             {
-                Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
-                Agent.isStopped = false;
+                MovingToPoint(true);
                 _interact.StartMoving();
             }
         }
@@ -82,8 +83,7 @@ public class MachineControl : MonoBehaviour
             _moving = Move;
             if (_currentEngine > 0)
             {
-                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
-                Agent.isStopped = false;
+                MovingToPoint(false);
                 _interact.StartMoving();
             }
         }
@@ -91,6 +91,7 @@ public class MachineControl : MonoBehaviour
         //Arrête l'agent quand aucune touche n'es pressé
         if (Move == 0)
         {
+            _isMoving = false;
             _moving = Move;
             Agent.isStopped = true;
             _interact.StopMoving();
@@ -108,8 +109,7 @@ public class MachineControl : MonoBehaviour
             if (_currentEngine < _listEngine.Count)
             {
                 if (_currentEngine >= _listEngine.Count) _currentEngine = _listEngine.Count;
-                Agent.SetDestination(_listEngine[_currentEngine].transform.GetChild(0).position);
-                Agent.isStopped = false;
+                MovingToPoint(true);
             }
         }
 
@@ -118,9 +118,72 @@ public class MachineControl : MonoBehaviour
         {
             if (_currentEngine >= 0)
             {
-                Agent.SetDestination(_listEngine[_currentEngine - 1].transform.GetChild(0).position);
-                Agent.isStopped = false;
+                MovingToPoint(false);
             }
         }
+    }
+
+    /// <summary>
+    /// Fonction pour avancer ou reculer (True avancer, False reculer)
+    /// </summary>
+    /// <param name="isForward">True avancer, False reculer</param>
+    private void MovingToPoint(bool isForward)
+    {
+        if (_isMoving) return;
+
+        Vector3 targetPosition;
+        if (isForward)
+        {
+            targetPosition = _listEngine[_currentEngine].transform.GetChild(0).position;
+        }
+        else
+        {
+            targetPosition = _listEngine[_currentEngine - 1].transform.GetChild(0).position;
+        }
+
+        // Lancer la coroutine pour tourner, puis avancer/reculer
+        StartCoroutine(RotateTowards(targetPosition, () =>
+        {
+            // Avancer/reculer après la rotation
+            Agent.SetDestination(targetPosition); 
+            Agent.isStopped = false;
+            _isMoving = true;
+        }));
+    }
+
+    private IEnumerator RotateTowards(Vector3 targetPosition, Action onComplete)
+    {
+        // Calculer la direction cible en ignorant les différences d'altitude
+        Vector3 targetDirection = (targetPosition - transform.position);
+        // Ignorer l'axe vertical
+        targetDirection.y = 0; 
+        targetDirection.Normalize();
+        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+
+        // Vérifier si l'entité est déjà alignée
+        if (Quaternion.Angle(transform.rotation, targetRotation) <= 1f)
+        {
+            // Si déjà aligné, exécuter directement la suite
+            onComplete?.Invoke(); 
+            yield break; 
+        }
+
+        // Effectuer la rotation progressivement
+        while (Quaternion.Angle(transform.rotation, targetRotation) > 1f)
+        {
+            // Ajuste la vitesse ici
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 360 * Time.deltaTime);
+            // Stop la rotation si la touche n'ai plus pressé
+            if (_moving == 0)
+            {
+                yield break;
+            }
+            yield return null; // Attendre le prochain frame
+        }
+
+        
+
+        // Une fois la rotation terminée, déclencher la suite
+        onComplete?.Invoke();
     }
 }
