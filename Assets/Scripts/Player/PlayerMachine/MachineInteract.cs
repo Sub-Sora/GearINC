@@ -65,7 +65,7 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         {
             StopAllCoroutines();
 
-            if (_listEngine[_currentEngine].isHolding && _listEngine[_currentEngine].Ressource.RessourceState > -1 && _listEngine[_currentEngine].EngineId == _ressource.RessourceState +1)
+            if (_listEngine[_currentEngine].isHolding && _listEngine[_currentEngine].Ressource.RessourceState > -1 && _listEngine[_currentEngine].EngineId + 1 == _listEngine[_currentEngine].Ressource.RessourceState)
             {
                 GetRessource(_listEngine[_currentEngine].Ressource);
                 _listEngine[_currentEngine].LoseRessource();
@@ -81,10 +81,23 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     /// </summary>
     public void StopMoving()
     {
-        Debug.Log(_isHolding);
-        Debug.Log("Engine :" + _listEngine[_currentEngine].EngineId);
-        Debug.Log("Ressources :" + _ressource.RessourceState);
-        if (_animator != null && _interact != null && _listEngine[_currentEngine].EngineId == _ressource.RessourceState)
+        bool isRessourceStateCorrect = false;
+        if (_isHolding)
+        {
+            if (_listEngine[_currentEngine].EngineId == _ressource.RessourceState)
+            {
+                isRessourceStateCorrect = true;
+            }
+        }
+        else
+        {
+            if (_listEngine[_currentEngine].EngineId == _listEngine[_currentEngine].Ressource.RessourceState)
+            {
+                isRessourceStateCorrect = true;
+            }
+        }
+
+        if (_animator != null && _interact != null && isRessourceStateCorrect)
         {
             if (!_listEngine[_currentEngine].isHolding && _isHolding)
             {
