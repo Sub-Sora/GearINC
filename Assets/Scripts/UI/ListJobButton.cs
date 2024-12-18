@@ -66,8 +66,6 @@ public class ListJobButton : MonoBehaviour
         if (_haptic != null) _haptic.hapticEvent.Invoke();
         _levelJob.SetActive(false);
         _allJob.SetActive(false);
-        _levelJobButton.SetActive(false);
-        _allJobButton.SetActive(false);
         _jobDescriptionTab.SetActive(false);
         HideJobDescription();
     }

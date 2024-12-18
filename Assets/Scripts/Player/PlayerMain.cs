@@ -10,6 +10,10 @@ public class PlayerMain : MonoBehaviour
     public PlayerVFX VFX;
     public PlayerHolding Holding;
 
+    // EVENTS //
+    public delegate void PlayerAnim(bool isDoing);
+    public PlayerAnim ControlPost;
+
     private void Awake()
     {
         SendMessage("Init", this);
