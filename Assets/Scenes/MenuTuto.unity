@@ -3419,7 +3419,20 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2020179505}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 91999698}
+        m_TargetAssemblyTypeName: LevelSelection, Assembly-CSharp
+        m_MethodName: LoadLevel
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 11400000, guid: 7e487b3a04be85c49aa9e12567425f8d,
+            type: 2}
+          m_ObjectArgumentAssemblyTypeName: ObjectiveObject, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1054148105
 CanvasRenderer:
   m_ObjectHideFlags: 0
