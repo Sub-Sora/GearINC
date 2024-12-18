@@ -54,6 +54,7 @@ public class PlayerControls : MonoBehaviour
 
     void FixedUpdate()
     {
+        Debug.Log(IsGameInit);
         if (IsGameInit)
         {
             MovePlayer();
@@ -129,7 +130,6 @@ public class PlayerControls : MonoBehaviour
     /// </summary>
     private void SpawnJoystick()
     {
-
         if (_joyStick.activeSelf)
         {
             if (Input.touchCount == 0)
