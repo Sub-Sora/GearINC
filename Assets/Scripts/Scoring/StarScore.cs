@@ -63,8 +63,8 @@ public class StarScore : MonoBehaviour
     {
         for (int i = 0; i < _stars.Count; i++)
         {
-            Tween StarTween = _stars[i].transform.DOScale(1, 0.7f).SetEase(Ease.OutBounce);
-            yield return new WaitForSeconds(0.3f);
+            Tween StarTween = _stars[i].transform.DOScale(1, 1.3f).SetEase(Ease.OutBounce);
+            yield return new WaitForSeconds(0.6f);
         }
 
         yield return null;
