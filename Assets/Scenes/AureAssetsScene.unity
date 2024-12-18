@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44402242, g: 0.49316543, b: 0.5722324, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -54149,11 +54149,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae6ea55b1f3ddb4390897a8cd6db0f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initScore: 0
-  _score: 0
-  _threeStarScore: 0
-  _twoStarScore: 0
-  _oneStarScore: 0
+  _initScore: 100
+  _threeStarScore: 75
+  _twoStarScore: 50
+  _oneStarScore: 25
   _scoreWindow: {fileID: 929089271}
 --- !u!114 &1947343543
 MonoBehaviour:
@@ -54167,7 +54166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d7d483c660a1c8428447f9d97a9bd61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scoreloss: 0
+  _scoreloss: 5
 --- !u!114 &1947343544
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -54180,8 +54179,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebfdf3629af7fda43a7d4ba0c55f8d65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _timeToLoosePoint: 0
-  _scoreloss: 0
+  _timeToLoosePoint: 3
+  _scoreloss: 1
 --- !u!114 &1947343545
 MonoBehaviour:
   m_ObjectHideFlags: 0

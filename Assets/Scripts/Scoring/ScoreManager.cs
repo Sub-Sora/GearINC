@@ -6,7 +6,6 @@ public class ScoreManager : MonoBehaviour
 {
     public int _initScore;
 
-    [SerializeField]
     private int _score;
 
     [SerializeField]
