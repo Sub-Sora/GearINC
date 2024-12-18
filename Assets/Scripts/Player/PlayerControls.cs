@@ -49,7 +49,7 @@ public class PlayerControls : MonoBehaviour
 
     private Vector2 _initJoyStickPos;
 
-    private PlayerMain _main;
+    public PlayerMain Main;
 
     void FixedUpdate()
     {
@@ -62,7 +62,7 @@ public class PlayerControls : MonoBehaviour
 
     private void Init(PlayerMain main)
     {
-        _main = main;
+        Main = main;
         main.Controls = this;
         _playerAnim = GetComponentInChildren<Animator>();
     }
@@ -96,7 +96,7 @@ public class PlayerControls : MonoBehaviour
 
                 if (inputDir != Vector2.zero)
                 {
-                    _main.VFX.StartWalkingVFX();
+                    Main.VFX.StartWalkingVFX();
                     Quaternion targetRotation = Quaternion.LookRotation(moveDir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
                     _lastRotation = transform.rotation;
@@ -106,7 +106,7 @@ public class PlayerControls : MonoBehaviour
                 else if (_lastRotation != null)
                 {
                     transform.rotation = _lastRotation;
-                    _main.VFX.StopWalkingVFX();
+                    Main.VFX.StopWalkingVFX();
                 }
             }
         }
@@ -133,7 +133,7 @@ public class PlayerControls : MonoBehaviour
             if (Input.touchCount == 0)
             {
                 _joyStick.SetActive(false);
-                _main.VFX.StopWalkingVFX();
+                Main.VFX.StopWalkingVFX();
             }
         }
         else
