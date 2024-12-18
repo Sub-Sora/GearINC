@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-using TMPro;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -54,7 +53,6 @@ public class PlayerControls : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log(IsGameInit);
         if (IsGameInit)
         {
             MovePlayer();
