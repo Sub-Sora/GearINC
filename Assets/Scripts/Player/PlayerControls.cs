@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class PlayerControls : MonoBehaviour
 {
@@ -50,6 +51,14 @@ public class PlayerControls : MonoBehaviour
     private Vector2 _initJoyStickPos;
 
     public PlayerMain Main;
+
+    [Header("Test")]
+
+    [SerializeField]
+    private TMP_InputField _inputFieldRotation;
+
+    [SerializeField]
+    private TMP_InputField _inputFieldSpeed;
 
     void FixedUpdate()
     {
@@ -161,5 +170,15 @@ public class PlayerControls : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ChangeVelocityRotationTestFunction()
+    {
+        _rotationSpeed = float.Parse(_inputFieldRotation.text);
+    }
+
+    public void ChangeVelocitySpeedTestFunction()
+    {
+        _speed = float.Parse(_inputFieldSpeed.text);
     }
 }
