@@ -29,6 +29,8 @@ public class ScoreManager : MonoBehaviour
     public delegate void ScoreEvent (int score);
     public ScoreEvent ScoreActual;
 
+
+
     //SINGLETON
     public static ScoreManager instance = null;
     public static ScoreManager Instance => instance;

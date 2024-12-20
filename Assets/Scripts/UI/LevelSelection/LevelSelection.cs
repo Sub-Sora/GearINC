@@ -3,20 +3,28 @@ using UnityEngine.SceneManagement;
 public class LevelSelection : MonoBehaviour
 {
     [SerializeField]
-    private string levelSceneName;
-
-    [SerializeField]
-    private string levelSceneNameNewGameplay;
+    private string _levelSceneName;
 
     public void LoadLevel(ObjectiveObject levelObjective)
     {
         ManagerMain.Instance.Objective.Object = levelObjective;
-        SceneManager.LoadScene(levelSceneName);
+        SceneManager.LoadScene(_levelSceneName);
     }
 
-    public void LoadLevelNewGameplay(ObjectiveObject levelObjective)
+    public void ReloadLevel(ObjectiveObject levelObjective)
     {
-        ManagerMain.Instance.Objective.Object = levelObjective;
-        SceneManager.LoadScene(levelSceneNameNewGameplay);
+        levelObjective = ManagerMain.Instance.Objective.Object;
+        _levelSceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(_levelSceneName);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void LoadTutoMenu()
+    {
+        SceneManager.LoadScene("MenuTuto");
     }
 }

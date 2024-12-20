@@ -47,7 +47,6 @@ public class AreaEngine : Interactable, IRessourceHolder
     {
         if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
         {
-            Debug.Log(player.Job.EnginePut);
             if (player.Job.EnginePut != null)
             {
                 if (Engine != null)
@@ -56,9 +55,17 @@ public class AreaEngine : Interactable, IRessourceHolder
                 }
 
                 EngineType = player.Job.Job;
+                foreach (AreaEngine engine in _manager.EngineList)
+                {
+                    if (engine.EngineType == EngineType && engine.gameObject != gameObject)
+                    {
+                        engine.EngineType = JobType.none;
+                        Destroy(engine.Engine);
+                    }
+                }
+
                 Engine = Instantiate(player.Job.EnginePut, _enginePos);
                 if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
-                Debug.Log("created");
             }
         }
         else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
