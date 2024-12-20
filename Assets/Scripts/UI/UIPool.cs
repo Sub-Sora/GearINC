@@ -37,8 +37,7 @@ public class UIPool : MonoBehaviour
     /// </summary>
     public void Victory()
     {
-        //_victory.SetActive(true);
-        ScoreManager.Instance.StarsScore();
+        ScoreManager.Instance.GameOverEvnt.Invoke();
     }
 
     /// <summary>
