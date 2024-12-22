@@ -59,12 +59,14 @@ public class SwitchPlayer : Interactable
     /// </summary>
     private void EnterMachine()
     {
+
         if (_allArea.CheckAreaEngineReady(_allArea.Main.Machine._interact._isHolding))
         {
             _machineButton.SetActive(true);
             _playerButton.SetActive(false);
             _player.enabled = false;
             _robotCam.Priority = 20;
+            _player.Main.ControlPost(true);
             _playerCam.Priority = 0;
         }
     }

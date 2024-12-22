@@ -22,17 +22,6 @@ public class PlayerTrigger : MonoBehaviour
             {
                 other.SendMessage("ShowJobView");
             }
-            else if (_main.Ressource.IsHolding)
-            {
-                if (engineTrigger && _main.Ressource.RessourceHold.RessourceState == 0)
-                {
-                    if (engineTrigger.EngineId == 0)
-                    {
-                        engineTrigger.GetRessource(_main.Ressource.RessourceHold);
-                        _main.Ressource.LoseRessource();
-                    }
-                }
-            }
             else if (engineTrigger != null)
             {
                 if (engineTrigger.isHolding)

@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.VFX;
 using static Job;
@@ -11,6 +10,10 @@ public class AreaEngine : Interactable, IRessourceHolder
     public GameObject Engine;
     public JobType EngineType;
     public Ressource Ressource;
+
+    [SerializeField]
+    private Transform _enginePos;
+
     private AreasEnginesManager _manager;
     private int _engineId;
     public int EngineId { get { return _engineId; } }
@@ -42,23 +45,39 @@ public class AreaEngine : Interactable, IRessourceHolder
     /// </summary>
     public override void Interact(PlayerMain player)
     {
-        if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
+        if (!_manager.Main.Tuto)
         {
-            if (player.Job.EnginePut != null)
+            if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
             {
-                if (Engine != null)
+                if (player.Job.EnginePut != null)
                 {
-                    Destroy(Engine);
-                }
+                    if (Engine != null)
+                    {
+                        Destroy(Engine);
+                    }
 
-                EngineType = player.Job.Job;
-                Engine = Instantiate(player.Job.EnginePut, transform);
-                if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
+                    EngineType = player.Job.Job;
+                    foreach (AreaEngine engine in _manager.EngineList)
+                    {
+                        if (engine.EngineType == EngineType && engine.gameObject != gameObject)
+                        {
+                            engine.EngineType = JobType.none;
+                            Destroy(engine.Engine);
+                        }
+                    }
+
+                    Engine = Instantiate(player.Job.EnginePut, _enginePos);
+                    if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
+                }
+            }
+            else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
+            {
+                RepairTheEngine();
             }
         }
-        else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
+        else
         {
-            RepairTheEngine();
+
         }
     }
 
@@ -69,7 +88,7 @@ public class AreaEngine : Interactable, IRessourceHolder
     {
         if (_manager.Main.Objective.Object.TypesNeeded[_engineId] == EngineType)
         {
-            if (_manager.Main.Objective.Object.TypesNeeded.Count - 1 == _engineId)
+            if (_manager.Main.Objective.Object.TypesNeeded.Count - 1 == _engineId && isHolding)
             {
                 _manager.Main.UI.Victory();
             }
@@ -88,7 +107,6 @@ public class AreaEngine : Interactable, IRessourceHolder
         if (theConceptionIsCorrect)
         {
             Ressource.RessourceState++;
-            
         }
         else
         {

@@ -5,6 +5,8 @@ public class Workstation : Interactable
 {
     public JobType Type;
 
+    public ManagerOnce Main;
+
     [SerializeField]
     private GameObject _engineToPut;
 
@@ -20,8 +22,11 @@ public class Workstation : Interactable
 
     public override void Interact(PlayerMain player)
     {
-        _player = player;
-        _jobSheet.JobSheetObject.SetActive(true);
+        if (!Main.Tuto)
+        {
+            _player = player;
+            _jobSheet.JobSheetObject.SetActive(true);
+        }
     }
 
     public void GiveJobInformationToPlayer()
@@ -29,7 +34,15 @@ public class Workstation : Interactable
         _player.Job.Job = Type;
         _player.Job.EnginePut = _engineToPut;
         _jobSheet.JobSheetObject.SetActive(false);
-        _player.GetComponent<Renderer>().material = _skinJob;
+        _player.Job.LastJob.SetActive(false);
+        foreach (PlayerJobParent skin in _player.Job.Skins)
+        {
+            if (skin.Job == Type)
+            {
+                skin.gameObject.SetActive(true);
+                _player.Job.LastJob = skin.gameObject;
+            }
+        }
     }
 
     public void SetWorkstationJobName(GameObject uiJob)

@@ -50,7 +50,15 @@ public class PlayerControls : MonoBehaviour
 
     private Vector2 _initJoyStickPos;
 
-    private PlayerMain _main;
+    public PlayerMain Main;
+
+    [Header("Test")]
+
+    [SerializeField]
+    private TMP_InputField _inputFieldRotation;
+
+    [SerializeField]
+    private TMP_InputField _inputFieldSpeed;
 
     void FixedUpdate()
     {
@@ -63,7 +71,7 @@ public class PlayerControls : MonoBehaviour
 
     private void Init(PlayerMain main)
     {
-        _main = main;
+        Main = main;
         main.Controls = this;
         _playerAnim = GetComponentInChildren<Animator>();
     }
@@ -89,7 +97,7 @@ public class PlayerControls : MonoBehaviour
                 if (distanceJoystick < _joyStickDeadZone)
                 {
                     inputDir = Vector2.zero;
-                    _playerAnim.SetBool("isRun", false);
+                    StopMovement();
                 }
 
                 Vector3 moveDir = new Vector3(inputDir.x, 0, inputDir.y);
@@ -97,20 +105,30 @@ public class PlayerControls : MonoBehaviour
 
                 if (inputDir != Vector2.zero)
                 {
-                    _main.VFX.StartWalkingVFX();
+                    Main.VFX.StartWalkingVFX();
                     Quaternion targetRotation = Quaternion.LookRotation(moveDir);
                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
                     _lastRotation = transform.rotation;
                     _playerAnim.SetBool("isRun", true);
+                    SFXManager.Instance.playerStep(true);
                 }
                 else if (_lastRotation != null)
                 {
                     transform.rotation = _lastRotation;
-                    _main.VFX.StopWalkingVFX();
+                    Main.VFX.StopWalkingVFX();
                 }
             }
         }
-        else _playerAnim.SetBool("isRun", false);
+        else
+        {
+            StopMovement();
+        }
+    }
+
+    private void StopMovement()
+    {
+        _playerAnim.SetBool("isRun", false);
+        SFXManager.Instance.playerStep(false);
     }
 
     /// <summary>
@@ -119,13 +137,12 @@ public class PlayerControls : MonoBehaviour
     /// </summary>
     private void SpawnJoystick()
     {
-
         if (_joyStick.activeSelf)
         {
             if (Input.touchCount == 0)
             {
                 _joyStick.SetActive(false);
-                _main.VFX.StopWalkingVFX();
+                Main.VFX.StopWalkingVFX();
             }
         }
         else
@@ -153,5 +170,15 @@ public class PlayerControls : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ChangeVelocityRotationTestFunction()
+    {
+        _rotationSpeed = float.Parse(_inputFieldRotation.text);
+    }
+
+    public void ChangeVelocitySpeedTestFunction()
+    {
+        _speed = float.Parse(_inputFieldSpeed.text);
     }
 }

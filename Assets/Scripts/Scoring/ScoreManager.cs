@@ -6,7 +6,6 @@ public class ScoreManager : MonoBehaviour
 {
     public int _initScore;
 
-    [SerializeField]
     private int _score;
 
     [SerializeField]
@@ -29,6 +28,10 @@ public class ScoreManager : MonoBehaviour
 
     public delegate void ScoreEvent (int score);
     public ScoreEvent ScoreActual;
+
+    // Events niveau terminé
+    public delegate void GameOverEvent();
+    public GameOverEvent GameOverEvnt, GameOverAnim;
 
     //SINGLETON
     public static ScoreManager instance = null;

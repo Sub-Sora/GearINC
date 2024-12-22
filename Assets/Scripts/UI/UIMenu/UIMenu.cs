@@ -19,4 +19,10 @@ public class UIMenu : MonoBehaviour
         if (_haptic != null) _haptic.hapticEvent.Invoke();
         GetComponent<Animator>().SetBool("ButtonPressed", true);
     }
+
+    // Vas fermer le menu lors de la selection des options ou jobs
+    public void ButtonSelected()
+    {
+        GetComponent<Animator>().SetBool("ButtonPressed", true);
+    }
 }
