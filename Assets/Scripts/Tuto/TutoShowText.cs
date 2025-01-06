@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class TutoShowText : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _playerMvmnt;
+    private GameObject _playerControler;
 
     [SerializeField]
     private GameObject _uperTutoText;
@@ -22,22 +22,24 @@ public class TutoShowText : MonoBehaviour
 
     private void Start()
     {
-        
+        _onTuto += DisablePlayer;
     }
 
     private void DisablePlayer(bool OnTuto)
     {
-        if (OnTuto) _playerMvmnt.SetActive(false);
-        else _playerMvmnt.SetActive(true);
+        if (OnTuto) _playerControler.SetActive(false);
+        else _playerControler.SetActive(true);
     }
 
-    private void ShowText()
-    {
-        _onTuto(true);
-    }
-
+    /// <summary>
+    /// Vas afficher le text, paramètre, prendre le text, puis true si il doit s'afficher en bas, sinon false.
+    /// </summary>
+    /// <param name="text"></param>
+    /// <param name="isUnder"></param>
     public void ShowText(string text, bool isUnder)
     {
+        _onTuto(true);
+
         if (isUnder)
         {
             _underTutoText.SetActive(true);
