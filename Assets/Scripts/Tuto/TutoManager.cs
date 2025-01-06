@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +12,10 @@ public class TutoManager : MonoBehaviour
     public static TutoManager instance = null;
     public static TutoManager Instance => instance;
 
+    public Dictionary<Workstation, AreaEngine> TutoEngineAndWorkstation = new Dictionary<Workstation, AreaEngine>();
+
+    public int TutoActualPeriod;
+
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -21,5 +24,7 @@ public class TutoManager : MonoBehaviour
             return;
         }
         else instance = this;
+
+        TutoActualPeriod = 1;
     }
 }
