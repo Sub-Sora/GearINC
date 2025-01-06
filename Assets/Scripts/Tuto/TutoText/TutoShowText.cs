@@ -34,8 +34,8 @@ public class TutoShowText : MonoBehaviour
     /// <summary>
     /// Vas afficher le text, paramètre, prendre le text, puis true si il doit s'afficher en bas, sinon false.
     /// </summary>
-    /// <param name="text"></param>
-    /// <param name="isUnder"></param>
+    /// <param name="text">Le texte à afficher</param>
+    /// <param name="isUnder">Si il s'affiche en bas (true) ou en haut (false)</param>
     public void ShowText(string text, bool isUnder)
     {
         _onTuto(true);
