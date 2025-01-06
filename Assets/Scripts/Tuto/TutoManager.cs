@@ -12,7 +12,7 @@ public class TutoManager : MonoBehaviour
     public static TutoManager instance = null;
     public static TutoManager Instance => instance;
 
-    public Dictionary<Workstation, AreaEngine> TutoEngineAndWorkstation = new Dictionary<Workstation, AreaEngine>();
+    public List<GameObject> TutoPhases = new List<GameObject>();
 
     public int TutoActualPeriod;
 
