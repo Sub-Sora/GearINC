@@ -20,15 +20,15 @@ public class TutoShowText : MonoBehaviour
     private delegate void TutoActivate(bool OnTuto);
     private TutoActivate _onTuto;
 
+    private void Start()
+    {
+        _onTuto += DisablePlayer;
+    }
+
     private void DisablePlayer(bool OnTuto)
     {
         if (OnTuto) _playerControler.SetActive(false);
         else _playerControler.SetActive(true);
-    }
-
-    private void ShowText()
-    {
-        _onTuto(true);
     }
 
     /// <summary>
@@ -38,6 +38,8 @@ public class TutoShowText : MonoBehaviour
     /// <param name="isUnder"></param>
     public void ShowText(string text, bool isUnder)
     {
+        _onTuto(true);
+
         if (isUnder)
         {
             _underTutoText.SetActive(true);
