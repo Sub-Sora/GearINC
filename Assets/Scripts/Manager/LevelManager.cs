@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class LevelManager: MonoBehaviour
@@ -40,6 +38,8 @@ public class LevelManager: MonoBehaviour
                 if (_workstation[j].GetComponent<Workstation>().Type == _main.Objective.Object.AllJob[i])
                 {
                     Workstation newWorkstation = Instantiate(_workstation[j], _workstationSpot[i]).GetComponent<Workstation>();
+                    newWorkstation.Main = _main;
+
                     foreach (UIJobName jobName in _main.UI.JobName)
                     {
                         if (jobName.JobType == newWorkstation.Type)
@@ -75,7 +75,7 @@ public class LevelManager: MonoBehaviour
             _engineSpot.Remove(_engineSpot[_engineSpot.Count - 1]);
         }
 
-        foreach(GameObject engine in _engineSpot)
+        foreach (GameObject engine in _engineSpot)
         {
             _main.AreasEngines.EngineList.Add(engine.GetComponent<AreaEngine>());
         }

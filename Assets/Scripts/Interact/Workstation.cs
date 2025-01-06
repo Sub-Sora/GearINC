@@ -5,6 +5,8 @@ public class Workstation : Interactable
 {
     public JobType Type;
 
+    public ManagerOnce Main;
+
     [SerializeField]
     private GameObject _engineToPut;
 
@@ -20,8 +22,11 @@ public class Workstation : Interactable
 
     public override void Interact(PlayerMain player)
     {
-        _player = player;
-        _jobSheet.JobSheetObject.SetActive(true);
+        if (!Main.Tuto)
+        {
+            _player = player;
+            _jobSheet.JobSheetObject.SetActive(true);
+        }
     }
 
     public void GiveJobInformationToPlayer()

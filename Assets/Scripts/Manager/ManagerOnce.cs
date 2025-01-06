@@ -22,6 +22,9 @@ public class ManagerOnce : MonoBehaviour
     [Header("New Gameplay")]
     public bool NewGameplayIsAdd;
 
+    [Header("Tuto")]
+    public bool Tuto;
+
     public void Awake()
     {
         // Permet de lancer le jeu en version de test

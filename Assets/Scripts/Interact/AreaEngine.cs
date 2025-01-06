@@ -45,33 +45,46 @@ public class AreaEngine : Interactable, IRessourceHolder
     /// </summary>
     public override void Interact(PlayerMain player)
     {
-        if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
+        if (!_manager.Main.Tuto)
         {
-            if (player.Job.EnginePut != null)
+            if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
             {
-                if (Engine != null)
+                if (player.Job.EnginePut != null)
                 {
-                    Destroy(Engine);
-                }
-
-                EngineType = player.Job.Job;
-                foreach (AreaEngine engine in _manager.EngineList)
-                {
-                    if (engine.EngineType == EngineType && engine.gameObject != gameObject)
+                    if (Engine != null)
                     {
-                        engine.EngineType = JobType.none;
-                        Destroy(engine.Engine);
+                        Destroy(Engine);
                     }
-                }
 
-                Engine = Instantiate(player.Job.EnginePut, _enginePos);
-                if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
+                    EngineType = player.Job.Job;
+                    foreach (AreaEngine engine in _manager.EngineList)
+                    {
+                        if (engine.EngineType == EngineType && engine.gameObject != gameObject)
+                        {
+                            engine.EngineType = JobType.none;
+                            Destroy(engine.Engine);
+                        }
+                    }
+
+                    Engine = Instantiate(player.Job.EnginePut, _enginePos);
+                    if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
+                }
+            }
+            else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
+            {
+                RepairTheEngine();
             }
         }
-        else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
+        else
         {
-            RepairTheEngine();
+            //if ()
         }
+    }
+
+    private void PutEngine(PlayerMain player)
+    {
+        EngineType = player.Job.Job;
+        Engine = Instantiate(player.Job.EnginePut, _enginePos);
     }
 
     /// <summary>
