@@ -77,8 +77,14 @@ public class AreaEngine : Interactable, IRessourceHolder
         }
         else
         {
-
+            //if ()
         }
+    }
+
+    private void PutEngine(PlayerMain player)
+    {
+        EngineType = player.Job.Job;
+        Engine = Instantiate(player.Job.EnginePut, _enginePos);
     }
 
     /// <summary>

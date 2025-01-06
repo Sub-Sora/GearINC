@@ -14,9 +14,6 @@ public class LevelManager: MonoBehaviour
 
     private ManagerOnce _main;
 
-    [Header ("Tuto")]
-    private List<Workstation> _tutoWorkStation = new List<Workstation> ();
-
     private void Init(ManagerOnce main)
     {
         _main = main;
@@ -27,11 +24,6 @@ public class LevelManager: MonoBehaviour
     {
         SetJobOnWorkstation();
         SetEngineSpot();
-
-        if (_main.Tuto)
-        {
-            SetTutoDictionnary();
-        }
     }
 
     /// <summary>
@@ -65,11 +57,6 @@ public class LevelManager: MonoBehaviour
                             newWorkstation.SetWorkstationJobSheets(jobSheet);
                         }
                     }
-
-                    if (_main.Tuto)
-                    {
-                        _tutoWorkStation.Add(newWorkstation);
-                    }
                 }
             }
         }
@@ -95,13 +82,5 @@ public class LevelManager: MonoBehaviour
 
         _main.AreasEngines.InitAllAreaEngine();
         _main.Machine.InitializedPath(_main.AreasEngines.EngineList);
-    }
-
-    private void SetTutoDictionnary()
-    {
-        for (int i = 0; i < 2; i++)
-        {
-            TutoManager.instance.TutoEngineAndWorkstation.Add(_tutoWorkStation[i], _engineSpot[i].GetComponent<AreaEngine>());
-        }
     }
 }

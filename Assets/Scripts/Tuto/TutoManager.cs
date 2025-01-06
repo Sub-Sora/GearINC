@@ -9,7 +9,7 @@ public class TutoManager : MonoBehaviour
     public TutoEvents firstRoomComplete, secondRoomComplete;
     //
 
-    public Dictionary<Workstation, AreaEngine> TutoEngineAndWorkstation = new Dictionary<Workstation, AreaEngine>();
+    public List<GameObject> TutoPhases = new List<GameObject>();
 
     public int TutoActualPeriod;
 
