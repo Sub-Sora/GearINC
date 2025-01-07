@@ -25,9 +25,14 @@ public class DialManager : MonoBehaviour
 
     public void ReadText()
     {
-        dialogue = _currentDial.GetLineByIndex(_currentIndex).dialText;
-        textUnder = _currentDial.GetLineByIndex(_currentIndex).showTextUnder;
-        TutoManager.Instance.tutoText.ShowText(dialogue, textUnder);
-        _currentIndex++;
+        if (_currentIndex > _currentDial.GetLenght()) TutoManager.Instance.tutoText.HideText();
+        else
+        {
+            dialogue = _currentDial.GetLineByIndex(_currentIndex).dialText;
+            textUnder = _currentDial.GetLineByIndex(_currentIndex).showTextUnder;
+            TutoManager.Instance.tutoText.ShowText(dialogue, textUnder);
+            _currentIndex++;
+        }
+        
     }
 }

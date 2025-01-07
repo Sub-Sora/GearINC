@@ -16,6 +16,7 @@ public class TutoManager : MonoBehaviour
     // DIAL //
     public TutoShowText tutoText;
     public DialManager dialManager;
+    public AllDials allDials;
     //
 
     // SINGLETON //
@@ -33,6 +34,7 @@ public class TutoManager : MonoBehaviour
 
         tutoText = GetComponent<TutoShowText>();
         dialManager = GetComponent<DialManager>();
+        allDials = GetComponent<AllDials>();
 
         TutoActualPeriod = 1;
     }
