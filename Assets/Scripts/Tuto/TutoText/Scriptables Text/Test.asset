@@ -13,7 +13,18 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   _allLines:
-  - dialText: "V\xE9rifie si le text s'affiche bien en bas"
-    showTextUnder: 1
-  - dialText: Puis en haut
-    showTextUnder: 0
+  - dialText: Test text en bas + tuto d'objectif
+    showTextUper: 0
+    tutoArrowObjective: 1
+    tutoArrowOptions: 0
+    tutoArrowScore: 0
+  - dialText: Puis en haut + tuto des options
+    showTextUper: 1
+    tutoArrowObjective: 0
+    tutoArrowOptions: 1
+    tutoArrowScore: 0
+  - dialText: Et enfin test du tuto de score
+    showTextUper: 0
+    tutoArrowObjective: 0
+    tutoArrowOptions: 0
+    tutoArrowScore: 1

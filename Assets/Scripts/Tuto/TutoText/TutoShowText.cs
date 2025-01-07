@@ -20,15 +20,6 @@ public class TutoShowText : MonoBehaviour
 
     private TextMeshProUGUI _text;
     private string _fullText;
-    private string _currentText;
-
-    private delegate void TutoActivate(bool OnTuto);
-    private TutoActivate _onTuto;
-
-    private void Start()
-    {
-        _onTuto += DisablePlayer;
-    }
 
     private void DisablePlayer(bool OnTuto)
     {
@@ -41,11 +32,11 @@ public class TutoShowText : MonoBehaviour
     /// </summary>
     /// <param name="text">Le texte à afficher</param>
     /// <param name="isUnder">Si il s'affiche en bas (true) ou en haut (false)</param>
-    public void ShowText(string text, bool isUnder)
+    public void ShowText(string text, bool isUper)
     {
         DisablePlayer(true);
 
-        if (isUnder)
+        if (!isUper)
         {
             _uperTutoText.SetActive(false);
             _underTutoText.SetActive(true);
@@ -64,7 +55,7 @@ public class TutoShowText : MonoBehaviour
 
     IEnumerator AnimShowText()
     {
-        for (int i = 0; i < _fullText.Length+1; i++)
+        for (int i = 0; i <= _fullText.Length; i++)
         {
             _text.text = _fullText.Substring(0, i);
             yield return new WaitForSeconds(_textSpeed);
