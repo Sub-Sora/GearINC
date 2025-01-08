@@ -83,9 +83,13 @@ public class MachineControl : MonoBehaviour
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
                 _lastRotation = transform.rotation;
             }
-            else if (_lastRotation != null)
+            else 
             {
-                transform.rotation = _lastRotation;
+                if (_lastRotation != null) transform.rotation = _lastRotation;
+                if (_interact.CurrentEngine != null)
+                {
+                    _interact.StopMoving();
+                }
             }
         }
 

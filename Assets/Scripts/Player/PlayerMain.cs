@@ -9,6 +9,7 @@ public class PlayerMain : MonoBehaviour
     public PlayerTrigger Trigger;
     public PlayerVFX VFX;
     public PlayerHolding Holding;
+    public bool IsTuto;
 
     // EVENTS //
     public delegate void PlayerAnim(bool isDoing);

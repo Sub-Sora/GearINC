@@ -12,9 +12,16 @@ public class TutoManager : MonoBehaviour
     public static TutoManager instance = null;
     public static TutoManager Instance => instance;
 
+    // PHASES //
+
     public List<GameObject> TutoPhases = new List<GameObject>();
 
+    public List<GameObject> TutoWorkstations = new List<GameObject>();
+
     public int TutoActualPeriod;
+
+    [SerializeField]
+    private ManagerOnce _managerOnce;
 
     private void Awake()
     {
@@ -25,6 +32,12 @@ public class TutoManager : MonoBehaviour
         }
         else instance = this;
 
-        TutoActualPeriod = 1;
+        TutoActualPeriod = 0;
+    }
+
+    public void IngrementPeriod() 
+    {
+        if (TutoActualPeriod < TutoPhases.Count - 1) TutoActualPeriod++;
+        else _managerOnce.EndTuto();
     }
 }

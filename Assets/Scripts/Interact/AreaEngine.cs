@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.VFX;
 using static Job;
 using static Objects;
@@ -17,6 +19,8 @@ public class AreaEngine : Interactable, IRessourceHolder
     private AreasEnginesManager _manager;
     private int _engineId;
     public int EngineId { get { return _engineId; } }
+
+    public event Action<int> RessourceComplete;
 
     [Header("Gameplay en plus")]
     [SerializeField]
@@ -45,40 +49,43 @@ public class AreaEngine : Interactable, IRessourceHolder
     /// </summary>
     public override void Interact(PlayerMain player)
     {
-        if (!_manager.Main.Tuto)
+        if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
         {
-            if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
+            if (isHolding)
             {
-                if (player.Job.EnginePut != null)
+                if (Ressource.RessourceState == -1)
                 {
-                    if (Engine != null)
-                    {
-                        Destroy(Engine);
-                    }
-
-                    EngineType = player.Job.Job;
-                    foreach (AreaEngine engine in _manager.EngineList)
-                    {
-                        if (engine.EngineType == EngineType && engine.gameObject != gameObject)
-                        {
-                            engine.EngineType = JobType.none;
-                            Destroy(engine.Engine);
-                        }
-                    }
-
-                    Engine = Instantiate(player.Job.EnginePut, _enginePos);
-                    if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
+                    player.Ressource.GetRessource(Ressource);
+                    LoseRessource();
+                    return;
                 }
             }
-            else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
+            if (player.Job.EnginePut != null)
             {
-                RepairTheEngine();
+                if (Engine != null)
+                {
+                    Destroy(Engine);
+                }
+
+                EngineType = player.Job.Job;
+                foreach (AreaEngine engine in _manager.EngineList)
+                {
+                    if (engine.EngineType == EngineType && engine.gameObject != gameObject)
+                    {
+                        engine.EngineType = JobType.none;
+                        Destroy(engine.Engine);
+                    }
+                }
+
+                Engine = Instantiate(player.Job.EnginePut, _enginePos);
+                if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
             }
         }
-        else
+        else if (player.Holding.HoldingObjectType == _typeNeededToRepairEngine)
         {
-            //if ()
+            RepairTheEngine();
         }
+
     }
 
     private void PutEngine(PlayerMain player)
@@ -113,10 +120,12 @@ public class AreaEngine : Interactable, IRessourceHolder
         if (theConceptionIsCorrect)
         {
             Ressource.RessourceState++;
+            RessourceComplete.Invoke(Ressource.RessourceState);
         }
         else
         {
             Ressource.RessourceState = -1;
+            RessourceComplete.Invoke(0);
         }
 
         if (_manager.Main.NewGameplayIsAdd)

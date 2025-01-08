@@ -36,5 +36,15 @@ public class ManagerOnce : MonoBehaviour
         SendMessage("Init", this);
         Player = FindAnyObjectByType<PlayerMain>();
         Machine = FindAnyObjectByType<MachineControl>();
+        if (Tuto)
+        {
+            Player.IsTuto = true;
+        }
+    }
+
+    public void EndTuto()
+    {
+        Tuto = false;
+        Player.IsTuto = false;
     }
 }

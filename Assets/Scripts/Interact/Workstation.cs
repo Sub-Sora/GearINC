@@ -22,11 +22,8 @@ public class Workstation : Interactable
 
     public override void Interact(PlayerMain player)
     {
-        if (!Main.Tuto)
-        {
             _player = player;
             _jobSheet.JobSheetObject.SetActive(true);
-        }
     }
 
     public void GiveJobInformationToPlayer()

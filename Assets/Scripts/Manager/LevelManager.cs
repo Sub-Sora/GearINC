@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager: MonoBehaviour
+public class LevelManager : MonoBehaviour
 {
     [SerializeField]
-    private List<GameObject> _workstation = new List<GameObject> ();
+    private List<GameObject> _workstation = new List<GameObject>();
 
     [SerializeField]
     private List<Transform> _workstationSpot = new List<Transform>();
 
     [SerializeField]
-    private List<GameObject> _engineSpot = new List<GameObject> ();
+    private List<GameObject> _engineSpot = new List<GameObject>();
 
     private ManagerOnce _main;
 
@@ -22,23 +22,32 @@ public class LevelManager: MonoBehaviour
 
     private void Start()
     {
-        SetJobOnWorkstation();
+        if (_main.Tuto)
+        {
+            SetAllTutoWorkstation();
+        }
+        else
+        {
+            SetAllWorkstation();
+        }
+
         SetEngineSpot();
     }
 
     /// <summary>
     /// Va set tout les workstations, on toutes les poser ici
     /// </summary>
-    private void SetJobOnWorkstation()
+    private void SetAllWorkstation()
     {
-        for (int i = 0;  i < _main.Objective.Object.AllJob.Count; i++)
+        for (int i = 0; i < _main.Objective.Object.AllJob.Count; i++)
         {
             for (int j = 0; j < _workstation.Count; j++)
             {
                 if (_workstation[j].GetComponent<Workstation>().Type == _main.Objective.Object.AllJob[i])
                 {
                     Workstation newWorkstation = Instantiate(_workstation[j], _workstationSpot[i]).GetComponent<Workstation>();
-                    newWorkstation.Main = _main;
+                    SetJobOnWorkstation(newWorkstation, i);
+                    /*newWorkstation.Main = _main;
 
                     foreach (UIJobName jobName in _main.UI.JobName)
                     {
@@ -53,11 +62,46 @@ public class LevelManager: MonoBehaviour
                     {
                         if (jobSheet.JobType == newWorkstation.Type)
                         {
-
                             newWorkstation.SetWorkstationJobSheets(jobSheet);
                         }
-                    }
+                    }*/
                 }
+            }
+        }
+    }
+
+    private void SetAllTutoWorkstation()
+    {
+        for (int i = 0; i < _main.Objective.Object.AllJob.Count; i++)
+        {
+            for (int j = 0; j < TutoManager.Instance.TutoWorkstations.Count; j++)
+            {
+                Workstation actualWorkstation = TutoManager.Instance.TutoWorkstations[j].GetComponent<Workstation>();
+                if (actualWorkstation.Type == _main.Objective.Object.AllJob[i])
+                {
+                    SetJobOnWorkstation(actualWorkstation, j);
+                }
+            }
+        }
+    }
+
+    private void SetJobOnWorkstation(Workstation workstation, int actualWorkstationSpot)
+    {
+        workstation.Main = _main;
+        foreach (UIJobName jobName in _main.UI.JobName)
+        {
+            if (jobName.JobType == workstation.Type)
+            {
+                jobName.transform.position = new Vector3(_workstationSpot[actualWorkstationSpot].position.x, _workstationSpot[actualWorkstationSpot].position.y + 2, _workstationSpot[actualWorkstationSpot].position.z);
+                workstation.SetWorkstationJobName(jobName.gameObject);
+            }
+        }
+
+        foreach (JobSheet jobSheet in _main.UI.JobSheets)
+        {
+            if (jobSheet.JobType == workstation.Type)
+            {
+                workstation.SetWorkstationJobSheets(jobSheet);
             }
         }
     }
@@ -71,7 +115,7 @@ public class LevelManager: MonoBehaviour
 
         for (int i = 0; i < jobNeeded; i++)
         {
-            _engineSpot[_engineSpot.Count-1].SetActive(false);
+            _engineSpot[_engineSpot.Count - 1].SetActive(false);
             _engineSpot.Remove(_engineSpot[_engineSpot.Count - 1]);
         }
 
