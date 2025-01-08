@@ -7,10 +7,7 @@ public class TutoManager : MonoBehaviour
     // EVENTS //
     public delegate void TutoEvents();
     public TutoEvents firstRoomComplete, secondRoomComplete;
-
-    // SINGLETON //
-    public static TutoManager instance = null;
-    public static TutoManager Instance => instance;
+    //
 
     // PHASES //
 
@@ -20,8 +17,15 @@ public class TutoManager : MonoBehaviour
 
     public int TutoActualPeriod;
 
-    [SerializeField]
-    private ManagerOnce _managerOnce;
+    // DIAL //
+    public TutoShowText tutoText;
+    public DialManager dialManager;
+    public AllDials allDials;
+    //
+
+    // SINGLETON //
+    public static TutoManager instance = null;
+    public static TutoManager Instance => instance;
 
     private void Awake()
     {
@@ -32,12 +36,10 @@ public class TutoManager : MonoBehaviour
         }
         else instance = this;
 
-        TutoActualPeriod = 0;
-    }
+        tutoText = GetComponent<TutoShowText>();
+        dialManager = GetComponent<DialManager>();
+        allDials = GetComponent<AllDials>();
 
-    public void IngrementPeriod() 
-    {
-        if (TutoActualPeriod < TutoPhases.Count - 1) TutoActualPeriod++;
-        else _managerOnce.EndTuto();
+        TutoActualPeriod = 1;
     }
 }

@@ -24,6 +24,8 @@ public class SwitchPlayer : Interactable
 
     private PlayerControls _player;
 
+    private AudioSource _cantUseItSound;
+
     private void Start()
     {
         _exitButton.onClick.AddListener(ExitMachine);
@@ -69,6 +71,7 @@ public class SwitchPlayer : Interactable
             _player.Main.ControlPost(true);
             _playerCam.Priority = 0;
         }
+        else _cantUseItSound.Play();
     }
 
     /// <summary>

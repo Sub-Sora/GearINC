@@ -7,9 +7,14 @@ public class PlayerHolding : MonoBehaviour
     public GameObject ObjectHolding;
     public bool IsHolding;
     public ObjectType HoldingObjectType;
+
+    [SerializeField]
+    private Animator _anim;
+
     private void Init(PlayerMain main)
     {
         main.Holding = this;
+        _anim = GetComponentInChildren<Animator>();
     }
 
     /// <summary>
@@ -21,6 +26,7 @@ public class PlayerHolding : MonoBehaviour
         ObjectHolding = objectToHold;
         IsHolding = true;
         HoldingObjectType = ObjectType.none;
+        _anim.SetBool("haveRessources", true);
     }
 
     /// <summary>
@@ -33,6 +39,8 @@ public class PlayerHolding : MonoBehaviour
         ObjectHolding = objectToHold;
         IsHolding = true;
         HoldingObjectType = holdingObjectType;
+
+        _anim.SetBool("haveRessources", true);
     }
 
     public void HoldObject(GameObject objectToHold)
@@ -48,5 +56,7 @@ public class PlayerHolding : MonoBehaviour
         ObjectHolding = null;
         IsHolding = false;
         HoldingObjectType = ObjectType.none;
+
+        _anim.SetBool("haveRessources", false);
     }
 }
