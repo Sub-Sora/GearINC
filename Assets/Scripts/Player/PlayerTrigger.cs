@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 
 public class PlayerTrigger : MonoBehaviour
 {
@@ -17,21 +18,18 @@ public class PlayerTrigger : MonoBehaviour
     {
         if (other.GetComponent<Interactable>())
         {
+            if (_main.IsTuto)
+            {
+                if (other.gameObject != TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod])
+                {
+                    return;
+                }
+            }
+            
             AreaEngine engineTrigger = other.GetComponent<AreaEngine>();
             if (other.GetComponent<Workstation>())
             {
                 other.SendMessage("ShowJobView");
-            }
-            else if (engineTrigger != null)
-            {
-                if (engineTrigger.isHolding)
-                {
-                    if (engineTrigger.Ressource.RessourceState == -1 && !_main.Holding.IsHolding)
-                    {
-                        _main.Ressource.GetRessource(engineTrigger.Ressource);
-                        engineTrigger.LoseRessource();
-                    }
-                }
             }
 
             GameObject interactObject = other.gameObject;

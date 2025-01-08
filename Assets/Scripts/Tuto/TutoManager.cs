@@ -9,9 +9,15 @@ public class TutoManager : MonoBehaviour
     public TutoEvents firstRoomComplete, secondRoomComplete;
     //
 
+    // PHASES //
     public List<GameObject> TutoPhases = new List<GameObject>();
-
+    public List<GameObject> TutoWorkstations = new List<GameObject>();
     public int TutoActualPeriod;
+    //
+
+    [SerializeField]
+    private ManagerOnce _managerOnce;
+
 
     // DIAL //
     public TutoShowText tutoText;
@@ -36,6 +42,12 @@ public class TutoManager : MonoBehaviour
         dialManager = GetComponent<DialManager>();
         allDials = GetComponent<AllDials>();
 
-        TutoActualPeriod = 1;
+        TutoActualPeriod = 0;
     }
+    public void IngrementPeriod()
+    {
+        if (TutoActualPeriod < TutoPhases.Count - 1) TutoActualPeriod++;
+        else _managerOnce.EndTuto();
+    }
+
 }
