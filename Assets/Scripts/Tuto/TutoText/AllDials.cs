@@ -8,13 +8,21 @@ public class AllDials : MonoBehaviour
     [SerializeField]
     private ScriptableDial[] _dials;
 
+    private int _currentIndex = 0;
+
     private void Start()
     {
+        _currentIndex = 0;
         TutoStart();
     }
 
     public void TutoStart()
     {
-        TutoManager.Instance.dialManager.StartTutoDial(_dials[0]);
+        if (_currentIndex <= _dials.Length)
+        {
+            TutoManager.Instance.dialManager.StartTutoDial(_dials[_currentIndex]);
+            _currentIndex++;
+        }
+        else Debug.Log("Pas plus d'élément dans la liste");
     }
 }

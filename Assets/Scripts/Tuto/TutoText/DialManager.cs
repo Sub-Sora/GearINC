@@ -49,6 +49,5 @@ public class DialManager : MonoBehaviour
 
             _currentIndex++;
         }
-        
     }
 }
