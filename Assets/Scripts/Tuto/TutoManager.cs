@@ -6,7 +6,7 @@ public class TutoManager : MonoBehaviour
 
     // EVENTS //
     public delegate void TutoEvents();
-    public TutoEvents firstRoomComplete, secondRoomComplete;
+    public TutoEvents firstRoomComplete, secondRoomComplete, activeDial;
     //
 
     // PHASES //

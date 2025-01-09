@@ -13,7 +13,8 @@ public class AllDials : MonoBehaviour
     private void Start()
     {
         _currentIndex = 0;
-        TutoStart();
+        //TutoStart();
+        TutoManager.Instance.activeDial += TutoStart;
     }
 
     public void TutoStart()
