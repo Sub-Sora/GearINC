@@ -20,8 +20,11 @@ public class TutoManager : MonoBehaviour
 
 
     // DIAL //
+    [HideInInspector]
     public TutoShowText tutoText;
+    [HideInInspector]
     public DialManager dialManager;
+    [HideInInspector]
     public AllDials allDials;
     //
 

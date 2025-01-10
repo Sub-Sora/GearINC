@@ -74,12 +74,12 @@ public class PlayerControls : MonoBehaviour
         Main = main;
         main.Controls = this;
         _playerAnim = GetComponentInChildren<Animator>();
-        if (TutoManager.Instance != null) TutoManager.Instance.activeDial.Invoke();
     }
 
     public void InitThePlayer()
     {
         IsGameInit = true;
+        if (TutoManager.Instance != null) TutoManager.Instance.activeDial.Invoke();
         Debug.Log("Init the player");
     }
 
