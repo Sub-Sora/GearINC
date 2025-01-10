@@ -7,7 +7,7 @@ using UnityEngine;
 public class TutoShowText : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _playerControler;
+    private PlayerControls _playerControler;
 
     [SerializeField]
     private GameObject _uperTutoText;
@@ -23,15 +23,15 @@ public class TutoShowText : MonoBehaviour
 
     private void DisablePlayer(bool OnTuto)
     {
-        if (OnTuto) _playerControler.SetActive(false);
-        else _playerControler.SetActive(true);
+        if (OnTuto) _playerControler.enabled = false;
+        else _playerControler.enabled = true;
     }
 
     /// <summary>
-    /// Vas afficher le text, paramètre, prendre le text, puis true si il doit s'afficher en bas, sinon false.
+    /// Vas afficher le text, paramètre, prendre le text, puis false si il doit s'afficher en bas, sinon true.
     /// </summary>
     /// <param name="text">Le texte à afficher</param>
-    /// <param name="isUnder">Si il s'affiche en bas (true) ou en haut (false)</param>
+    /// <param name="isUnder">Si il s'affiche en bas (false) ou en haut (true)</param>
     public void ShowText(string text, bool isUper)
     {
         DisablePlayer(true);
@@ -50,6 +50,7 @@ public class TutoShowText : MonoBehaviour
         }
         _text.text = "";
         _fullText = text;
+        StopAllCoroutines();
         StartCoroutine("AnimShowText");
     }
 
