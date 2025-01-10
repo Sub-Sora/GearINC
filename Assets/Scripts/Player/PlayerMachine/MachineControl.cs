@@ -19,6 +19,8 @@ public class MachineControl : MonoBehaviour
     private int _moving;
     private bool _isMoving;
 
+    private Rigidbody _rb;
+
     [Header("Movement")]
 
     [SerializeField]
@@ -60,6 +62,7 @@ public class MachineControl : MonoBehaviour
     private void Start()
     {
         _initJoyStickPos = _joyStick.transform.position;
+        _rb = GetComponent<Rigidbody>();
     }
 
     private void FixedUpdate()
@@ -67,6 +70,8 @@ public class MachineControl : MonoBehaviour
         float distanceJoystick = Vector3.Distance(_joyStickMovable.transform.position, _initJoyStickPos);
         if ((Vector2)_joyStickMovable.transform.position != _initJoyStickPos)
         {
+            if (_interact.CurrentEngine != null) _interact.StartMoving();
+
             Vector2 inputDir = new Vector2(_joyStickMovable.transform.position.x - _initJoyStickPos.x, _joyStickMovable.transform.position.y - _initJoyStickPos.y).normalized;
 
             if (distanceJoystick < _joyStickDeadZone)
@@ -86,16 +91,18 @@ public class MachineControl : MonoBehaviour
             else 
             {
                 if (_lastRotation != null) transform.rotation = _lastRotation;
-                if (_interact.CurrentEngine != null)
-                {
-                    _interact.StopMoving();
-                }
             }
+        }
+        else
+        {
+            if (_interact.CurrentEngine != null) _interact.StopMoving();
         }
 
         if (transform.position.z > _maxZ)
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, _maxZ);
         }
+
+        _rb.velocity = Vector3.zero;
     }
 }

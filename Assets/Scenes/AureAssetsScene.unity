@@ -21173,7 +21173,7 @@ PrefabInstance:
     - target: {fileID: 466343467187181727, guid: 5c6ab5b7e3565e44f80749433305ce9c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2351008328236957198, guid: 5c6ab5b7e3565e44f80749433305ce9c,
         type: 3}
@@ -28986,7 +28986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1042584231
 RectTransform:
   m_ObjectHideFlags: 0
@@ -30177,7 +30177,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  TutoWorkstations: []
   TutoActualPeriod: 0
+  _managerOnce: {fileID: 0}
+  tutoText: {fileID: 0}
+  dialManager: {fileID: 0}
+  allDials: {fileID: 0}
 --- !u!1 &1087678089
 GameObject:
   m_ObjectHideFlags: 0
@@ -61436,6 +61441,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Constraints
       value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 7381939635608683132, guid: e469574faa552004b987f4412f44104e,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8645809686125114099, guid: e469574faa552004b987f4412f44104e,
         type: 3}
