@@ -36,7 +36,11 @@ public class DialManager : MonoBehaviour
         _optionsArrow.gameObject.SetActive(false);
         _scoreArrow.gameObject.SetActive(false);
 
-        if (_currentIndex > _currentDial.GetLenght()) TutoManager.Instance.tutoText.HideText();
+        if (_currentIndex > _currentDial.GetLenght())
+        {
+            TutoManager.Instance.tutoText.HideText();
+            //TutoManager.Instance.allDials.TutoStart();
+        }
         else
         {
             dialogue = _currentDial.GetLineByIndex(_currentIndex).dialText;

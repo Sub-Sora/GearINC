@@ -59,6 +59,7 @@ public class TutoShowText : MonoBehaviour
         for (int i = 0; i <= _fullText.Length; i++)
         {
             _text.text = _fullText.Substring(0, i);
+
             yield return new WaitForSeconds(_textSpeed);
         }
     }
