@@ -60,6 +60,8 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private TMP_InputField _inputFieldSpeed;
 
+    private Rigidbody _rb;
+
     void FixedUpdate()
     {
         if (IsGameInit)
@@ -74,6 +76,7 @@ public class PlayerControls : MonoBehaviour
         Main = main;
         main.Controls = this;
         _playerAnim = GetComponentInChildren<Animator>();
+        _rb = GetComponent<Rigidbody>();
     }
 
     public void InitThePlayer()
@@ -124,6 +127,9 @@ public class PlayerControls : MonoBehaviour
         {
             StopMovement();
         }
+
+        _rb.velocity = new Vector3(0, _rb.velocity.y, 0);
+        _rb.angularVelocity = Vector3.zero;
     }
 
     private void StopMovement()
