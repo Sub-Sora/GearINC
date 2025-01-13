@@ -21389,7 +21389,7 @@ PrefabInstance:
     - target: {fileID: 4463409357375732120, guid: 5c6ab5b7e3565e44f80749433305ce9c,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4784983004998321916, guid: 5c6ab5b7e3565e44f80749433305ce9c,
         type: 3}
@@ -49901,6 +49901,27 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9321747, y: 1.0241148, z: 1.591266}
   m_Center: {x: -0.054389954, y: 0.012057344, z: -0.02023093}
+--- !u!95 &1797790956
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304951089}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e42369f7f85f0a54db2b57da55c8f857, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1800524608
 GameObject:
   m_ObjectHideFlags: 0
@@ -61500,6 +61521,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1797790955}
+    - targetCorrespondingSourceObject: {fileID: 7278346476827946546, guid: e469574faa552004b987f4412f44104e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1797790956}
     - targetCorrespondingSourceObject: {fileID: 5039455422844734214, guid: e469574faa552004b987f4412f44104e,
         type: 3}
       insertIndex: -1
