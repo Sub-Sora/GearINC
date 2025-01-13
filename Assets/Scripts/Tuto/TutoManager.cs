@@ -49,8 +49,17 @@ public class TutoManager : MonoBehaviour
     }
     public void IngrementPeriod()
     {
-        if (TutoActualPeriod < TutoPhases.Count - 1) TutoActualPeriod++;
+        if (TutoActualPeriod < TutoPhases.Count - 1) TutoEvendEnd();
         else _managerOnce.EndTuto();
+    }
+
+    private void TutoEvendEnd()
+    {
+        TutoActualPeriod++;
+        if (TutoActualPeriod == 1) firstRoomComplete.Invoke();
+        if (TutoActualPeriod == 2) secondRoomComplete.Invoke();
+        TutoManager.Instance.allDials.TutoStart();
+        if (TutoActualPeriod >= TutoPhases.Count - 1) ScoreManager.Instance.TutoReinitialisation();
     }
 
 }
