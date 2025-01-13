@@ -67,6 +67,12 @@ public class ScoreManager : MonoBehaviour
         ScoreActual(_score);
     }
 
+    public void TutoReinitialisation()
+    {
+        _score = _initScore;
+        ScoreActual(_score);
+    }
+
     public void StarsScore()
     {
         // Affiche la fenêtre de score
