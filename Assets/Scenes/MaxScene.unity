@@ -32563,6 +32563,8 @@ MonoBehaviour:
   _playerControler: {fileID: 352869125}
   _uperTutoText: {fileID: 1292205950}
   _underTutoText: {fileID: 1756742130}
+  _underNextTextBtn: {fileID: 2125269833}
+  _upperTextBtn: {fileID: 1263097660}
   _textSpeed: 0.02
 --- !u!114 &631577159
 MonoBehaviour:
@@ -42789,7 +42791,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -43450,7 +43452,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -67565,12 +67567,12 @@ GameObject:
   - component: {fileID: 1263097663}
   - component: {fileID: 1263097662}
   m_Layer: 5
-  m_Name: NextTextButton
+  m_Name: UpperNextTextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1263097661
 RectTransform:
   m_ObjectHideFlags: 0
@@ -92998,7 +93000,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1756742131
 RectTransform:
   m_ObjectHideFlags: 0
@@ -93021,7 +93023,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 932}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1758349550
@@ -114087,12 +114089,12 @@ GameObject:
   - component: {fileID: 2125269836}
   - component: {fileID: 2125269835}
   m_Layer: 5
-  m_Name: NextTextButton
+  m_Name: UnderNextTextButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2125269834
 RectTransform:
   m_ObjectHideFlags: 0

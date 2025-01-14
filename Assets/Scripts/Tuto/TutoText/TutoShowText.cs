@@ -16,6 +16,10 @@ public class TutoShowText : MonoBehaviour
     private GameObject _underTutoText;
 
     [SerializeField]
+    private GameObject _underNextTextBtn, _upperTextBtn;
+    private GameObject _actualnextBtn;
+
+    [SerializeField]
     private float _textSpeed;
 
     private TextMeshProUGUI _text;
@@ -35,17 +39,20 @@ public class TutoShowText : MonoBehaviour
     public void ShowText(string text, bool isUper)
     {
         DisablePlayer(true);
+        if (_actualnextBtn != null) _actualnextBtn.SetActive(false);
 
         if (!isUper)
         {
             _uperTutoText.SetActive(false);
             _underTutoText.SetActive(true);
+            _actualnextBtn = _underNextTextBtn;
             _text = _underTutoText.GetComponentInChildren<TextMeshProUGUI>();
         }
         else
         {
             _underTutoText.SetActive(false);
             _uperTutoText.SetActive(true);
+            _actualnextBtn = _upperTextBtn;
             _text = _uperTutoText.GetComponentInChildren<TextMeshProUGUI>();
         }
         _text.text = "";
@@ -59,7 +66,7 @@ public class TutoShowText : MonoBehaviour
         for (int i = 0; i <= _fullText.Length; i++)
         {
             _text.text = _fullText.Substring(0, i);
-
+            if (i >=  _fullText.Length) _actualnextBtn.SetActive(true);
             yield return new WaitForSeconds(_textSpeed);
         }
     }
