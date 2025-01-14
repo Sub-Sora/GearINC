@@ -13,7 +13,6 @@ public class AllDials : MonoBehaviour
     private void Start()
     {
         _currentIndex = 0;
-        //TutoStart();
         TutoManager.Instance.activeDial += TutoStart;
     }
 
@@ -24,6 +23,6 @@ public class AllDials : MonoBehaviour
             TutoManager.Instance.dialManager.StartTutoDial(_dials[_currentIndex]);
             _currentIndex++;
         }
-        else Debug.Log("Pas plus d'élément dans la liste");
+        else Debug.LogError("Pas plus d'élément dans la liste");
     }
 }

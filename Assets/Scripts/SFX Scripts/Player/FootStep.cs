@@ -18,6 +18,7 @@ public class FootStep : MonoBehaviour
         {
             if (!_audioSRC.isPlaying)
             {
+                _audioSRC.pitch = Random.Range(0.6f, 0.9f);
                 _audioSRC.Play();
             }
         }

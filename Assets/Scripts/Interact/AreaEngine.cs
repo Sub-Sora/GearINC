@@ -20,8 +20,6 @@ public class AreaEngine : Interactable, IRessourceHolder
     private int _engineId;
     public int EngineId { get { return _engineId; } }
 
-    public event Action<int> RessourceComplete;
-
     [Header("Gameplay en plus")]
     [SerializeField]
     private ObjectType _typeNeededToRepairEngine;
@@ -120,12 +118,10 @@ public class AreaEngine : Interactable, IRessourceHolder
         if (theConceptionIsCorrect)
         {
             Ressource.RessourceState++;
-            RessourceComplete.Invoke(Ressource.RessourceState);
         }
         else
         {
             Ressource.RessourceState = -1;
-            RessourceComplete.Invoke(0);
         }
 
         if (_manager.Main.NewGameplayIsAdd)

@@ -13,7 +13,7 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     [SerializeField]
     private int _currentEngineID;
 
-    public GameObject CurrentEngine;
+    public AreaEngine CurrentEngine;
 
     [SerializeField]
     private PlayerMain _plMain;
@@ -32,6 +32,8 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
 
     public bool _isHolding;
 
+    private bool _waitAreaEngineAnimation;
+
     private void Start()
     {
         _machControl = GetComponent<MachineControl>();
@@ -49,16 +51,12 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger");
-        //_animator = other.GetComponent<Animator>();
-        _animator = other.GetComponentInParent<Animator>();
-        //_interact = other.GetComponent<AnimInteract>();
-        _interact = other.GetComponentInParent<AnimInteract>();
-        //_currentEngine = _listEngine.IndexOf(other.gameObject.GetComponent<AreaEngine>());
         if (other.TryGetComponent(out AreaEngine areaEngine))
         {
-            CurrentEngine = other.gameObject;
-            areaEngine.RessourceComplete += ChangeEngineTarget;
+            if (areaEngine.EngineId == _currentEngineID)
+            {
+                CurrentEngine = areaEngine;
+            }
         }
     }
 
@@ -78,11 +76,12 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         if (_animator != null && _interact != null)
         {
             StopAllCoroutines();
+            _waitAreaEngineAnimation = false;
 
-            if (_listEngine[_currentEngineID].isHolding && _listEngine[_currentEngineID].Ressource.RessourceState > -1 && _listEngine[_currentEngineID].EngineId + 1 == _listEngine[_currentEngineID].Ressource.RessourceState)
+            if (CurrentEngine.isHolding && CurrentEngine.Ressource.RessourceState > -1 && CurrentEngine.EngineId + 1 == CurrentEngine.Ressource.RessourceState)
             {
-                GetRessource(_listEngine[_currentEngineID].Ressource);
-                _listEngine[_currentEngineID].LoseRessource();
+                GetRessource(CurrentEngine.Ressource);
+                CurrentEngine.LoseRessource();
             }
 
             _animator = null;
@@ -95,33 +94,43 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     /// </summary>
     public void StopMoving()
     {
-        bool isRessourceStateCorrect = false;
-        if (_isHolding)
+        if (!_waitAreaEngineAnimation)
         {
-            if (_listEngine[_currentEngineID].EngineId == Ressource.RessourceState)
+            _waitAreaEngineAnimation = true;
+            if (_animator == null && _interact == null)
             {
-                isRessourceStateCorrect = true;
-            }
-        }
-        else
-        {
-            if (_listEngine[_currentEngineID].EngineId == _listEngine[_currentEngineID].Ressource.RessourceState)
-            {
-                isRessourceStateCorrect = true;
-            }
-        }
-
-        if (_animator != null && _interact != null && isRessourceStateCorrect)
-        {
-            if (!_listEngine[_currentEngineID].isHolding && _isHolding)
-            {
-                _listEngine[_currentEngineID].GetRessource(Ressource);
-                LoseRessource();
+                _animator = CurrentEngine.GetComponentInParent<Animator>();
+                _interact = CurrentEngine.GetComponentInParent<AnimInteract>();
             }
 
-            if (_listEngine[_currentEngineID].isHolding)
+            bool isRessourceStateCorrect = false;
+            if (_isHolding)
             {
-                StartCoroutine(StartWaitingCraft(0.5f));
+                if (CurrentEngine.EngineId == Ressource.RessourceState)
+                {
+                    isRessourceStateCorrect = true;
+                }
+            }
+            else
+            {
+                if (CurrentEngine.EngineId == CurrentEngine.Ressource.RessourceState)
+                {
+                    isRessourceStateCorrect = true;
+                }
+            }
+
+            if (_animator != null && _interact != null && isRessourceStateCorrect)
+            {
+                if (!CurrentEngine.isHolding && _isHolding)
+                {
+                    CurrentEngine.GetRessource(Ressource);
+                    LoseRessource();
+                }
+
+                if (CurrentEngine.isHolding)
+                {
+                    StartCoroutine(StartWaitingCraft(0.5f));
+                }
             }
         }
     }
@@ -137,6 +146,7 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         _animator.SetBool("isPlay", true);
     }
 
+
     /// <summary>
     /// Lorsque le joueur bouge au bon moment de la fin de l'anim
     /// </summary>
@@ -150,6 +160,7 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         Ressource = ressource;
         _isHolding = true;
         Ressource.RessourceAsset.transform.parent = transform;
+        ChangeEngineTarget(Ressource.RessourceState);
     }
 
     public void LoseRessource()
@@ -164,5 +175,10 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     private void Failed()
     {
         
+    }
+
+    public void RessourceComplete()
+    {
+        _waitAreaEngineAnimation = false;
     }
 }
