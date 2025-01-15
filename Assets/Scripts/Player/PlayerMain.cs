@@ -9,6 +9,7 @@ public class PlayerMain : MonoBehaviour
     public PlayerTrigger Trigger;
     public PlayerVFX VFX;
     public PlayerHolding Holding;
+    public Animator PlayerAnimator;
     public bool IsTuto;
 
     // EVENTS //
@@ -18,5 +19,6 @@ public class PlayerMain : MonoBehaviour
     private void Awake()
     {
         SendMessage("Init", this);
+        PlayerAnimator = GetComponentInChildren<Animator>();
     }
 }

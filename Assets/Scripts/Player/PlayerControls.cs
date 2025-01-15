@@ -19,7 +19,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private GameObject _joyStick;
 
-    [SerializeField] 
+    [SerializeField]
     private float _joyStickDeadZone;
 
     [SerializeField]
@@ -93,6 +93,7 @@ public class PlayerControls : MonoBehaviour
     {
         if (_joyStick.activeSelf)
         {
+            
             float distanceJoystick = Vector3.Distance(_joyStickMovable.transform.position, _initJoyStickPos);
             if ((Vector2)_joyStickMovable.transform.position != _initJoyStickPos)
             {
@@ -121,7 +122,11 @@ public class PlayerControls : MonoBehaviour
                     transform.rotation = _lastRotation;
                     Main.VFX.StopWalkingVFX();
                 }
-            }
+
+                Debug.Log(_joyStickMovable.transform.position);
+                Debug.Log(_joyStick.transform.position);
+                Debug.Log(_initJoyStickPos);
+            }            
         }
         else
         {
@@ -132,10 +137,11 @@ public class PlayerControls : MonoBehaviour
         _rb.angularVelocity = Vector3.zero;
     }
 
-    private void StopMovement()
+    public void StopMovement()
     {
         _playerAnim.SetBool("isRun", false);
         SFXManager.Instance.playerStep(false);
+        Main.VFX.StopWalkingVFX();
     }
 
     /// <summary>
@@ -187,5 +193,40 @@ public class PlayerControls : MonoBehaviour
     public void ChangeVelocitySpeedTestFunction()
     {
         _speed = float.Parse(_inputFieldSpeed.text);
+    }
+
+    public void DesactivatePlayer()
+    {
+        Image _joystickParent = _joyStick.GetComponent<Image>();
+        Image _joystickChildren = _joyStickMovable.GetComponent<Image>();
+
+        _joystickParent.color = DesactivateColorFromImage(_joystickParent);
+        _joystickChildren.color = DesactivateColorFromImage(_joystickChildren);
+
+        StopMovement();
+        IsGameInit = false;
+    }
+
+    public void ActivatePlayer()
+    {
+        Image _joystickParent = _joyStick.GetComponent<Image>();
+        Image _joystickChildren = _joyStickMovable.GetComponent<Image>();
+
+        _joystickParent.color = ActivateColorFromImage(_joystickParent);
+        _joystickChildren.color = ActivateColorFromImage(_joystickChildren);
+    }
+
+    private Color DesactivateColorFromImage(Image image)
+    {
+        Color newColor = image.color;
+        newColor.a = 0f; 
+        return newColor;
+    }
+
+    private Color ActivateColorFromImage(Image image)
+    {
+        Color newColor = image.color;
+        newColor.a = 1f;
+        return newColor;
     }
 }

@@ -60,6 +60,8 @@ public class TutoManager : MonoBehaviour
         if (TutoActualPeriod == 2) secondRoomComplete.Invoke();
         TutoManager.Instance.allDials.TutoStart();
         if (TutoActualPeriod >= TutoPhases.Count - 1) ScoreManager.Instance.TutoReinitialisation();
+        if (TutoActualPeriod >= 1) firstRoomComplete.Invoke();
+        if (TutoActualPeriod >= 4) secondRoomComplete.Invoke();
     }
 
 }
