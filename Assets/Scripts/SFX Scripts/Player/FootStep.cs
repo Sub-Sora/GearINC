@@ -5,11 +5,13 @@ using UnityEngine;
 public class FootStep : MonoBehaviour
 {
     private AudioSource _audioSRC;
+    [SerializeField]
+    private bool _activate;
 
     private void Start()
     {
         _audioSRC = GetComponent<AudioSource>();
-        SFXManager.Instance.playerStep += WalkingSound;
+        if (_activate) SFXManager.Instance.playerStep += WalkingSound;
     }
 
     private void WalkingSound(bool WalkSFX)

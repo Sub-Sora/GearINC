@@ -15292,6 +15292,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -4.706
       objectReference: {fileID: 0}
+    - target: {fileID: -2217956775634793565, guid: c20936435c5169446b54aca2ce57f346,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -2016071745791407979, guid: c20936435c5169446b54aca2ce57f346,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -15307,6 +15312,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 0d3aa6a81880f3c4daa41f87fc8983a9, type: 2}
+    - target: {fileID: 4459257898774382272, guid: c20936435c5169446b54aca2ce57f346,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5231338269951904314, guid: c20936435c5169446b54aca2ce57f346,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -39964,8 +39974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b63f62a2b6b44fc40ad4a0fe46252427, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jobsTableWall: {fileID: 1701230003}
-  _engineRoomWall: {fileID: 1196456175}
+  _jobsTableWall: {fileID: 1196456175}
+  _engineRoomWall: {fileID: 1701230003}
   _ressourcesRoomWall: {fileID: 2016351882}
 --- !u!1 &632114325
 GameObject:
