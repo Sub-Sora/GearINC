@@ -22006,6 +22006,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 1294709958108745114, guid: 834e8395b5409f648986fc2246d92fd0,
+        type: 3}
+      propertyPath: _activate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1340868477125097621, guid: 834e8395b5409f648986fc2246d92fd0,
         type: 3}
       propertyPath: m_Layer
@@ -23551,7 +23556,7 @@ RectTransform:
   m_Father: {fileID: 624858723}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 1.1969986, y: 3.8353271}
   m_SizeDelta: {x: -33.4184, y: -32.4854}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -25459,13 +25464,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388573828}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
