@@ -28,7 +28,11 @@ public class TutoShowText : MonoBehaviour
     private void DisablePlayer(bool OnTuto)
     {
         if (OnTuto) _playerControler.IsGameInit = false;
-        else _playerControler.IsGameInit= true;
+        else
+        {
+            _playerControler.IsGameInit = true;
+            _playerControler.ActivatePlayer();
+        }
     }
 
     /// <summary>

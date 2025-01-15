@@ -8,9 +8,7 @@ public class TutoZoneEntrance : MonoBehaviour
     {
         TutoManager.Instance.allDials.TutoStart();
         PlayerControls player = other.GetComponent<PlayerControls>();
-
-        player.StopMovement();
-        player.IsGameInit = false;
+        player.DesactivatePlayer();
         Destroy(this);
     }
 }
