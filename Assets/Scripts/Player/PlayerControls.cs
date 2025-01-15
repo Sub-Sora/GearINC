@@ -19,7 +19,7 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private GameObject _joyStick;
 
-    [SerializeField] 
+    [SerializeField]
     private float _joyStickDeadZone;
 
     [SerializeField]
@@ -132,10 +132,12 @@ public class PlayerControls : MonoBehaviour
         _rb.angularVelocity = Vector3.zero;
     }
 
-    private void StopMovement()
+    public void StopMovement()
     {
         _playerAnim.SetBool("isRun", false);
         SFXManager.Instance.playerStep(false);
+        Main.VFX.StopWalkingVFX();
+        _joyStick.SetActive(false);
     }
 
     /// <summary>
