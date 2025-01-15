@@ -305,6 +305,7 @@ MonoBehaviour:
   Trigger: {fileID: 0}
   VFX: {fileID: 0}
   Holding: {fileID: 0}
+  PlayerAnimator: {fileID: 0}
   IsTuto: 0
 --- !u!114 &7326932038022579046
 MonoBehaviour:
@@ -365,6 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsWalking: 0
   WalkEffect: {fileID: 8467306882617760301}
+  SwitchJobEffect: {fileID: 0}
 --- !u!114 &5544482737453545657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,6 +1014,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: chara_anim_allskins
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c87e6910540a90e4289bb0b5b811ee0c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2212690565313627995, guid: c87e6910540a90e4289bb0b5b811ee0c,
         type: 3}
