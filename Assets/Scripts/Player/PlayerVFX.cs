@@ -7,6 +7,8 @@ public class PlayerVFX : MonoBehaviour
 
     public VisualEffect WalkEffect;
 
+    public VisualEffect SwitchJobEffect;
+
     private void Init(PlayerMain main)
     {
         main.VFX = this;

@@ -40,6 +40,9 @@ public class Workstation : Interactable
                 _player.Job.LastJob = skin.gameObject;
             }
         }
+
+        _player.PlayerAnimator.SetBool("switchJob", true);
+        _player.VFX.SwitchJobEffect.Play();
     }
 
     public void SetWorkstationJobName(GameObject uiJob)
