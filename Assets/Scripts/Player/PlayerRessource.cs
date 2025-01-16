@@ -5,6 +5,7 @@ public class PlayerRessource : MonoBehaviour, IRessourceHolder
     public Ressource RessourceHold;
     public bool IsHolding;
     private PlayerMain _main;
+    public Transform RessourceParent;
 
     private void Init(PlayerMain main)
     {
@@ -35,7 +36,7 @@ public class PlayerRessource : MonoBehaviour, IRessourceHolder
     {
         _main.Holding.TakeObject(RessourceHold.RessourceAsset);
         IsHolding = true;
-        RessourceHold.RessourceAsset.transform.parent = transform;
+        RessourceHold.RessourceAsset.transform.SetParent(RessourceParent, false);
     }
 
     public void LoseRessource()

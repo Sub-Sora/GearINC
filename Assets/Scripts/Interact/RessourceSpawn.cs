@@ -16,7 +16,7 @@ public class RessourceSpawn : Interactable
         //Fait spawn les matériaux
         if (!player.Holding.IsHolding)
         {
-            GameObject newRessource = Instantiate(_ressourceToSpawn, new Vector3(player.transform.position.x, player.transform.position.y + 1, player.transform.position.z), Quaternion.identity);
+            GameObject newRessource = Instantiate(_ressourceToSpawn, Vector3.zero, Quaternion.identity);
             player.Ressource.GetNewRessource(newRessource, _brokeRessourceColor);
         }
     }

@@ -26,6 +26,9 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     [SerializeField]
     private AnimInteract _interact;
 
+    [SerializeField]
+    private Transform _ressourceParent;
+
     private IEnumerator _coroutine;
 
     public Ressource Ressource;
@@ -159,7 +162,7 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     {
         Ressource = ressource;
         _isHolding = true;
-        Ressource.RessourceAsset.transform.parent = transform;
+        Ressource.RessourceAsset.transform.SetParent(_ressourceParent, false);
         ChangeEngineTarget(Ressource.RessourceState);
     }
 
