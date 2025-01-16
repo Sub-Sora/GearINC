@@ -75,6 +75,13 @@ public class TutoShowText : MonoBehaviour
         }
     }
 
+    public void ShowAllText()
+    {
+        StopAllCoroutines();
+        _text.text = _fullText;
+        _actualnextBtn.SetActive(true);
+    }
+
     /// <summary>
     /// Vas cacher le texte et rendre les mouvements au joueur
     /// </summary>
