@@ -122,10 +122,6 @@ public class PlayerControls : MonoBehaviour
                     transform.rotation = _lastRotation;
                     Main.VFX.StopWalkingVFX();
                 }
-
-                Debug.Log(_joyStickMovable.transform.position);
-                Debug.Log(_joyStick.transform.position);
-                Debug.Log(_initJoyStickPos);
             }            
         }
         else
