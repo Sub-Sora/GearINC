@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TutoManager : MonoBehaviour
@@ -13,10 +15,14 @@ public class TutoManager : MonoBehaviour
     public List<GameObject> TutoPhases = new List<GameObject>();
     public List<GameObject> TutoWorkstations = new List<GameObject>();
     public int TutoActualPeriod;
+    public event Action<Transform> NewPhase;
     //
 
     [SerializeField]
     private ManagerOnce _managerOnce;
+
+    [SerializeField]
+    private Transform _arrowObjective;
 
 
     // DIAL //
@@ -50,7 +56,11 @@ public class TutoManager : MonoBehaviour
     public void IngrementPeriod()
     {
         if (TutoActualPeriod < TutoPhases.Count - 1) TutoEvendEnd();
-        else _managerOnce.EndTuto();
+        else
+        {
+            _arrowObjective.gameObject.SetActive(false);
+            _managerOnce.EndTuto();
+        }
     }
 
     private void TutoEvendEnd()
@@ -62,6 +72,13 @@ public class TutoManager : MonoBehaviour
         if (TutoActualPeriod >= TutoPhases.Count - 1) ScoreManager.Instance.TutoReinitialisation();
         if (TutoActualPeriod >= 1) firstRoomComplete.Invoke();
         if (TutoActualPeriod >= 4) secondRoomComplete.Invoke();
+        ArrowNewPhase();
+    }
+
+    public void ArrowNewPhase()
+    {
+        NewPhase.Invoke(TutoPhases[TutoActualPeriod].transform);
+        _arrowObjective.position = new Vector3(TutoPhases[TutoActualPeriod].transform.position.x, TutoPhases[TutoActualPeriod].transform.position.y + 2, TutoPhases[TutoActualPeriod].transform.position.z); 
     }
 
 }
