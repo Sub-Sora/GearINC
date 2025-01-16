@@ -15,6 +15,8 @@ public class AreaEngine : Interactable, IRessourceHolder
 
     [SerializeField]
     private Transform _enginePos;
+    [SerializeField]
+    private GameObject _ressourceIcone;
 
     private AreasEnginesManager _manager;
     private int _engineId;
@@ -135,12 +137,14 @@ public class AreaEngine : Interactable, IRessourceHolder
         Ressource = ressource;
         isHolding = true;
         Ressource.RessourceAsset.transform.parent = transform;
+        _ressourceIcone.SetActive(true);
     }
 
     public void LoseRessource()
     {
         Ressource = null;
         isHolding = false;
+        _ressourceIcone.SetActive(false);
     }
 
     public void BrokeTheEngine()
