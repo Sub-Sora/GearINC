@@ -36,7 +36,7 @@ public class PlayerRessource : MonoBehaviour, IRessourceHolder
     {
         _main.Holding.TakeObject(RessourceHold.RessourceAsset);
         IsHolding = true;
-        RessourceHold.RessourceAsset.transform.parent = RessourceParent;
+        RessourceHold.RessourceAsset.transform.SetParent(RessourceParent, false);
     }
 
     public void LoseRessource()
