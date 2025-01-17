@@ -35,7 +35,7 @@ public class GameOver : MonoBehaviour
 
     public void TestGameOver()
     {
-        ScoreManager.Instance.ChangeScore(0);
+        ScoreManager.Instance.ChangeScore(-100);
         ScoreManager.Instance.GameOverEvnt.Invoke();
     }
 
