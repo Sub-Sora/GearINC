@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8196040035594715061
+--- !u!114 &-7952329877244346960
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Usi1CutEdge
+  m_Name: CutEdgeSoudeur
   m_Shader: {fileID: -6465566751694194690, guid: d8faf7844d5247e4fbf027f3e41d7b18,
     type: 3}
   m_Parent: {fileID: 0}
@@ -38,23 +38,23 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _AoMap:
-        m_Texture: {fileID: 2800000, guid: 046ec94d78374f7459f5a1b630f36140, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5b674211ad1e8cd4db24e9494e242938, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ColorMap:
-        m_Texture: {fileID: 2800000, guid: e725225fc85a3424e83b3e9889c99fbb, type: 3}
+        m_Texture: {fileID: 2800000, guid: 29d3e55d7d3e6c14487410ffdbde687c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicMap:
-        m_Texture: {fileID: 2800000, guid: de1b10be0203aec439a8d4cc25a37abb, type: 3}
+        m_Texture: {fileID: 2800000, guid: ec2abbcf972b6974585a6b4d1d81fe38, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 275f2c03c504a0f498d5597e1cca8158, type: 3}
+        m_Texture: {fileID: 2800000, guid: a3ef5505c7b45d940b3fcb1287959426, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RoughnessMap:
-        m_Texture: {fileID: 2800000, guid: e2603dc0cd15e5c49be09c59896e5bea, type: 3}
+        m_Texture: {fileID: 2800000, guid: 02587cd8854cabd439e9beff9d4e9b3b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -71,10 +71,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _CutEdge: 0.51
-    - _MultiplyRoughness: 0.34
+    - _CutEdge: 0.31
+    - _MultiplyRoughness: 0
     - _Negate: -1
     - _QueueControl: 0
     - _QueueOffset: 0
-    m_Colors: []
+    m_Colors:
+    - _Color: {r: 0.33962262, g: 0.33962262, b: 0.33962262, a: 1}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
