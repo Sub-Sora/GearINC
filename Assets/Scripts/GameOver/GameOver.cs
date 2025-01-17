@@ -33,12 +33,6 @@ public class GameOver : MonoBehaviour
         _anim = _player.GetComponentInChildren<Animator>();
     }
 
-    public void TestGameOver()
-    {
-        ScoreManager.Instance.ChangeScore(-100);
-        ScoreManager.Instance.GameOverEvnt.Invoke();
-    }
-
     private void StartGameOver()
     {
         _robotCam.Priority = 0;
