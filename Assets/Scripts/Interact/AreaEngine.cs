@@ -166,12 +166,14 @@ public class AreaEngine : Interactable, IRessourceHolder
     {
         Ressource = ressource;
         isHolding = true;
-        Ressource.RessourceAsset.transform.parent = transform;
+        Ressource.RessourceAsset.transform.SetParent(transform, false);
+        Ressource.RessourceAsset.SetActive(false);
         _ressourceIcone.SetActive(true);
     }
 
     public void LoseRessource()
     {
+        Ressource.RessourceAsset.SetActive(true);
         Ressource = null;
         isHolding = false;
         _ressourceIcone.SetActive(false);
