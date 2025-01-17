@@ -54,6 +54,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        IsWin = true;
         _score = _initScore;
         _starScore = GetComponent<StarScore>();
     }
@@ -68,6 +69,9 @@ public class ScoreManager : MonoBehaviour
         if (_score < 0) _score = 0;
         if (_score > _initScore) _score = _initScore;
         ScoreActual(_score);
+
+        if (_score >= _oneStarScore) IsWin = true;
+        else IsWin = false;
     }
 
     public void TutoReinitialisation()
@@ -84,19 +88,16 @@ public class ScoreManager : MonoBehaviour
         //Condition pour avoir 3 étoiles de score
         if (_score >= _threeStarScore)
         {
-            IsWin = true;
             _starScore.ThreeStar.Invoke();
         }
         //Condition pour avoir 2 étoiles de score
         if (_score >= _twoStarScore && _score < _threeStarScore)
         {
-            IsWin = true;
             _starScore.TwoStar.Invoke();
         }
         //Condition pour avoir 1 étoiles de score
         if (_score >= _oneStarScore && _score < _twoStarScore)
         {
-            IsWin = true;
             _starScore.OneStar.Invoke();
         }
         //Condition pour avoir 0 étoiles de score
