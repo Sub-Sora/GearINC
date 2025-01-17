@@ -56,7 +56,6 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     {
         if (other.TryGetComponent(out AreaEngine areaEngine))
         {
-            Debug.Log("arean engine ID : " + areaEngine.EngineId + ", robot ID : " + _currentEngineID);
             if (areaEngine.EngineId == _currentEngineID)
             {
                 CurrentEngine = areaEngine;
@@ -100,7 +99,6 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
     {
         if (!_waitAreaEngineAnimation)
         {
-            Debug.Log("dont need to wait");
             _waitAreaEngineAnimation = true;
             if (_animator == null && _interact == null)
             {
@@ -112,7 +110,6 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
             bool isRessourceStateCorrect = false;
             if (_isHolding)
             {
-                Debug.Log(Ressource.RessourceState);
                 if (CurrentEngine.EngineId == Ressource.RessourceState)
                 {
                     isRessourceStateCorrect = true;
@@ -167,7 +164,6 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
         Ressource = ressource;
         _isHolding = true;
         Ressource.RessourceAsset.transform.SetParent(_ressourceParent, false);
-        Debug.Log("ressource state : " + Ressource.RessourceState);
         ChangeEngineTarget(Ressource.RessourceState);
     }
 
