@@ -70,6 +70,7 @@ public class SwitchPlayer : Interactable
             _robotCam.Priority = 20;
             _player.Main.ControlPost(true);
             _playerCam.Priority = 0;
+            _allArea.Main.Machine._interact.RessourceComplete();
         }
         else _cantUseItSound.Play();
     }
