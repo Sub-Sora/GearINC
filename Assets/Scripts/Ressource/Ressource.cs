@@ -11,7 +11,7 @@ public class Ressource : MonoBehaviour
             _ressourceState = value;
             if (_ressourceState == -1)
             {
-                RessourceAsset.GetComponent<MeshRenderer>().material = BrokeRessourceColor;
+                //RessourceAsset.GetComponent<MeshRenderer>().material = BrokeRessourceColor;
             }
         }
     }

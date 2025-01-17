@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using static Job;
 
 public class Workstation : Interactable
@@ -22,8 +23,20 @@ public class Workstation : Interactable
 
     public override void Interact(PlayerMain player)
     {
-            _player = player;
-            _jobSheet.JobSheetObject.SetActive(true);
+        if (player.IsTuto)
+        {
+            if (gameObject == TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod])
+            {
+                TutoManager.Instance.IngrementPeriod();
+            }
+            else
+            {
+                return;
+            }
+        }
+
+        _player = player;
+        _jobSheet.JobSheetObject.SetActive(true);
     }
 
     public void GiveJobInformationToPlayer()

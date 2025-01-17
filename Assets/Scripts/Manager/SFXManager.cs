@@ -14,10 +14,6 @@ public class SFXManager : MonoBehaviour
     private static SFXManager instance = null;
     public static SFXManager Instance => instance;
 
-    [HideInInspector]
-    public UnityEvent SFXRessourcesEvent;
-    private AudioSource RessoucesSound;
-
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -28,13 +24,5 @@ public class SFXManager : MonoBehaviour
         else instance = this;
 
         DontDestroyOnLoad(this.gameObject);
-
-        if (SFXRessourcesEvent != null) SFXRessourcesEvent = new UnityEvent();
-        SFXRessourcesEvent.AddListener(PlayRessourceSound);
-    }
-
-    private void PlayRessourceSound()
-    {
-        RessoucesSound.Play();
     }
 }

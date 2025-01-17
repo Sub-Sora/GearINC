@@ -2,6 +2,18 @@ public class Trash : Interactable
 {
     public override void Interact(PlayerMain player)
     {
+        if (player.IsTuto)
+        {
+            if (gameObject == TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod])
+            {
+                TutoManager.Instance.IngrementPeriod();
+            }
+            else
+            {
+                return;
+            }
+        }
+
         if (player.Holding.IsHolding)
         {
             if (player.Ressource.IsHolding)

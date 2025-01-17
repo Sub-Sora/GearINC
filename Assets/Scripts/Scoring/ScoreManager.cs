@@ -8,6 +8,9 @@ public class ScoreManager : MonoBehaviour
 
     private int _score;
 
+    [HideInInspector]
+    public bool IsWin;
+
     [SerializeField]
     private int _threeStarScore;
 
@@ -51,6 +54,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        IsWin = true;
         _score = _initScore;
         _starScore = GetComponent<StarScore>();
     }
@@ -65,6 +69,9 @@ public class ScoreManager : MonoBehaviour
         if (_score < 0) _score = 0;
         if (_score > _initScore) _score = _initScore;
         ScoreActual(_score);
+
+        if (_score >= _oneStarScore) IsWin = true;
+        else IsWin = false;
     }
 
     public void TutoReinitialisation()
@@ -96,7 +103,7 @@ public class ScoreManager : MonoBehaviour
         //Condition pour avoir 0 étoiles de score
         if (_score < _oneStarScore)
         {
-
+            IsWin = false;
         }
     }
 }

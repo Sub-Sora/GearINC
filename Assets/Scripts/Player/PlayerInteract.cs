@@ -87,18 +87,6 @@ public class PlayerInteract : MonoBehaviour
         {
             if (_interObj.TryGetComponent(out Interactable inter))
             {
-                if (_main.IsTuto)
-                {
-                    if (_interObj == TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod])
-                    {
-                        TutoManager.Instance.IngrementPeriod();
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-
                 inter.Interact(_main);
             }
         }
