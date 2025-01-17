@@ -8,6 +8,8 @@ public class GameOver : MonoBehaviour
 {
     // CAMERA //
     [SerializeField]
+    private CinemachineVirtualCamera _robotCam;
+    [SerializeField]
     private CinemachineVirtualCamera _playerCam;
 
     [SerializeField]
@@ -38,6 +40,8 @@ public class GameOver : MonoBehaviour
 
     private void StartGameOver()
     {
+        _robotCam.Priority = 0;
+        _playerCam.Priority = 10;
         StartCoroutine("WaitUntilAnimation");
         _player.transform.DORotate(new Vector3(0, 180, 0), _rotationSpeed);
     }
@@ -52,6 +56,7 @@ public class GameOver : MonoBehaviour
         }
         _playerCam.m_Lens.FieldOfView = _fovAnimGameOver;
 
+        _anim.SetBool("isWinning", ScoreManager.Instance.IsWin);
         _anim.SetBool("winState", true);
         AnimatorStateInfo animationState = _anim.GetCurrentAnimatorStateInfo(0);
         float animationDuration = animationState.length;
