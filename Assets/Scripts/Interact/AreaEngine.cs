@@ -26,6 +26,9 @@ public class AreaEngine : Interactable, IRessourceHolder
     [SerializeField]
     private GameObject _pc;
 
+    [SerializeField]
+    private AreaEngineEffect _effect;
+
     [Header("Gameplay en plus")]
     [SerializeField]
     private ObjectType _typeNeededToRepairEngine;
@@ -149,11 +152,13 @@ public class AreaEngine : Interactable, IRessourceHolder
         if (theConceptionIsCorrect)
         {
             Ressource.RessourceState++;
+            _effect.AnimClear();
         }
         else
         {
             Ressource.RessourceState = -1;
             _manager.Main.Machine._interact.ChangeEngineTarget(0);
+            _effect.AnimFailed();
         }
 
         if (_manager.Main.NewGameplayIsAdd)
@@ -169,6 +174,7 @@ public class AreaEngine : Interactable, IRessourceHolder
         Ressource.RessourceAsset.transform.SetParent(transform, false);
         Ressource.RessourceAsset.SetActive(false);
         _ressourceIcone.SetActive(true);
+        _effect.GetARessource();
     }
 
     public void LoseRessource()
@@ -177,6 +183,7 @@ public class AreaEngine : Interactable, IRessourceHolder
         Ressource = null;
         isHolding = false;
         _ressourceIcone.SetActive(false);
+        _effect.DesactivateCircle();
     }
 
     public void BrokeTheEngine()
