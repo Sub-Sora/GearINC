@@ -135,14 +135,12 @@ public class AreaEngine : Interactable, IRessourceHolder
     {
         if (_manager.Main.Tuto)
         {
-            Debug.Log(TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod].gameObject.name);
             if (_pc == TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod])
             {
                 TutoManager.Instance.IngrementPeriod();
             }
             else
             {
-                
                 return;
             }
         }
@@ -155,6 +153,7 @@ public class AreaEngine : Interactable, IRessourceHolder
         else
         {
             Ressource.RessourceState = -1;
+            _manager.Main.Machine._interact.ChangeEngineTarget(0);
         }
 
         if (_manager.Main.NewGameplayIsAdd)
