@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class SFXManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class SFXManager : MonoBehaviour
     public SFXEventStep playerStep, robotStep;
 
     public delegate void SFXEvents();
+
+    // MUSIC
+    public AudioSource AudioSource { get; private set; }
+    public AudioClip MenuMusic, LevelMusic;
 
     //SINGLETON
     private static SFXManager instance = null;
@@ -24,5 +29,17 @@ public class SFXManager : MonoBehaviour
         else instance = this;
 
         DontDestroyOnLoad(this.gameObject);
+    }
+
+    public void ChangeMusic()
+    {
+        if (SceneManager.GetActiveScene().name == "TutoMenu")
+        {
+            AudioSource.clip = LevelMusic;
+        }
+        else
+        {
+            AudioSource.clip = MenuMusic;
+        }
     }
 }
