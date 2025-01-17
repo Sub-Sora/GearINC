@@ -14,6 +14,17 @@ public class RobotInteractable : Interactable
 
     public override void Interact(PlayerMain player)
     {
+        if (player.IsTuto)
+        {
+            if (gameObject == TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod])
+            {
+                TutoManager.Instance.IngrementPeriod();
+            }
+            else
+            {
+                return;
+            }
+        }
         _machine.GetRessource(player.Ressource.RessourceHold);
         player.Ressource.LoseRessource();
         _animator.SetBool("GetRessource", true);

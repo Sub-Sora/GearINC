@@ -6,15 +6,14 @@ public class AnimInteract : MonoBehaviour
     [HideInInspector]
     public bool LateAnim;
 
-    private AreaEngine _engine;
+    public AreaEngine Engine;
 
-    private Animator _animator;
+    public Animator Animator;
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();  
+        Animator = GetComponent<Animator>();
         LateAnim = false;
-        _engine = GetComponent<AreaEngine>();
     }
 
     /// <summary>
@@ -22,8 +21,8 @@ public class AnimInteract : MonoBehaviour
     /// </summary>
     public void AnimationFinished()
     {
-        _animator.SetBool("isPlay", false);
-        _engine.Complete();
+        Animator.SetBool("isPlay", false);
+        Engine.Complete();
     }
 
     /// <summary>

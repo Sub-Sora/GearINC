@@ -102,8 +102,9 @@ public class MachineInteract : MonoBehaviour, IRessourceHolder
             _waitAreaEngineAnimation = true;
             if (_animator == null && _interact == null)
             {
-                _animator = CurrentEngine.GetComponentInParent<Animator>();
-                _interact = CurrentEngine.GetComponentInParent<AnimInteract>();
+                AreaEngine engine = CurrentEngine.GetComponentInParent<AreaEngine>();
+                _animator = engine.EngineAnimator.Animator;
+                _interact = engine.EngineAnimator;
             }
 
             bool isRessourceStateCorrect = false;

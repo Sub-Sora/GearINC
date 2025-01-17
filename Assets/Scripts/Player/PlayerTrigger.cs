@@ -15,7 +15,6 @@ public class PlayerTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (other.GetComponent<Interactable>())
         {
             if (_main.IsTuto)

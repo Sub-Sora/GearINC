@@ -10,6 +10,7 @@ public class AreaEngine : Interactable, IRessourceHolder
     [Header("Base Game")]
     public bool isHolding;
     public GameObject Engine;
+    public AnimInteract EngineAnimator;
     public JobType EngineType;
     public Ressource Ressource;
 
@@ -21,6 +22,9 @@ public class AreaEngine : Interactable, IRessourceHolder
     private AreasEnginesManager _manager;
     private int _engineId;
     public int EngineId { get { return _engineId; } }
+
+    [SerializeField]
+    private GameObject _pc;
 
     [Header("Gameplay en plus")]
     [SerializeField]
@@ -49,6 +53,17 @@ public class AreaEngine : Interactable, IRessourceHolder
     /// </summary>
     public override void Interact(PlayerMain player)
     {
+        if (player.IsTuto)
+        {
+            if (gameObject == TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod])
+            {
+                TutoManager.Instance.IngrementPeriod();
+            }
+            else
+            {
+                return;
+            }
+        }
         if (!_manager.Main.NewGameplayIsAdd || !EngineInFire)
         {
             if (isHolding)
@@ -78,6 +93,8 @@ public class AreaEngine : Interactable, IRessourceHolder
                 }
 
                 Engine = Instantiate(player.Job.EnginePut, _enginePos);
+                EngineAnimator = Engine.GetComponent<AnimInteract>();
+                EngineAnimator.Engine = this;
                 if (VerifyEngine()) ScoreManager.Instance.BadPlacment.Invoke();
             }
         }
@@ -116,6 +133,20 @@ public class AreaEngine : Interactable, IRessourceHolder
 
     public void Complete()
     {
+        if (_manager.Main.Tuto)
+        {
+            Debug.Log(TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod].gameObject.name);
+            if (_pc == TutoManager.Instance.TutoPhases[TutoManager.Instance.TutoActualPeriod])
+            {
+                TutoManager.Instance.IngrementPeriod();
+            }
+            else
+            {
+                
+                return;
+            }
+        }
+
         bool theConceptionIsCorrect = VerifyEngine();
         if (theConceptionIsCorrect)
         {
