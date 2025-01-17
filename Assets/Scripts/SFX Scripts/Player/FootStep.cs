@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 public class FootStep : MonoBehaviour
@@ -11,22 +12,29 @@ public class FootStep : MonoBehaviour
     private void Start()
     {
         _audioSRC = GetComponent<AudioSource>();
-        if (_activate) SFXManager.Instance.playerStep += WalkingSound;
+        SFXManager.Instance.playerStep += WalkingSound;
     }
 
     private void WalkingSound(bool WalkSFX)
     {
-        if (WalkSFX)
+        if (WalkSFX && _activate)
         {
             if (!_audioSRC.isPlaying)
             {
-                _audioSRC.pitch = Random.Range(0.6f, 0.9f);
-                _audioSRC.Play();
+                StartCoroutine("WalkingRandomPitch");
             }
         }
         else
         {
+            StopAllCoroutines();
             _audioSRC.Stop();
         }
+    }
+
+    IEnumerator WalkingRandomPitch()
+    {
+        _audioSRC.pitch = Random.Range(0.6f, 0.8f);
+        _audioSRC.Play();
+        yield return new WaitForSeconds(0.1f);
     }
 }

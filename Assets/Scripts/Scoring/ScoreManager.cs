@@ -8,6 +8,9 @@ public class ScoreManager : MonoBehaviour
 
     private int _score;
 
+    [HideInInspector]
+    public bool IsWin;
+
     [SerializeField]
     private int _threeStarScore;
 
@@ -81,22 +84,25 @@ public class ScoreManager : MonoBehaviour
         //Condition pour avoir 3 étoiles de score
         if (_score >= _threeStarScore)
         {
+            IsWin = true;
             _starScore.ThreeStar.Invoke();
         }
         //Condition pour avoir 2 étoiles de score
         if (_score >= _twoStarScore && _score < _threeStarScore)
         {
+            IsWin = true;
             _starScore.TwoStar.Invoke();
         }
         //Condition pour avoir 1 étoiles de score
         if (_score >= _oneStarScore && _score < _twoStarScore)
         {
+            IsWin = true;
             _starScore.OneStar.Invoke();
         }
         //Condition pour avoir 0 étoiles de score
         if (_score < _oneStarScore)
         {
-
+            IsWin = false;
         }
     }
 }
