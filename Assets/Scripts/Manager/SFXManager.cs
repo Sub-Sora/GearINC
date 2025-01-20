@@ -39,7 +39,7 @@ public class SFXManager : MonoBehaviour
         }
         else
         {
-            AudioDrum.DOFade(1, 2f);
+            AudioDrum.DOFade(0.5f, 2f);
         }
     }
 }
