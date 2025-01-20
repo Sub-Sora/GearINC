@@ -283,6 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 32441760}
   - component: {fileID: 32441761}
+  - component: {fileID: 32441762}
   m_Layer: 5
   m_Name: ChooseLevel
   m_TagString: Untagged
@@ -334,6 +335,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelSceneName: MaxScene
+--- !u!114 &32441762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32441759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53ee590e139bc92439e8e5fe51ad2fd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levels:
+  - {fileID: 1760600429}
+  - {fileID: 1534947647}
+  - {fileID: 2115700465}
+  - {fileID: 1947215357}
+  - {fileID: 529841021}
+  - {fileID: 1616047107}
+  - {fileID: 110308186}
 --- !u!1 &38307436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,6 +1226,8 @@ GameObject:
   m_Component:
   - component: {fileID: 110308184}
   - component: {fileID: 110308185}
+  - component: {fileID: 110308187}
+  - component: {fileID: 110308186}
   m_Layer: 5
   m_Name: Tracteur
   m_TagString: Untagged
@@ -1242,6 +1265,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 110308183}
   m_CullTransparentMesh: 1
+--- !u!114 &110308186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110308183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01711eaaf5ce26c44a7c42edb4fd098a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeUsed: 0
+--- !u!95 &110308187
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 110308183}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bab81d36cb9202443afb1df93b7390e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &112523582
 GameObject:
   m_ObjectHideFlags: 0
@@ -2951,7 +3008,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 194666270}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 32441762}
+        m_TargetAssemblyTypeName: UIChangeLevelSelection, Assembly-CSharp
+        m_MethodName: LeftLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &194666270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7744,6 +7813,8 @@ GameObject:
   m_Component:
   - component: {fileID: 529841019}
   - component: {fileID: 529841020}
+  - component: {fileID: 529841022}
+  - component: {fileID: 529841021}
   m_Layer: 5
   m_Name: "V\xE9rin"
   m_TagString: Untagged
@@ -7781,6 +7852,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529841018}
   m_CullTransparentMesh: 1
+--- !u!114 &529841021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529841018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01711eaaf5ce26c44a7c42edb4fd098a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeUsed: 0
+--- !u!95 &529841022
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529841018}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bab81d36cb9202443afb1df93b7390e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &530165198
 GameObject:
   m_ObjectHideFlags: 0
@@ -14891,7 +14996,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1088859333}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 32441762}
+        m_TargetAssemblyTypeName: UIChangeLevelSelection, Assembly-CSharp
+        m_MethodName: RightLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1088859333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20438,6 +20555,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1534947645}
   - component: {fileID: 1534947646}
+  - component: {fileID: 1534947648}
+  - component: {fileID: 1534947647}
   m_Layer: 5
   m_Name: Citerne
   m_TagString: Untagged
@@ -20475,6 +20594,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534947644}
   m_CullTransparentMesh: 1
+--- !u!114 &1534947647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534947644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01711eaaf5ce26c44a7c42edb4fd098a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeUsed: 0
+--- !u!95 &1534947648
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534947644}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bab81d36cb9202443afb1df93b7390e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1543377523
 GameObject:
   m_ObjectHideFlags: 0
@@ -21163,6 +21316,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1616047105}
   - component: {fileID: 1616047106}
+  - component: {fileID: 1616047108}
+  - component: {fileID: 1616047107}
   m_Layer: 5
   m_Name: Cellule
   m_TagString: Untagged
@@ -21200,6 +21355,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1616047104}
   m_CullTransparentMesh: 1
+--- !u!114 &1616047107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616047104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01711eaaf5ce26c44a7c42edb4fd098a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeUsed: 0
+--- !u!95 &1616047108
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1616047104}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bab81d36cb9202443afb1df93b7390e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1616170061
 GameObject:
   m_ObjectHideFlags: 0
@@ -22663,6 +22852,7 @@ GameObject:
   - component: {fileID: 1760600426}
   - component: {fileID: 1760600427}
   - component: {fileID: 1760600428}
+  - component: {fileID: 1760600429}
   m_Layer: 5
   m_Name: Gourde
   m_TagString: Untagged
@@ -22721,6 +22911,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1760600429
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1760600425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01711eaaf5ce26c44a7c42edb4fd098a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeUsed: 1
 --- !u!1 &1763480835
 GameObject:
   m_ObjectHideFlags: 0
@@ -24969,6 +25172,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1947215355}
   - component: {fileID: 1947215356}
+  - component: {fileID: 1947215358}
+  - component: {fileID: 1947215357}
   m_Layer: 5
   m_Name: Trottinette
   m_TagString: Untagged
@@ -25006,6 +25211,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947215354}
   m_CullTransparentMesh: 1
+--- !u!114 &1947215357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947215354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01711eaaf5ce26c44a7c42edb4fd098a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeUsed: 0
+--- !u!95 &1947215358
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947215354}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bab81d36cb9202443afb1df93b7390e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1958867071
 GameObject:
   m_ObjectHideFlags: 0
@@ -27241,6 +27480,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2115700463}
   - component: {fileID: 2115700464}
+  - component: {fileID: 2115700466}
+  - component: {fileID: 2115700465}
   m_Layer: 5
   m_Name: "V\xE9lo"
   m_TagString: Untagged
@@ -27278,6 +27519,40 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115700462}
   m_CullTransparentMesh: 1
+--- !u!114 &2115700465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115700462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01711eaaf5ce26c44a7c42edb4fd098a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanBeUsed: 0
+--- !u!95 &2115700466
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115700462}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bab81d36cb9202443afb1df93b7390e3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2119877371
 GameObject:
   m_ObjectHideFlags: 0
