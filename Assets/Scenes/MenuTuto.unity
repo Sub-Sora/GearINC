@@ -335,6 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelSceneName: ClassicScene
+  _tutoSceneName: MaxScene
 --- !u!114 &32441762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +355,6 @@ MonoBehaviour:
   - {fileID: 1947215357}
   - {fileID: 529841021}
   - {fileID: 1616047107}
-  - {fileID: 110308186}
 --- !u!1 &38307436
 GameObject:
   m_ObjectHideFlags: 0
@@ -8416,7 +8416,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 32441761}
         m_TargetAssemblyTypeName: LevelSelection, Assembly-CSharp
-        m_MethodName: LoadLevel
+        m_MethodName: LoadTutoLevel
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: 7e487b3a04be85c49aa9e12567425f8d,
@@ -11034,7 +11034,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &784825630
 RectTransform:
   m_ObjectHideFlags: 0
