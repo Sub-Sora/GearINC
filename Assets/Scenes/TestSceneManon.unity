@@ -1644,6 +1644,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  _hologramMesh: {fileID: 0}
 --- !u!114 &510078936
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11842,74 +11843,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60000e4a4afc0e14dbe1f15e256e4e87, type: 3}
---- !u!1001 &9132209967707621327
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.677
-      objectReference: {fileID: 0}
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.24300003
-      objectReference: {fileID: 0}
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -51.105
-      objectReference: {fileID: 0}
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1251139002055740752, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3492864860029180304, guid: af79db6ef4fb71d4d91f2b7f7a5b145e,
-        type: 3}
-      propertyPath: m_Name
-      value: BureauSoudeur
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: af79db6ef4fb71d4d91f2b7f7a5b145e, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -11939,7 +11872,6 @@ SceneRoots:
   - {fileID: 972135782}
   - {fileID: 1634422171}
   - {fileID: 7231750240786364421}
-  - {fileID: 9132209967707621327}
   - {fileID: 80408990}
   - {fileID: 7535358509409744778}
   - {fileID: 8010817548177085548}
