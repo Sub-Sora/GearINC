@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using DG.Tweening;
 using UnityEngine.SceneManagement;
 
 public class SFXManager : MonoBehaviour
@@ -12,8 +13,7 @@ public class SFXManager : MonoBehaviour
     public delegate void SFXEvents();
 
     // MUSIC
-    public AudioSource AudioSource { get; private set; }
-    public AudioClip MenuMusic, LevelMusic;
+    public AudioSource AudioDrum;
 
     //SINGLETON
     private static SFXManager instance = null;
@@ -35,11 +35,11 @@ public class SFXManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "TutoMenu")
         {
-            AudioSource.clip = LevelMusic;
+            AudioDrum.DOFade(0, 2f);
         }
         else
         {
-            AudioSource.clip = MenuMusic;
+            AudioDrum.DOFade(1, 2f);
         }
     }
 }
