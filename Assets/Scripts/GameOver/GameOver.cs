@@ -51,6 +51,7 @@ public class GameOver : MonoBehaviour
         }
         _playerCam.m_Lens.FieldOfView = _fovAnimGameOver;
 
+        ScoreManager.Instance.GameOverConfet.Invoke();
         _anim.SetBool("isWinning", ScoreManager.Instance.IsWin);
         _anim.SetBool("winState", true);
         AnimatorStateInfo animationState = _anim.GetCurrentAnimatorStateInfo(0);
@@ -63,5 +64,10 @@ public class GameOver : MonoBehaviour
     private void ShowGameOver()
     {
         ScoreManager.Instance.StarsScore();
+    }
+
+    public void TestGameOver()
+    {
+        ScoreManager.Instance.GameOverEvnt.Invoke();
     }
 }
