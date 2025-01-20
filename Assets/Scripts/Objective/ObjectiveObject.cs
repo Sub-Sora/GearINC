@@ -12,4 +12,5 @@ public class ObjectiveObject : ScriptableObject
     public string ObjectiveName;
     public Sprite ObjectiveIcone;
     public Mesh ObjectiveMesh;
+    public ObjectiveObject NextObjective;
 }

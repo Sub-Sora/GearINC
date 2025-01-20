@@ -5,15 +5,14 @@ public class LevelSelection : MonoBehaviour
     [SerializeField]
     private string _levelSceneName;
 
-    public void LoadLevel(ObjectiveObject levelObjective)
+    public void LoadLevel()
     {
-        ManagerMain.Instance.Objective.Object = levelObjective;
+        ManagerMain.Instance.Objective.Object = ManagerMain.Instance.Objective.Object.NextObjective;
         SceneManager.LoadScene(_levelSceneName);
     }
 
-    public void ReloadLevel(ObjectiveObject levelObjective)
+    public void ReloadLevel()
     {
-        levelObjective = ManagerMain.Instance.Objective.Object;
         _levelSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(_levelSceneName);
     }

@@ -58,8 +58,7 @@ public class TutoManager : MonoBehaviour
         if (TutoActualPeriod < TutoPhases.Count - 1) TutoEvendEnd();
         else
         {
-            _arrowObjective.gameObject.SetActive(false);
-            _managerOnce.EndTuto();
+            allDials.TutoStart();
         }
     }
 
@@ -68,7 +67,7 @@ public class TutoManager : MonoBehaviour
         TutoActualPeriod++;
         if (TutoActualPeriod == 1) firstRoomComplete.Invoke();
         if (TutoActualPeriod == 2) secondRoomComplete.Invoke();
-        TutoManager.Instance.allDials.TutoStart();
+        allDials.TutoStart();
         if (TutoActualPeriod >= TutoPhases.Count - 1) ScoreManager.Instance.TutoReinitialisation();
         if (TutoActualPeriod >= 1) firstRoomComplete.Invoke();
         if (TutoActualPeriod >= 4) secondRoomComplete.Invoke();
@@ -79,6 +78,12 @@ public class TutoManager : MonoBehaviour
     {
         NewPhase.Invoke(TutoPhases[TutoActualPeriod].transform);
         _arrowObjective.position = new Vector3(TutoPhases[TutoActualPeriod].transform.position.x, TutoPhases[TutoActualPeriod].transform.position.y + 2, TutoPhases[TutoActualPeriod].transform.position.z); 
+    }
+
+    public void TutoEnd()
+    {
+        _arrowObjective.gameObject.SetActive(false);
+        _managerOnce.EndTuto();
     }
 
 }

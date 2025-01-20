@@ -41,6 +41,10 @@ public class SwitchPlayer : Interactable
     /// </summary>
     public override void Interact(PlayerMain player)
     {
+        if (player.IsTuto)
+        {
+            TutoManager.Instance.allDials.TutoStart();
+        }
         if (_allArea.Main.NewGameplayIsAdd)
         {
             if (!_allArea.Main.Event.EngineIsBroken && !_allArea.Main.Event.ElecIsBroken)
