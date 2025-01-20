@@ -34,7 +34,7 @@ public class ScoreManager : MonoBehaviour
 
     // Events niveau terminé
     public delegate void GameOverEvent();
-    public GameOverEvent GameOverEvnt, GameOverAnim;
+    public GameOverEvent GameOverEvnt, GameOverAnim, GameOverConfet;
 
     //SINGLETON
     public static ScoreManager instance = null;
