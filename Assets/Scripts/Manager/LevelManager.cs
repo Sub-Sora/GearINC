@@ -12,6 +12,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private List<GameObject> _engineSpot = new List<GameObject>();
 
+    [SerializeField]
+    private MeshFilter _hologramMesh;
+
     private ManagerOnce _main;
 
     private void Init(ManagerOnce main)
@@ -32,6 +35,7 @@ public class LevelManager : MonoBehaviour
         }
 
         SetEngineSpot();
+        SetHologramMesh();
     }
 
     /// <summary>
@@ -126,5 +130,10 @@ public class LevelManager : MonoBehaviour
 
         _main.AreasEngines.InitAllAreaEngine();
         _main.Machine.InitializedPath(_main.AreasEngines.EngineList);
+    }
+
+    private void SetHologramMesh()
+    {
+        _hologramMesh.mesh = _main.Objective.Object.ObjectiveMesh;
     }
 }

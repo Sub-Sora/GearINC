@@ -11,4 +11,5 @@ public class ObjectiveObject : ScriptableObject
     public List<JobType> AllJob = new List<JobType>();
     public string ObjectiveName;
     public Sprite ObjectiveIcone;
+    public Mesh ObjectiveMesh;
 }

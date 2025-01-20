@@ -18,6 +18,8 @@ public class AreaEngine : Interactable, IRessourceHolder
     private Transform _enginePos;
     [SerializeField]
     private GameObject _ressourceIcone;
+    [SerializeField]
+    private GameObject _ressourceBrokenIcone;
 
     private AreasEnginesManager _manager;
     private int _engineId;
@@ -157,6 +159,8 @@ public class AreaEngine : Interactable, IRessourceHolder
         else
         {
             Ressource.RessourceState = -1;
+            _ressourceIcone.gameObject.SetActive(false);
+            _ressourceBrokenIcone.gameObject.SetActive(true);
             _manager.Main.Machine._interact.ChangeEngineTarget(0);
             _effect.AnimFailed();
         }
@@ -173,7 +177,9 @@ public class AreaEngine : Interactable, IRessourceHolder
         isHolding = true;
         Ressource.RessourceAsset.transform.SetParent(transform, false);
         Ressource.RessourceAsset.SetActive(false);
-        _ressourceIcone.SetActive(true);
+        _ressourceIcone.transform.parent.gameObject.SetActive(true);
+        _ressourceIcone.gameObject.SetActive(true);
+        _ressourceBrokenIcone.gameObject.SetActive(false);
         _effect.GetARessource();
     }
 
@@ -182,7 +188,7 @@ public class AreaEngine : Interactable, IRessourceHolder
         Ressource.RessourceAsset.SetActive(true);
         Ressource = null;
         isHolding = false;
-        _ressourceIcone.SetActive(false);
+        _ressourceIcone.transform.parent.gameObject.SetActive(false);
         _effect.DesactivateCircle();
     }
 
