@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ScoreGauge : MonoBehaviour
 {
+    [SerializeField]
     private Slider _slider;
 
     private void Start()
