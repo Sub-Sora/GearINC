@@ -17,11 +17,12 @@ public class PlayerRessource : MonoBehaviour, IRessourceHolder
     /// Permet de créer une nouvelle ressource
     /// </summary>
     /// <param name="newRessource"></param>
-    public void GetNewRessource(GameObject newRessource, Material brokeRessourceColor)
+    public void GetNewRessource(GameObject newRessource, GameObject brokeRessourceColor, GameObject ressourceColor)
     {
         RessourceHold = new Ressource();
         RessourceHold.RessourceState = 0;
         RessourceHold.BrokeRessourceColor = brokeRessourceColor;
+        RessourceHold.RessourceColor = ressourceColor;
         RessourceHold.RessourceAsset = newRessource;
         HoldRessource();
     }

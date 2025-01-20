@@ -11,11 +11,13 @@ public class Ressource : MonoBehaviour
             _ressourceState = value;
             if (_ressourceState == -1)
             {
-                //RessourceAsset.GetComponent<MeshRenderer>().material = BrokeRessourceColor;
+                BrokeRessourceColor.SetActive(true);
+                RessourceColor.SetActive(false);
             }
         }
     }
 
     public GameObject RessourceAsset;
-    public Material BrokeRessourceColor;
+    public GameObject BrokeRessourceColor;
+    public GameObject RessourceColor;
 }

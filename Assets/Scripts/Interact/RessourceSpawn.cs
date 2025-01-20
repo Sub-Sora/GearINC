@@ -9,7 +9,7 @@ public class RessourceSpawn : Interactable
     private Transform _posSpawn;
 
     [SerializeField]
-    private Material _brokeRessourceColor;
+    private GameObject _brokeRessourceColor;
 
     public override void Interact(PlayerMain player)
     {
@@ -28,7 +28,7 @@ public class RessourceSpawn : Interactable
         if (!player.Holding.IsHolding)
         {
             GameObject newRessource = Instantiate(_ressourceToSpawn, Vector3.zero, Quaternion.identity);
-            player.Ressource.GetNewRessource(newRessource, _brokeRessourceColor);
+            player.Ressource.GetNewRessource(newRessource, newRessource.transform.GetChild(1).gameObject, newRessource.transform.GetChild(0).gameObject);
         }
     }
 }
