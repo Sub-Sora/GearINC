@@ -39,6 +39,11 @@ public class DialManager : MonoBehaviour
         if (_currentIndex > _currentDial.GetLenght())
         {
             TutoManager.Instance.tutoText.HideText();
+            //TutoManager.Instance.allDials.IsLastDial();
+            if (TutoManager.Instance.allDials.IsLastDial())
+            {
+                TutoManager.Instance.TutoEnd();
+            }
             //TutoManager.Instance.allDials.TutoStart();
         }
         else

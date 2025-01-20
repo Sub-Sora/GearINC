@@ -25,8 +25,12 @@ public class RobotInteractable : Interactable
                 return;
             }
         }
-        _machine.GetRessource(player.Ressource.RessourceHold);
-        player.Ressource.LoseRessource();
-        _animator.SetBool("GetRessource", true);
+
+        if (!_machine._isHolding)
+        {
+            _machine.GetRessource(player.Ressource.RessourceHold);
+            player.Ressource.LoseRessource();
+            _animator.SetBool("GetRessource", true);
+        }
     }
 }

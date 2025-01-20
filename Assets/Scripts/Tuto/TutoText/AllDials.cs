@@ -25,4 +25,15 @@ public class AllDials : MonoBehaviour
         }
         else Debug.LogError("Pas plus d'élément dans la liste");
     }
+
+    public bool IsLastDial()
+    {
+        bool isTheLast = false;
+        if (_currentIndex == _dials.Length)
+        {
+            isTheLast = true;
+        }
+        Debug.Log(isTheLast + "last");
+        return isTheLast;
+    }
 }
