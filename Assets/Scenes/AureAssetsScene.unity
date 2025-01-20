@@ -27208,7 +27208,7 @@ VisualEffect:
       - m_Value: 4
         m_Name: UpSpeed
         m_Overridden: 1
-      - m_Value: 1.25
+      - m_Value: 0.75
         m_Name: LifeTime
         m_Overridden: 1
       - m_Value: 9
@@ -27220,17 +27220,29 @@ VisualEffect:
       - m_Value: -0.5
         m_Name: FallingSpeed
         m_Overridden: 1
-      - m_Value: -6
+      - m_Value: -5
         m_Name: FallingStarsSpeed
         m_Overridden: 1
-      - m_Value: 1
+      - m_Value: 0.5
         m_Name: FallingStarsLifeTime
         m_Overridden: 1
       - m_Value: 7
         m_Name: NumberOfBalls
         m_Overridden: 1
+      - m_Value: 0.5
+        m_Name: FallingStarsSize
+        m_Overridden: 1
+      - m_Value: 0.3
+        m_Name: RotatingLineLifeTime
+        m_Overridden: 1
     m_Vector2f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: -1, y: 1}
+        m_Name: FallingStarsSpeedRandomX
+        m_Overridden: 1
+      - m_Value: {x: -1, y: 1}
+        m_Name: FallingStarsSpeedRandomZ
+        m_Overridden: 1
     m_Vector3f:
       m_Array: []
     m_Vector4f:
@@ -28817,10 +28829,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHolding: 0
   Engine: {fileID: 0}
+  EngineAnimator: {fileID: 0}
   EngineType: 0
   Ressource: {fileID: 0}
   _enginePos: {fileID: 836383159}
   _ressourceIcone: {fileID: 0}
+  _ressourceBrokenIcone: {fileID: 0}
+  _pc: {fileID: 0}
+  _effect: {fileID: 0}
   _typeNeededToRepairEngine: 0
   SmokeEffect: {fileID: 0}
 --- !u!65 &1026554028
@@ -28878,6 +28894,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LateAnim: 0
+  Engine: {fileID: 0}
+  Animator: {fileID: 0}
 --- !u!114 &1026554033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28891,6 +28909,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LateAnim: 0
+  Engine: {fileID: 0}
+  Animator: {fileID: 0}
 --- !u!1 &1027165211
 GameObject:
   m_ObjectHideFlags: 0
@@ -34920,10 +34940,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHolding: 0
   Engine: {fileID: 0}
+  EngineAnimator: {fileID: 0}
   EngineType: 0
   Ressource: {fileID: 0}
   _enginePos: {fileID: 18899333}
   _ressourceIcone: {fileID: 0}
+  _ressourceBrokenIcone: {fileID: 0}
+  _pc: {fileID: 0}
+  _effect: {fileID: 0}
   _typeNeededToRepairEngine: 0
   SmokeEffect: {fileID: 0}
 --- !u!65 &1239823185
@@ -34960,6 +34984,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LateAnim: 0
+  Engine: {fileID: 0}
+  Animator: {fileID: 0}
 --- !u!95 &1239823189
 Animator:
   serializedVersion: 5
@@ -48004,10 +48030,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHolding: 0
   Engine: {fileID: 0}
+  EngineAnimator: {fileID: 0}
   EngineType: 0
   Ressource: {fileID: 0}
   _enginePos: {fileID: 1146285267}
   _ressourceIcone: {fileID: 0}
+  _ressourceBrokenIcone: {fileID: 0}
+  _pc: {fileID: 0}
+  _effect: {fileID: 0}
   _typeNeededToRepairEngine: 0
   SmokeEffect: {fileID: 0}
 --- !u!65 &1725131019
@@ -48044,6 +48074,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LateAnim: 0
+  Engine: {fileID: 0}
+  Animator: {fileID: 0}
 --- !u!95 &1725131023
 Animator:
   serializedVersion: 5
@@ -52125,9 +52157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe2c32264deae324d86e24dd51aaa695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SFXRessourcesEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  AudioDrum: {fileID: 0}
 --- !u!1 &1843523494
 GameObject:
   m_ObjectHideFlags: 0
@@ -54887,6 +54917,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initScore: 100
+  IsWin: 0
   _threeStarScore: 75
   _twoStarScore: 50
   _oneStarScore: 25
@@ -62332,6 +62363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LateAnim: 0
+  Engine: {fileID: 0}
+  Animator: {fileID: 0}
 --- !u!4 &7252405794561781330 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2639736872868027565, guid: 9e2a4e6929fd51849b8486bba919ea3d,
