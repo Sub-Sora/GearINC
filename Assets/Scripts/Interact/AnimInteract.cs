@@ -21,6 +21,7 @@ public class AnimInteract : MonoBehaviour
     /// </summary>
     public void AnimationFinished()
     {
+        Debug.Log("anim fini");
         Animator.SetBool("isPlay", false);
         Engine.Complete();
     }
